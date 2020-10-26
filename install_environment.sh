@@ -49,7 +49,7 @@ else
 		exit
 	"
 	
-	#Reconnecting and installing docker-compose, nodejs+npm and Jhipster
+	#Reconnecting and installing docker-compose and nodejs+npm
 	ssh -i $keypath $vmadress "
 		echo \"---Installing docker compose...---\"
 		sudo curl -L \"https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose
@@ -68,7 +68,7 @@ else
 		exit
 	"
 
-		#Reconnecting and installing docker-compose, nodejs+npm and Jhipster
+	#Reconnecting and installing Jhipster
 	ssh -i $keypath $vmadress "
 		echo \"---Installing Jhispster...---\"
 		sudo npm install -g generator-jhipster
