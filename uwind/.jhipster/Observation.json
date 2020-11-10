@@ -1,0 +1,46 @@
+{
+  "name": "Observation",
+  "fields": [
+    {
+      "fieldName": "observation",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "observation",
+      "relationshipName": "etudiant",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "moniteur",
+      "otherEntityRelationshipName": "observation",
+      "relationshipName": "moniteur",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gestionnaire",
+      "otherEntityRelationshipName": "observation",
+      "relationshipName": "gestionnaire",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110080304",
+  "entityTableName": "observation",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

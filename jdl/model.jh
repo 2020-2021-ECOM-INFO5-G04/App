@@ -1,0 +1,186 @@
+//ENTITIES
+entity User {
+    Identifiant String required minlength(3) maxlength(15) 
+    Mdp String required pattern(/^(?=.{10,}$)(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.\W).*$/) //verifie que le mdp contient au moins une minuscule, une majuscule, un chiffre et un caractere special, et que la taille est au moins 10
+}
+
+entity Profil { //Extends User (voir les relations)
+	Prenom String required minlength(2) maxlength(20)
+    Nom String required minlength(2) maxlength(20)
+    Email String required pattern(/^[^@\s]+@[^@\s]+.[^@\s]+$/)
+    NumTel String required minlength(10)
+}
+
+entity Etudiant { //Extends Profil
+	NiveauScolaire NiveauEtudes required
+    Departement Filiere required 
+    NiveauPlanche NiveauPlancheAVoile required
+    PermisDeConduire Boolean required
+    LieuDepart String required
+    OptionSemestre Boolean required
+    CompteValide Boolean required
+}
+
+enum NiveauEtudes {
+	Bac_plus_1,
+    Bac_plus_2,
+    Bac_plus_3,
+    Bac_plus_4,
+    Bac_plus_5,
+    Bac_plus_6,
+    Bac_plus_7,
+    Bac_plus_8
+}
+
+enum Filiere {
+	STAPS_Entrainement_sportif,
+    STAPS_Management_du_sport,
+    STAPS_Education_et_motricite,
+    STAPS_APAS
+}
+
+entity Moniteur { //Extends Profil
+}
+
+entity Gestionnaire { //Extends Profil
+}
+
+entity Sortie {
+	Nom String required minlength(5) maxlength(20)
+    Date LocalDate required
+    PlanDeau PlanDEau required
+    Coeff Long required min(0)
+    Commentaire String
+}
+
+enum PlanDEau{
+	Laffrey,
+    Monteynard,
+    Meze,
+    Hyeres,
+    Leucate
+}
+
+enum NiveauPlancheAVoile{
+	Deb,
+    DebPlus,
+    Perf,
+    Fun,
+    Monitor
+}
+
+entity InscriptionSortie { //Represente l'inscription d'une etudiant à une sortie. Est lie a une voile, une combi et un flotteur pour cette inscription
+}
+
+entity Observation {
+	Observation String required
+}
+
+entity Evaluation {
+	Note Float required min(0.0) max(20.0)
+    Commentaire String
+}
+
+entity Voile {
+	NomComplet NomVoile required 
+    Surface Float required min(0.0)
+    Niveau NiveauPlancheAVoile required
+    Utilisable Boolean required
+    Commentaire String
+}
+
+enum NomVoile{
+	Loft_Purelip,
+	Gun_Blow,
+	Gun_Beat,
+	Loft_Oxygen,
+	Duotone_EPace,
+	Beat,
+	Allstar,
+	Loft,
+	Rebel,
+	Loft_Blade,
+	Blow,
+	Steel,
+	Topwave,
+	Cannonball,
+	Loft_O2
+}
+
+entity Flotteur {
+    Nom NomFlotteur required
+    Volume Float required min(0.0)
+    NiveauPlancheAVoile NiveauPlancheAVoile required
+    Utilisable Boolean required
+    Commentaire String
+}
+
+enum NomFlotteur {
+	Beach,
+	Calipso,
+	Core_160,
+	RRD_Firerace,
+	Techno_133,
+	Tabou_rocket
+}
+
+entity Combinaison {
+    Nom NomCombinaison required
+    Taille TailleCombinaison required
+    Poids PoidsCombinaison required
+}
+
+enum NomCombinaison{
+	Decat_W,
+	Decat_W_N,
+	Decat_N,
+	Decat
+}
+
+enum TailleCombinaison {
+	T_150_155,
+	T_155_160,
+	T_160_170
+}
+
+enum PoidsCombinaison {
+	P_50_55,
+	P_55_60
+}
+
+//RELATIONSHIPS
+relationship OneToOne {
+	Profil{utilisateur} to User
+    
+    Etudiant{profil} to Profil
+    Moniteur{profil} to Profil
+    Gestionnaire{profil} to Profil
+
+    Etudiant{flotteur} to Flotteur
+    Etudiant{voile} to Voile
+    Etudiant{combinaison} to Combinaison
+    
+    Moniteur{flotteur} to Flotteur
+    Moniteur{voile} to Voile
+    Moniteur{combinaison} to Combinaison
+}
+
+relationship ManyToOne{
+	Etudiant{gestionnaire} to Gestionnaire
+}
+
+relationship OneToMany {
+	Etudiant{observation} to Observation 
+    Etudiant{evaluation} to Evaluation
+    Etudiant{inscriptionSortie} to InscriptionSortie
+
+    Sortie{inscriptionSortie} to InscriptionSortie
+    
+    Moniteur{observation} to Observation
+    Moniteur{inscriptionSortie} to InscriptionSortie
+    
+    Gestionnaire{evaluation} to Evaluation
+    Gestionnaire{observation} to Observation
+    Gestionnaire{sortie} to Sortie
+    Gestionnaire{inscriptionSortie} to InscriptionSortie
+}

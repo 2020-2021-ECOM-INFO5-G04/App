@@ -1,0 +1,25 @@
+{
+  "uwindApp": {
+    "inscriptionSortie": {
+      "home": {
+        "title": "Inscription Sorties",
+        "createLabel": "Crear nuevo Inscription Sortie",
+        "createOrEditLabel": "Crear o editar Inscription Sortie",
+        "notFound": "Ningún Inscription Sorties encontrado"
+      },
+      "created": "Un nuevo Inscription Sortie ha sido creado con el identificador {{ param }}",
+      "updated": "Un Inscription Sortie ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Inscription Sortie ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Inscription Sortie {{ id }}?"
+      },
+      "detail": {
+        "title": "Inscription Sortie"
+      },
+      "etudiant": "Etudiant",
+      "sortie": "Sortie",
+      "moniteur": "Moniteur",
+      "gestionnaire": "Gestionnaire"
+    }
+  }
+}

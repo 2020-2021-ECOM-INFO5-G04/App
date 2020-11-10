@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="moniteur">
+            <h2><span jhiTranslate="uwindApp.moniteur.detail.title">Moniteur</span> {{ moniteur.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uwindApp.moniteur.profil">Profil</span></dt>
+                <dd>
+                    <div *ngIf="moniteur.profil">
+                        <a [routerLink]="['/profil', moniteur.profil?.id, 'view']">{{ moniteur.profil?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.moniteur.flotteur">Flotteur</span></dt>
+                <dd>
+                    <div *ngIf="moniteur.flotteur">
+                        <a [routerLink]="['/flotteur', moniteur.flotteur?.id, 'view']">{{ moniteur.flotteur?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.moniteur.voile">Voile</span></dt>
+                <dd>
+                    <div *ngIf="moniteur.voile">
+                        <a [routerLink]="['/voile', moniteur.voile?.id, 'view']">{{ moniteur.voile?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.moniteur.combinaison">Combinaison</span></dt>
+                <dd>
+                    <div *ngIf="moniteur.combinaison">
+                        <a [routerLink]="['/combinaison', moniteur.combinaison?.id, 'view']">{{ moniteur.combinaison?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/moniteur', moniteur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

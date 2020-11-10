@@ -1,0 +1,53 @@
+{
+  "name": "Flotteur",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "NomFlotteur",
+      "fieldValues": "Beach,Calipso,Core_160,RRD_Firerace,Techno_133,Tabou_rocket",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "volume",
+      "fieldType": "Float",
+      "fieldValidateRules": [
+        "required",
+        "min"
+      ],
+      "fieldValidateRulesMin": "0.0"
+    },
+    {
+      "fieldName": "niveauPlancheAVoile",
+      "fieldType": "NiveauPlancheAVoile",
+      "fieldValues": "Deb,DebPlus,Perf,Fun,Monitor",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "utilisable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201110080604",
+  "entityTableName": "flotteur",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

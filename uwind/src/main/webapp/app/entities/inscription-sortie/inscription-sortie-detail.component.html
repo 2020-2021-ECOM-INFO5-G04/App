@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="inscriptionSortie">
+            <h2><span jhiTranslate="uwindApp.inscriptionSortie.detail.title">Inscription Sortie</span> {{ inscriptionSortie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uwindApp.inscriptionSortie.etudiant">Etudiant</span></dt>
+                <dd>
+                    <div *ngIf="inscriptionSortie.etudiant">
+                        <a [routerLink]="['/etudiant', inscriptionSortie.etudiant?.id, 'view']">{{ inscriptionSortie.etudiant?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.inscriptionSortie.sortie">Sortie</span></dt>
+                <dd>
+                    <div *ngIf="inscriptionSortie.sortie">
+                        <a [routerLink]="['/sortie', inscriptionSortie.sortie?.id, 'view']">{{ inscriptionSortie.sortie?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.inscriptionSortie.moniteur">Moniteur</span></dt>
+                <dd>
+                    <div *ngIf="inscriptionSortie.moniteur">
+                        <a [routerLink]="['/moniteur', inscriptionSortie.moniteur?.id, 'view']">{{ inscriptionSortie.moniteur?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.inscriptionSortie.gestionnaire">Gestionnaire</span></dt>
+                <dd>
+                    <div *ngIf="inscriptionSortie.gestionnaire">
+                        <a [routerLink]="['/gestionnaire', inscriptionSortie.gestionnaire?.id, 'view']">{{ inscriptionSortie.gestionnaire?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/inscription-sortie', inscriptionSortie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

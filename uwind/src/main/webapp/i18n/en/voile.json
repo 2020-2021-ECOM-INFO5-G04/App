@@ -1,0 +1,26 @@
+{
+  "uwindApp": {
+    "voile": {
+      "home": {
+        "title": "Voiles",
+        "createLabel": "Create a new Voile",
+        "createOrEditLabel": "Create or edit a Voile",
+        "notFound": "No Voiles found"
+      },
+      "created": "A new Voile is created with identifier {{ param }}",
+      "updated": "A Voile is updated with identifier {{ param }}",
+      "deleted": "A Voile is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Voile {{ id }}?"
+      },
+      "detail": {
+        "title": "Voile"
+      },
+      "nomComplet": "Nom Complet",
+      "surface": "Surface",
+      "niveau": "Niveau",
+      "utilisable": "Utilisable",
+      "commentaire": "Commentaire"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="uwindApp.voile.home.title">Voiles</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-voile" [routerLink]="['/voile/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="uwindApp.voile.home.createLabel">
+            Create a new Voile
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="voiles?.length === 0">
+        <span jhiTranslate="uwindApp.voile.home.notFound">No voiles found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="voiles && voiles.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.voile.nomComplet">Nom Complet</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.voile.surface">Surface</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.voile.niveau">Niveau</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.voile.utilisable">Utilisable</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.voile.commentaire">Commentaire</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let voile of voiles ;trackBy: trackId">
+                    <td><a [routerLink]="['/voile', voile.id, 'view']">{{ voile.id }}</a></td>
+                    <td jhiTranslate="{{ 'uwindApp.NomVoile.' + voile.nomComplet }}">{{ voile.nomComplet }}</td>
+                    <td>{{ voile.surface }}</td>
+                    <td jhiTranslate="{{ 'uwindApp.NiveauPlancheAVoile.' + voile.niveau }}">{{ voile.niveau }}</td>
+                    <td>{{ voile.utilisable }}</td>
+                    <td>{{ voile.commentaire }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/voile', voile.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/voile', voile.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(voile)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

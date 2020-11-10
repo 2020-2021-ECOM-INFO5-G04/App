@@ -1,0 +1,53 @@
+{
+  "name": "Voile",
+  "fields": [
+    {
+      "fieldName": "nomComplet",
+      "fieldType": "NomVoile",
+      "fieldValues": "Loft_Purelip,Gun_Blow,Gun_Beat,Loft_Oxygen,Duotone_EPace,Beat,Allstar,Loft,Rebel,Loft_Blade,Blow,Steel,Topwave,Cannonball,Loft_O2",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "surface",
+      "fieldType": "Float",
+      "fieldValidateRules": [
+        "required",
+        "min"
+      ],
+      "fieldValidateRulesMin": "0.0"
+    },
+    {
+      "fieldName": "niveau",
+      "fieldType": "NiveauPlancheAVoile",
+      "fieldValues": "Deb,DebPlus,Perf,Fun,Monitor",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "utilisable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201110080504",
+  "entityTableName": "voile",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

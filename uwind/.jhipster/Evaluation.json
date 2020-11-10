@@ -1,0 +1,47 @@
+{
+  "name": "Evaluation",
+  "fields": [
+    {
+      "fieldName": "note",
+      "fieldType": "Float",
+      "fieldValidateRules": [
+        "required",
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "0.0",
+      "fieldValidateRulesMax": "20.0"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "evaluation",
+      "relationshipName": "etudiant",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gestionnaire",
+      "otherEntityRelationshipName": "evaluation",
+      "relationshipName": "gestionnaire",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110080404",
+  "entityTableName": "evaluation",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

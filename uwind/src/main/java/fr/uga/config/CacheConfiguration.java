@@ -48,6 +48,27 @@ public class CacheConfiguration {
             createCache(cm, fr.uga.domain.User.class.getName());
             createCache(cm, fr.uga.domain.Authority.class.getName());
             createCache(cm, fr.uga.domain.User.class.getName() + ".authorities");
+            createCache(cm, fr.uga.domain.Profil.class.getName());
+            createCache(cm, fr.uga.domain.Etudiant.class.getName());
+            createCache(cm, fr.uga.domain.Etudiant.class.getName() + ".observations");
+            createCache(cm, fr.uga.domain.Etudiant.class.getName() + ".evaluations");
+            createCache(cm, fr.uga.domain.Etudiant.class.getName() + ".inscriptionSorties");
+            createCache(cm, fr.uga.domain.Moniteur.class.getName());
+            createCache(cm, fr.uga.domain.Moniteur.class.getName() + ".observations");
+            createCache(cm, fr.uga.domain.Moniteur.class.getName() + ".inscriptionSorties");
+            createCache(cm, fr.uga.domain.Gestionnaire.class.getName());
+            createCache(cm, fr.uga.domain.Gestionnaire.class.getName() + ".evaluations");
+            createCache(cm, fr.uga.domain.Gestionnaire.class.getName() + ".observations");
+            createCache(cm, fr.uga.domain.Gestionnaire.class.getName() + ".sorties");
+            createCache(cm, fr.uga.domain.Gestionnaire.class.getName() + ".inscriptionSorties");
+            createCache(cm, fr.uga.domain.Sortie.class.getName());
+            createCache(cm, fr.uga.domain.Sortie.class.getName() + ".inscriptionSorties");
+            createCache(cm, fr.uga.domain.InscriptionSortie.class.getName());
+            createCache(cm, fr.uga.domain.Observation.class.getName());
+            createCache(cm, fr.uga.domain.Evaluation.class.getName());
+            createCache(cm, fr.uga.domain.Voile.class.getName());
+            createCache(cm, fr.uga.domain.Flotteur.class.getName());
+            createCache(cm, fr.uga.domain.Combinaison.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

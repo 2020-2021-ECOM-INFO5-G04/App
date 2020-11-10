@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="uwindApp.combinaison.home.title">Combinaisons</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-combinaison" [routerLink]="['/combinaison/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="uwindApp.combinaison.home.createLabel">
+            Create a new Combinaison
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="combinaisons?.length === 0">
+        <span jhiTranslate="uwindApp.combinaison.home.notFound">No combinaisons found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="combinaisons && combinaisons.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.combinaison.nom">Nom</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.combinaison.taille">Taille</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.combinaison.poids">Poids</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let combinaison of combinaisons ;trackBy: trackId">
+                    <td><a [routerLink]="['/combinaison', combinaison.id, 'view']">{{ combinaison.id }}</a></td>
+                    <td jhiTranslate="{{ 'uwindApp.NomCombinaison.' + combinaison.nom }}">{{ combinaison.nom }}</td>
+                    <td jhiTranslate="{{ 'uwindApp.TailleCombinaison.' + combinaison.taille }}">{{ combinaison.taille }}</td>
+                    <td jhiTranslate="{{ 'uwindApp.PoidsCombinaison.' + combinaison.poids }}">{{ combinaison.poids }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/combinaison', combinaison.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/combinaison', combinaison.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(combinaison)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

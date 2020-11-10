@@ -1,0 +1,25 @@
+{
+  "uwindApp": {
+    "observation": {
+      "home": {
+        "title": "Observations",
+        "createLabel": "Crear nuevo Observation",
+        "createOrEditLabel": "Crear o editar Observation",
+        "notFound": "Ningún Observations encontrado"
+      },
+      "created": "Un nuevo Observation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Observation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Observation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Observation {{ id }}?"
+      },
+      "detail": {
+        "title": "Observation"
+      },
+      "observation": "Observation",
+      "etudiant": "Etudiant",
+      "moniteur": "Moniteur",
+      "gestionnaire": "Gestionnaire"
+    }
+  }
+}

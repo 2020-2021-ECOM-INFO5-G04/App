@@ -7,6 +7,17 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "profil": "Profil",
+        "etudiant": "Etudiant",
+        "moniteur": "Moniteur",
+        "gestionnaire": "Gestionnaire",
+        "sortie": "Sortie",
+        "inscriptionSortie": "Inscription Sortie",
+        "observation": "Observation",
+        "evaluation": "Evaluation",
+        "voile": "Voile",
+        "flotteur": "Flotteur",
+        "combinaison": "Combinaison",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

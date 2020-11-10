@@ -1,0 +1,27 @@
+{
+  "uwindApp": {
+    "moniteur": {
+      "home": {
+        "title": "Moniteurs",
+        "createLabel": "Create a new Moniteur",
+        "createOrEditLabel": "Create or edit a Moniteur",
+        "notFound": "No Moniteurs found"
+      },
+      "created": "A new Moniteur is created with identifier {{ param }}",
+      "updated": "A Moniteur is updated with identifier {{ param }}",
+      "deleted": "A Moniteur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Moniteur {{ id }}?"
+      },
+      "detail": {
+        "title": "Moniteur"
+      },
+      "profil": "Profil",
+      "flotteur": "Flotteur",
+      "voile": "Voile",
+      "combinaison": "Combinaison",
+      "observation": "Observation",
+      "inscriptionSortie": "Inscription Sortie"
+    }
+  }
+}

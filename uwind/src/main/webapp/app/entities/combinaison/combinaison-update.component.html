@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-combinaison-heading" jhiTranslate="uwindApp.combinaison.home.createOrEditLabel">Create or edit a Combinaison</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.combinaison.nom" for="field_nom">Nom</label>
+                    <select class="form-control" name="nom" formControlName="nom" id="field_nom">
+                        <option value="Decat_W">{{ 'uwindApp.NomCombinaison.Decat_W' | translate }}</option>
+                        <option value="Decat_W_N">{{ 'uwindApp.NomCombinaison.Decat_W_N' | translate }}</option>
+                        <option value="Decat_N">{{ 'uwindApp.NomCombinaison.Decat_N' | translate }}</option>
+                        <option value="Decat">{{ 'uwindApp.NomCombinaison.Decat' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.combinaison.taille" for="field_taille">Taille</label>
+                    <select class="form-control" name="taille" formControlName="taille" id="field_taille">
+                        <option value="T_150_155">{{ 'uwindApp.TailleCombinaison.T_150_155' | translate }}</option>
+                        <option value="T_155_160">{{ 'uwindApp.TailleCombinaison.T_155_160' | translate }}</option>
+                        <option value="T_160_170">{{ 'uwindApp.TailleCombinaison.T_160_170' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('taille')!.invalid && (editForm.get('taille')!.dirty || editForm.get('taille')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('taille')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.combinaison.poids" for="field_poids">Poids</label>
+                    <select class="form-control" name="poids" formControlName="poids" id="field_poids">
+                        <option value="P_50_55">{{ 'uwindApp.PoidsCombinaison.P_50_55' | translate }}</option>
+                        <option value="P_55_60">{{ 'uwindApp.PoidsCombinaison.P_55_60' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('poids')!.invalid && (editForm.get('poids')!.dirty || editForm.get('poids')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('poids')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "Combinaison",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "NomCombinaison",
+      "fieldValues": "Decat_W,Decat_W_N,Decat_N,Decat",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "taille",
+      "fieldType": "TailleCombinaison",
+      "fieldValues": "T_150_155,T_155_160,T_160_170",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "poids",
+      "fieldType": "PoidsCombinaison",
+      "fieldValues": "P_50_55,P_55_60",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201110080704",
+  "entityTableName": "combinaison",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

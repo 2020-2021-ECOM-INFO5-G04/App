@@ -1,0 +1,26 @@
+{
+  "uwindApp": {
+    "profil": {
+      "home": {
+        "title": "Profils",
+        "createLabel": "Crear nuevo Profil",
+        "createOrEditLabel": "Crear o editar Profil",
+        "notFound": "Ningún Profils encontrado"
+      },
+      "created": "Un nuevo Profil ha sido creado con el identificador {{ param }}",
+      "updated": "Un Profil ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Profil ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Profil {{ id }}?"
+      },
+      "detail": {
+        "title": "Profil"
+      },
+      "prenom": "Prenom",
+      "nom": "Nom",
+      "email": "Email",
+      "numTel": "Num Tel",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

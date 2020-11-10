@@ -1,0 +1,25 @@
+{
+  "uwindApp": {
+    "evaluation": {
+      "home": {
+        "title": "Evaluations",
+        "createLabel": "Crear nuevo Evaluation",
+        "createOrEditLabel": "Crear o editar Evaluation",
+        "notFound": "Ningún Evaluations encontrado"
+      },
+      "created": "Un nuevo Evaluation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Evaluation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Evaluation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Evaluation {{ id }}?"
+      },
+      "detail": {
+        "title": "Evaluation"
+      },
+      "note": "Note",
+      "commentaire": "Commentaire",
+      "etudiant": "Etudiant",
+      "gestionnaire": "Gestionnaire"
+    }
+  }
+}

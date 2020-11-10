@@ -1,0 +1,61 @@
+{
+  "name": "Moniteur",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "profil",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "flotteur",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "flotteur",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "voile",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "voile",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "combinaison",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "combinaison",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "observation",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "observation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "inscriptionSortie",
+      "otherEntityRelationshipName": "moniteur",
+      "relationshipName": "inscriptionSortie"
+    }
+  ],
+  "changelogDate": "20201110075904",
+  "entityTableName": "moniteur",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

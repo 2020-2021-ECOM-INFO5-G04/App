@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="uwindApp.flotteur.home.title">Flotteurs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-flotteur" [routerLink]="['/flotteur/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="uwindApp.flotteur.home.createLabel">
+            Create a new Flotteur
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="flotteurs?.length === 0">
+        <span jhiTranslate="uwindApp.flotteur.home.notFound">No flotteurs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="flotteurs && flotteurs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.nom">Nom</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.volume">Volume</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.niveauPlancheAVoile">Niveau Planche A Voile</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.utilisable">Utilisable</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.commentaire">Commentaire</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let flotteur of flotteurs ;trackBy: trackId">
+                    <td><a [routerLink]="['/flotteur', flotteur.id, 'view']">{{ flotteur.id }}</a></td>
+                    <td jhiTranslate="{{ 'uwindApp.NomFlotteur.' + flotteur.nom }}">{{ flotteur.nom }}</td>
+                    <td>{{ flotteur.volume }}</td>
+                    <td jhiTranslate="{{ 'uwindApp.NiveauPlancheAVoile.' + flotteur.niveauPlancheAVoile }}">{{ flotteur.niveauPlancheAVoile }}</td>
+                    <td>{{ flotteur.utilisable }}</td>
+                    <td>{{ flotteur.commentaire }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/flotteur', flotteur.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/flotteur', flotteur.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(flotteur)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

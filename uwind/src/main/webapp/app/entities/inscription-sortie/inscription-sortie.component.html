@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="uwindApp.inscriptionSortie.home.title">Inscription Sorties</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-inscription-sortie" [routerLink]="['/inscription-sortie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="uwindApp.inscriptionSortie.home.createLabel">
+            Create a new Inscription Sortie
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="inscriptionSorties?.length === 0">
+        <span jhiTranslate="uwindApp.inscriptionSortie.home.notFound">No inscriptionSorties found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="inscriptionSorties && inscriptionSorties.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.inscriptionSortie.etudiant">Etudiant</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.inscriptionSortie.sortie">Sortie</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.inscriptionSortie.moniteur">Moniteur</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.inscriptionSortie.gestionnaire">Gestionnaire</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inscriptionSortie of inscriptionSorties ;trackBy: trackId">
+                    <td><a [routerLink]="['/inscription-sortie', inscriptionSortie.id, 'view']">{{ inscriptionSortie.id }}</a></td>
+                    <td>
+                        <div *ngIf="inscriptionSortie.etudiant">
+                            <a [routerLink]="['/etudiant', inscriptionSortie.etudiant?.id, 'view']" >{{ inscriptionSortie.etudiant?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="inscriptionSortie.sortie">
+                            <a [routerLink]="['/sortie', inscriptionSortie.sortie?.id, 'view']" >{{ inscriptionSortie.sortie?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="inscriptionSortie.moniteur">
+                            <a [routerLink]="['/moniteur', inscriptionSortie.moniteur?.id, 'view']" >{{ inscriptionSortie.moniteur?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="inscriptionSortie.gestionnaire">
+                            <a [routerLink]="['/gestionnaire', inscriptionSortie.gestionnaire?.id, 'view']" >{{ inscriptionSortie.gestionnaire?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/inscription-sortie', inscriptionSortie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/inscription-sortie', inscriptionSortie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(inscriptionSortie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

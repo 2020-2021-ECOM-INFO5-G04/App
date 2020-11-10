@@ -1,0 +1,45 @@
+{
+  "name": "InscriptionSortie",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "inscriptionSortie",
+      "relationshipName": "etudiant",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sortie",
+      "otherEntityRelationshipName": "inscriptionSortie",
+      "relationshipName": "sortie",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "moniteur",
+      "otherEntityRelationshipName": "inscriptionSortie",
+      "relationshipName": "moniteur",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gestionnaire",
+      "otherEntityRelationshipName": "inscriptionSortie",
+      "relationshipName": "gestionnaire",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110080204",
+  "entityTableName": "inscription_sortie",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

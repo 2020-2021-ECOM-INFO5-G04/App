@@ -1,0 +1,167 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-etudiant-heading" jhiTranslate="uwindApp.etudiant.home.createOrEditLabel">Create or edit a Etudiant</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauScolaire" for="field_niveauScolaire">Niveau Scolaire</label>
+                    <select class="form-control" name="niveauScolaire" formControlName="niveauScolaire" id="field_niveauScolaire">
+                        <option value="Bac_plus_1">{{ 'uwindApp.NiveauEtudes.Bac_plus_1' | translate }}</option>
+                        <option value="Bac_plus_2">{{ 'uwindApp.NiveauEtudes.Bac_plus_2' | translate }}</option>
+                        <option value="Bac_plus_3">{{ 'uwindApp.NiveauEtudes.Bac_plus_3' | translate }}</option>
+                        <option value="Bac_plus_4">{{ 'uwindApp.NiveauEtudes.Bac_plus_4' | translate }}</option>
+                        <option value="Bac_plus_5">{{ 'uwindApp.NiveauEtudes.Bac_plus_5' | translate }}</option>
+                        <option value="Bac_plus_6">{{ 'uwindApp.NiveauEtudes.Bac_plus_6' | translate }}</option>
+                        <option value="Bac_plus_7">{{ 'uwindApp.NiveauEtudes.Bac_plus_7' | translate }}</option>
+                        <option value="Bac_plus_8">{{ 'uwindApp.NiveauEtudes.Bac_plus_8' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('niveauScolaire')!.invalid && (editForm.get('niveauScolaire')!.dirty || editForm.get('niveauScolaire')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('niveauScolaire')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.departement" for="field_departement">Departement</label>
+                    <select class="form-control" name="departement" formControlName="departement" id="field_departement">
+                        <option value="STAPS_Entrainement_sportif">{{ 'uwindApp.Filiere.STAPS_Entrainement_sportif' | translate }}</option>
+                        <option value="STAPS_Management_du_sport">{{ 'uwindApp.Filiere.STAPS_Management_du_sport' | translate }}</option>
+                        <option value="STAPS_Education_et_motricite">{{ 'uwindApp.Filiere.STAPS_Education_et_motricite' | translate }}</option>
+                        <option value="STAPS_APAS">{{ 'uwindApp.Filiere.STAPS_APAS' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('departement')!.invalid && (editForm.get('departement')!.dirty || editForm.get('departement')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('departement')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauPlanche" for="field_niveauPlanche">Niveau Planche</label>
+                    <select class="form-control" name="niveauPlanche" formControlName="niveauPlanche" id="field_niveauPlanche">
+                        <option value="Deb">{{ 'uwindApp.NiveauPlancheAVoile.Deb' | translate }}</option>
+                        <option value="DebPlus">{{ 'uwindApp.NiveauPlancheAVoile.DebPlus' | translate }}</option>
+                        <option value="Perf">{{ 'uwindApp.NiveauPlancheAVoile.Perf' | translate }}</option>
+                        <option value="Fun">{{ 'uwindApp.NiveauPlancheAVoile.Fun' | translate }}</option>
+                        <option value="Monitor">{{ 'uwindApp.NiveauPlancheAVoile.Monitor' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('niveauPlanche')!.invalid && (editForm.get('niveauPlanche')!.dirty || editForm.get('niveauPlanche')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('niveauPlanche')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.permisDeConduire" for="field_permisDeConduire">Permis De Conduire</label>
+                    <input type="checkbox" class="form-control" name="permisDeConduire" id="field_permisDeConduire"
+                           formControlName="permisDeConduire"/>
+                    <div *ngIf="editForm.get('permisDeConduire')!.invalid && (editForm.get('permisDeConduire')!.dirty || editForm.get('permisDeConduire')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('permisDeConduire')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.lieuDepart" for="field_lieuDepart">Lieu Depart</label>
+                    <input type="text" class="form-control" name="lieuDepart" id="field_lieuDepart"
+                           formControlName="lieuDepart"/>
+                    <div *ngIf="editForm.get('lieuDepart')!.invalid && (editForm.get('lieuDepart')!.dirty || editForm.get('lieuDepart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lieuDepart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.optionSemestre" for="field_optionSemestre">Option Semestre</label>
+                    <input type="checkbox" class="form-control" name="optionSemestre" id="field_optionSemestre"
+                           formControlName="optionSemestre"/>
+                    <div *ngIf="editForm.get('optionSemestre')!.invalid && (editForm.get('optionSemestre')!.dirty || editForm.get('optionSemestre')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('optionSemestre')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.compteValide" for="field_compteValide">Compte Valide</label>
+                    <input type="checkbox" class="form-control" name="compteValide" id="field_compteValide"
+                           formControlName="compteValide"/>
+                    <div *ngIf="editForm.get('compteValide')!.invalid && (editForm.get('compteValide')!.dirty || editForm.get('compteValide')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('compteValide')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.profil" for="field_profil">Profil</label>
+                    <select class="form-control" id="field_profil" name="profil" formControlName="profil">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profilOption.id === editForm.get('profil')!.value?.id ? editForm.get('profil')!.value : profilOption" *ngFor="let profilOption of profils; trackBy: trackById">{{ profilOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.flotteur" for="field_flotteur">Flotteur</label>
+                    <select class="form-control" id="field_flotteur" name="flotteur" formControlName="flotteur">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="flotteurOption.id === editForm.get('flotteur')!.value?.id ? editForm.get('flotteur')!.value : flotteurOption" *ngFor="let flotteurOption of flotteurs; trackBy: trackById">{{ flotteurOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.voile" for="field_voile">Voile</label>
+                    <select class="form-control" id="field_voile" name="voile" formControlName="voile">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="voileOption.id === editForm.get('voile')!.value?.id ? editForm.get('voile')!.value : voileOption" *ngFor="let voileOption of voiles; trackBy: trackById">{{ voileOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.combinaison" for="field_combinaison">Combinaison</label>
+                    <select class="form-control" id="field_combinaison" name="combinaison" formControlName="combinaison">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="combinaisonOption.id === editForm.get('combinaison')!.value?.id ? editForm.get('combinaison')!.value : combinaisonOption" *ngFor="let combinaisonOption of combinaisons; trackBy: trackById">{{ combinaisonOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
+                    <select class="form-control" id="field_gestionnaire" name="gestionnaire" formControlName="gestionnaire">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

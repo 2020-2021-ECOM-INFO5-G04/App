@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-voile-heading" jhiTranslate="uwindApp.voile.home.createOrEditLabel">Create or edit a Voile</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.voile.nomComplet" for="field_nomComplet">Nom Complet</label>
+                    <select class="form-control" name="nomComplet" formControlName="nomComplet" id="field_nomComplet">
+                        <option value="Loft_Purelip">{{ 'uwindApp.NomVoile.Loft_Purelip' | translate }}</option>
+                        <option value="Gun_Blow">{{ 'uwindApp.NomVoile.Gun_Blow' | translate }}</option>
+                        <option value="Gun_Beat">{{ 'uwindApp.NomVoile.Gun_Beat' | translate }}</option>
+                        <option value="Loft_Oxygen">{{ 'uwindApp.NomVoile.Loft_Oxygen' | translate }}</option>
+                        <option value="Duotone_EPace">{{ 'uwindApp.NomVoile.Duotone_EPace' | translate }}</option>
+                        <option value="Beat">{{ 'uwindApp.NomVoile.Beat' | translate }}</option>
+                        <option value="Allstar">{{ 'uwindApp.NomVoile.Allstar' | translate }}</option>
+                        <option value="Loft">{{ 'uwindApp.NomVoile.Loft' | translate }}</option>
+                        <option value="Rebel">{{ 'uwindApp.NomVoile.Rebel' | translate }}</option>
+                        <option value="Loft_Blade">{{ 'uwindApp.NomVoile.Loft_Blade' | translate }}</option>
+                        <option value="Blow">{{ 'uwindApp.NomVoile.Blow' | translate }}</option>
+                        <option value="Steel">{{ 'uwindApp.NomVoile.Steel' | translate }}</option>
+                        <option value="Topwave">{{ 'uwindApp.NomVoile.Topwave' | translate }}</option>
+                        <option value="Cannonball">{{ 'uwindApp.NomVoile.Cannonball' | translate }}</option>
+                        <option value="Loft_O2">{{ 'uwindApp.NomVoile.Loft_O2' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('nomComplet')!.invalid && (editForm.get('nomComplet')!.dirty || editForm.get('nomComplet')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomComplet')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.voile.surface" for="field_surface">Surface</label>
+                    <input type="number" class="form-control" name="surface" id="field_surface"
+                           formControlName="surface"/>
+                    <div *ngIf="editForm.get('surface')!.invalid && (editForm.get('surface')!.dirty || editForm.get('surface')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('surface')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('surface')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0.0 }">
+                            This field should be at least 0.0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('surface')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.voile.niveau" for="field_niveau">Niveau</label>
+                    <select class="form-control" name="niveau" formControlName="niveau" id="field_niveau">
+                        <option value="Deb">{{ 'uwindApp.NiveauPlancheAVoile.Deb' | translate }}</option>
+                        <option value="DebPlus">{{ 'uwindApp.NiveauPlancheAVoile.DebPlus' | translate }}</option>
+                        <option value="Perf">{{ 'uwindApp.NiveauPlancheAVoile.Perf' | translate }}</option>
+                        <option value="Fun">{{ 'uwindApp.NiveauPlancheAVoile.Fun' | translate }}</option>
+                        <option value="Monitor">{{ 'uwindApp.NiveauPlancheAVoile.Monitor' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('niveau')!.invalid && (editForm.get('niveau')!.dirty || editForm.get('niveau')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('niveau')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.voile.utilisable" for="field_utilisable">Utilisable</label>
+                    <input type="checkbox" class="form-control" name="utilisable" id="field_utilisable"
+                           formControlName="utilisable"/>
+                    <div *ngIf="editForm.get('utilisable')!.invalid && (editForm.get('utilisable')!.dirty || editForm.get('utilisable')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('utilisable')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.voile.commentaire" for="field_commentaire">Commentaire</label>
+                    <input type="text" class="form-control" name="commentaire" id="field_commentaire"
+                           formControlName="commentaire"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

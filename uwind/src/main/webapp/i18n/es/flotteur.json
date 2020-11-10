@@ -1,0 +1,26 @@
+{
+  "uwindApp": {
+    "flotteur": {
+      "home": {
+        "title": "Flotteurs",
+        "createLabel": "Crear nuevo Flotteur",
+        "createOrEditLabel": "Crear o editar Flotteur",
+        "notFound": "Ningún Flotteurs encontrado"
+      },
+      "created": "Un nuevo Flotteur ha sido creado con el identificador {{ param }}",
+      "updated": "Un Flotteur ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Flotteur ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Flotteur {{ id }}?"
+      },
+      "detail": {
+        "title": "Flotteur"
+      },
+      "nom": "Nom",
+      "volume": "Volume",
+      "niveauPlancheAVoile": "Niveau Planche A Voile",
+      "utilisable": "Utilisable",
+      "commentaire": "Commentaire"
+    }
+  }
+}

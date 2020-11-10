@@ -1,0 +1,49 @@
+{
+  "name": "Gestionnaire",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "gestionnaire",
+      "relationshipName": "profil",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "evaluation",
+      "otherEntityRelationshipName": "gestionnaire",
+      "relationshipName": "evaluation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "observation",
+      "otherEntityRelationshipName": "gestionnaire",
+      "relationshipName": "observation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "sortie",
+      "otherEntityRelationshipName": "gestionnaire",
+      "relationshipName": "sortie"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "inscriptionSortie",
+      "otherEntityRelationshipName": "gestionnaire",
+      "relationshipName": "inscriptionSortie"
+    }
+  ],
+  "changelogDate": "20201110080004",
+  "entityTableName": "gestionnaire",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

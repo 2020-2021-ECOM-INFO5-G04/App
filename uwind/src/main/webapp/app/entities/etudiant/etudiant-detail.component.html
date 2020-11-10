@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="etudiant">
+            <h2><span jhiTranslate="uwindApp.etudiant.detail.title">Etudiant</span> {{ etudiant.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uwindApp.etudiant.niveauScolaire">Niveau Scolaire</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.NiveauEtudes.' + etudiant.niveauScolaire }}">{{ etudiant.niveauScolaire }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.departement">Departement</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.Filiere.' + etudiant.departement }}">{{ etudiant.departement }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.niveauPlanche">Niveau Planche</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.NiveauPlancheAVoile.' + etudiant.niveauPlanche }}">{{ etudiant.niveauPlanche }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.permisDeConduire">Permis De Conduire</span></dt>
+                <dd>
+                    <span>{{ etudiant.permisDeConduire }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.lieuDepart">Lieu Depart</span></dt>
+                <dd>
+                    <span>{{ etudiant.lieuDepart }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.optionSemestre">Option Semestre</span></dt>
+                <dd>
+                    <span>{{ etudiant.optionSemestre }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.compteValide">Compte Valide</span></dt>
+                <dd>
+                    <span>{{ etudiant.compteValide }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.profil">Profil</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.profil">
+                        <a [routerLink]="['/profil', etudiant.profil?.id, 'view']">{{ etudiant.profil?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.flotteur">Flotteur</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.flotteur">
+                        <a [routerLink]="['/flotteur', etudiant.flotteur?.id, 'view']">{{ etudiant.flotteur?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.voile">Voile</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.voile">
+                        <a [routerLink]="['/voile', etudiant.voile?.id, 'view']">{{ etudiant.voile?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.combinaison">Combinaison</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.combinaison">
+                        <a [routerLink]="['/combinaison', etudiant.combinaison?.id, 'view']">{{ etudiant.combinaison?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.etudiant.gestionnaire">Gestionnaire</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.gestionnaire">
+                        <a [routerLink]="['/gestionnaire', etudiant.gestionnaire?.id, 'view']">{{ etudiant.gestionnaire?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/etudiant', etudiant.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

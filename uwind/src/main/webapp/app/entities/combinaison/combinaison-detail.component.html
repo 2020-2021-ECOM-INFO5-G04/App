@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="combinaison">
+            <h2><span jhiTranslate="uwindApp.combinaison.detail.title">Combinaison</span> {{ combinaison.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uwindApp.combinaison.nom">Nom</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.NomCombinaison.' + combinaison.nom }}">{{ combinaison.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.combinaison.taille">Taille</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.TailleCombinaison.' + combinaison.taille }}">{{ combinaison.taille }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.combinaison.poids">Poids</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.PoidsCombinaison.' + combinaison.poids }}">{{ combinaison.poids }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/combinaison', combinaison.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

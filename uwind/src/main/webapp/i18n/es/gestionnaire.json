@@ -1,0 +1,26 @@
+{
+  "uwindApp": {
+    "gestionnaire": {
+      "home": {
+        "title": "Gestionnaires",
+        "createLabel": "Crear nuevo Gestionnaire",
+        "createOrEditLabel": "Crear o editar Gestionnaire",
+        "notFound": "Ningún Gestionnaires encontrado"
+      },
+      "created": "Un nuevo Gestionnaire ha sido creado con el identificador {{ param }}",
+      "updated": "Un Gestionnaire ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Gestionnaire ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Gestionnaire {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestionnaire"
+      },
+      "profil": "Profil",
+      "evaluation": "Evaluation",
+      "observation": "Observation",
+      "sortie": "Sortie",
+      "inscriptionSortie": "Inscription Sortie"
+    }
+  }
+}

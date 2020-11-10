@@ -1,0 +1,28 @@
+{
+  "uwindApp": {
+    "sortie": {
+      "home": {
+        "title": "Sorties",
+        "createLabel": "Create a new Sortie",
+        "createOrEditLabel": "Create or edit a Sortie",
+        "notFound": "No Sorties found"
+      },
+      "created": "A new Sortie is created with identifier {{ param }}",
+      "updated": "A Sortie is updated with identifier {{ param }}",
+      "deleted": "A Sortie is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sortie {{ id }}?"
+      },
+      "detail": {
+        "title": "Sortie"
+      },
+      "nom": "Nom",
+      "date": "Date",
+      "planDeau": "Plan Deau",
+      "coeff": "Coeff",
+      "commentaire": "Commentaire",
+      "inscriptionSortie": "Inscription Sortie",
+      "gestionnaire": "Gestionnaire"
+    }
+  }
+}

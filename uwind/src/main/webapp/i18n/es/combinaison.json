@@ -1,0 +1,24 @@
+{
+  "uwindApp": {
+    "combinaison": {
+      "home": {
+        "title": "Combinaisons",
+        "createLabel": "Crear nuevo Combinaison",
+        "createOrEditLabel": "Crear o editar Combinaison",
+        "notFound": "Ningún Combinaisons encontrado"
+      },
+      "created": "Un nuevo Combinaison ha sido creado con el identificador {{ param }}",
+      "updated": "Un Combinaison ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Combinaison ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Combinaison {{ id }}?"
+      },
+      "detail": {
+        "title": "Combinaison"
+      },
+      "nom": "Nom",
+      "taille": "Taille",
+      "poids": "Poids"
+    }
+  }
+}

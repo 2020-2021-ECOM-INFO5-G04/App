@@ -1,0 +1,127 @@
+{
+  "name": "Etudiant",
+  "fields": [
+    {
+      "fieldName": "niveauScolaire",
+      "fieldType": "NiveauEtudes",
+      "fieldValues": "Bac_plus_1,Bac_plus_2,Bac_plus_3,Bac_plus_4,Bac_plus_5,Bac_plus_6,Bac_plus_7,Bac_plus_8",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "departement",
+      "fieldType": "Filiere",
+      "fieldValues": "STAPS_Entrainement_sportif,STAPS_Management_du_sport,STAPS_Education_et_motricite,STAPS_APAS",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "niveauPlanche",
+      "fieldType": "NiveauPlancheAVoile",
+      "fieldValues": "Deb,DebPlus,Perf,Fun,Monitor",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "permisDeConduire",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "lieuDepart",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "optionSemestre",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "compteValide",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "profil",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "flotteur",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "flotteur",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "voile",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "voile",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "combinaison",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "combinaison",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "observation",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "observation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "evaluation",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "evaluation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "inscriptionSortie",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "inscriptionSortie"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gestionnaire",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "gestionnaire",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110075804",
+  "entityTableName": "etudiant",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

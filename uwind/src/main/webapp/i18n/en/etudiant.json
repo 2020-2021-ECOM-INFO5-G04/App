@@ -1,0 +1,36 @@
+{
+  "uwindApp": {
+    "etudiant": {
+      "home": {
+        "title": "Etudiants",
+        "createLabel": "Create a new Etudiant",
+        "createOrEditLabel": "Create or edit a Etudiant",
+        "notFound": "No Etudiants found"
+      },
+      "created": "A new Etudiant is created with identifier {{ param }}",
+      "updated": "A Etudiant is updated with identifier {{ param }}",
+      "deleted": "A Etudiant is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Etudiant {{ id }}?"
+      },
+      "detail": {
+        "title": "Etudiant"
+      },
+      "niveauScolaire": "Niveau Scolaire",
+      "departement": "Departement",
+      "niveauPlanche": "Niveau Planche",
+      "permisDeConduire": "Permis De Conduire",
+      "lieuDepart": "Lieu Depart",
+      "optionSemestre": "Option Semestre",
+      "compteValide": "Compte Valide",
+      "profil": "Profil",
+      "flotteur": "Flotteur",
+      "voile": "Voile",
+      "combinaison": "Combinaison",
+      "observation": "Observation",
+      "evaluation": "Evaluation",
+      "inscriptionSortie": "Inscription Sortie",
+      "gestionnaire": "Gestionnaire"
+    }
+  }
+}

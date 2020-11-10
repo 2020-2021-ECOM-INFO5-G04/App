@@ -1,0 +1,11 @@
+id;nom;taille;poids
+1;Decat_N;T_155_160;P_50_55
+2;Decat_W;T_155_160;P_55_60
+3;Decat_W;T_155_160;P_50_55
+4;Decat_N;T_155_160;P_55_60
+5;Decat;T_155_160;P_55_60
+6;Decat_W;T_160_170;P_55_60
+7;Decat_W_N;T_150_155;P_50_55
+8;Decat_W_N;T_160_170;P_50_55
+9;Decat_W_N;T_160_170;P_55_60
+10;Decat_W_N;T_160_170;P_55_60
