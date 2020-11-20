@@ -38,13 +38,18 @@ export class RegisterComponent implements AfterViewInit {
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
 
-    //Relative to a student
+    // Relative to a profile
+    prenom: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    nom: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    numTel: [null, [Validators.required, Validators.minLength(10)]],
+
+    // Relative to a student
     niveauScolaire: [null, [Validators.required]],
     departement: [null, [Validators.required]],
     niveauPlanche: [null, [Validators.required]],
-    permisDeConduire: [null, [Validators.required]],
+    permisDeConduire: [null],
     lieuDepart: [null, [Validators.required]],
-    optionSemestre: [null, [Validators.required]],
+    optionSemestre: [null],
     profil: [],
     flotteur: [],
     voile: [],
@@ -56,9 +61,9 @@ export class RegisterComponent implements AfterViewInit {
     private languageService: JhiLanguageService,
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
-    private userService: UserService, //to retrieve lastly created user
-    private profilService: ProfilService, //to create new profile
-    private etudiantService: EtudiantService, //to create new student
+    private userService: UserService, // to retrieve lastly created user
+    private profilService: ProfilService, // to create new profile
+    private etudiantService: EtudiantService, // to create new student
     private fb: FormBuilder
   ) {}
 
@@ -100,16 +105,16 @@ export class RegisterComponent implements AfterViewInit {
         response => this.processError(response)
       );
 
-      /*
-      //Pushing profil to DB
-      this.userService.find(login).subscribe( response => )
+      // Pushing profil to DB
+      this.userService.find(login).subscribe(response => console.log(response));
 
+      /*
       this.ProfilService.create ( {id, prenom, nom, email, numTel, utilisateur).subscribe(
         () => (this.success = true),
         response => this.processError(response)
       );
       
-      //Pushing student to DB
+      // Pushing student to DB
       this.etudiantService.create({ , niveauScolaire, departement, niveauPlanche,
       permisDeConduire, lieuDepart, optionSemestre, false, profil, [], [], [], [] }).subscribe(
         () => (this.success = true),
