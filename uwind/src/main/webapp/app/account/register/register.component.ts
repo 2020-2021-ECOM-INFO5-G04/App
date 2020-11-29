@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { JhiLanguageService } from 'ng-jhipster';
 
@@ -9,6 +9,7 @@ import { RegisterService } from './register.service';
 import { EtudiantService } from '../../entities/etudiant/etudiant.service';
 import { ProfilService } from 'app/entities/profil/profil.service';
 import { UserService } from 'app/core/user/user.service';
+import { IUser } from 'app/core/user/user.model';
 
 @Component({
   selector: 'jhi-register',
@@ -100,26 +101,61 @@ export class RegisterComponent implements AfterViewInit {
       const optionSemestre = this.registerForm.get(['optionSemestre'])!.value;
 
       //Saving user
+
+      // eslint-disable-next-line no-console
+      console.log('Salut les terriens');
+
       this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
-      );
+        // eslint-disable-next-line no-console
+        responseUser => {
+          // eslint-disable-next-line no-console
+          console.log(responseUser);
 
-      // Pushing profil to DB
-      this.userService.find(login).subscribe(response => console.log(response));
+          // Pushing profil to DB if the User saving was successful
+          const utilisateur = responseUser;
+          this.profilService.create({ prenom, nom, email, numTel, utilisateur }).subscribe(
+            responseProfil => {
+              //Passing from type IProfil | null to type IProfil | undefined required by method etudiantService.create
+              const profil = responseProfil.body != null ? responseProfil.body : undefined;
 
-      /*
-      this.ProfilService.create ( {id, prenom, nom, email, numTel, utilisateur).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
+              // eslint-disable-next-line no-console
+              console.log(profil);
+
+              // Pushing student to DB if Profil creation was successful
+              this.etudiantService
+                .create({
+                  niveauScolaire,
+                  departement,
+                  niveauPlanche,
+                  permisDeConduire,
+                  lieuDepart,
+                  optionSemestre,
+                  compteValide: false,
+                  profil,
+                  flotteur: undefined,
+                  voile: undefined,
+                  combinaison: undefined,
+                  observations: [],
+                  evaluations: [],
+                  inscriptionSorties: [],
+                  gestionnaire: undefined,
+                })
+                .subscribe(
+                  () => (this.success = true),
+                  error => {
+                    //TODO
+                  }
+                );
+            },
+            errorProfil => {
+              //TODO
+            }
+          );
+        },
+        errorUser => {
+          this.processRegisteringError(errorUser);
+        }
       );
-      
-      // Pushing student to DB
-      this.etudiantService.create({ , niveauScolaire, departement, niveauPlanche,
-      permisDeConduire, lieuDepart, optionSemestre, false, profil, [], [], [], [] }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
-      );*/
     }
   }
 
@@ -127,7 +163,7 @@ export class RegisterComponent implements AfterViewInit {
     this.loginModalService.open();
   }
 
-  private processError(response: HttpErrorResponse): void {
+  private processRegisteringError(response: HttpErrorResponse): void {
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
       this.errorUserExists = true;
     } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {

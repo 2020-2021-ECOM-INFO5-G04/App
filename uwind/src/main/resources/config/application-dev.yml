@@ -55,8 +55,8 @@ spring:
   mail:
     host: stmp.gmail.com
     port: 25
-    username: #I won't push this
-    password: #I won't push this either
+    username: #won't push this
+    password: #won't push this
     protocol: smtp
     tls: true
     properties.mail.smtp:
