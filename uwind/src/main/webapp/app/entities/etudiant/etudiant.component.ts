@@ -46,4 +46,21 @@ export class EtudiantComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(EtudiantDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.etudiant = etudiant;
   }
+
+  export(): any {
+    this.etudiantService.export().subscribe((data: any) => this.downloadFile(data));
+  }
+
+  downloadFile(data: any): any {
+    const blob = new Blob([data], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = window.document.createElement('a');
+    a.href = url;
+    a.download = 'etudiants.csv';
+    window.document.body.appendChild(a);
+    a.click();
+    window.document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
 }

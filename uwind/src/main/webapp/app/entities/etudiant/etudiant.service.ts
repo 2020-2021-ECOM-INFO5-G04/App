@@ -35,4 +35,8 @@ export class EtudiantService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  export(): any {
+    return this.http.get(`${this.resourceUrl}/export`, { responseType: 'text' });
+  }
 }

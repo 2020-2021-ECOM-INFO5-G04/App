@@ -8,6 +8,12 @@
             Create a new Etudiant
             </span>
         </button>
+        <button type="button" class="btn btn-primary" (click)="export()" [routerLink]="['/etudiant/export']">
+            <span>
+            Export to CSV
+            </span>
+        </button>
+
     </h2>
 
     <jhi-alert-error></jhi-alert-error>

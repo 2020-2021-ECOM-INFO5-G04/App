@@ -319,6 +319,13 @@
             <scope>test</scope>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        
+        <dependency>
+    		<groupId>net.sf.supercsv</groupId>
+    		<artifactId>super-csv</artifactId>
+    		<version>2.4.0</version>
+	</dependency>
+        
     </dependencies>
 
     <build>
@@ -676,6 +683,13 @@
                             <artifactId>h2</artifactId>
                             <version>${h2.version}</version>
                         </dependency>
+                        
+                        <dependency>
+    				<groupId>net.sf.supercsv</groupId>
+    				<artifactId>super-csv</artifactId>
+    				<version>2.4.0</version>
+			</dependency>
+                        
                     </dependencies>
                 </plugin>
                 <plugin>
@@ -942,6 +956,13 @@
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
                 </dependency>
+                
+                <dependency>
+    			<groupId>net.sf.supercsv</groupId>
+    			<artifactId>super-csv</artifactId>
+    			<version>2.4.0</version>
+		</dependency>
+                
             </dependencies>
             <properties>
                 <!-- default Spring profiles -->
@@ -955,6 +976,13 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-undertow</artifactId>
                 </dependency>
+                
+                <dependency>
+    			<groupId>net.sf.supercsv</groupId>
+    			<artifactId>super-csv</artifactId>
+    			<version>2.4.0</version>
+		</dependency>
+                
             </dependencies>
             <build>
                 <plugins>
@@ -1083,6 +1111,14 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-undertow</artifactId>
                 </dependency>
+                
+                <dependency>
+    			<groupId>net.sf.supercsv</groupId>
+    			<artifactId>super-csv</artifactId>
+    			<version>2.4.0</version>
+		</dependency>
+                
+                
             </dependencies>
             <build>
                 <pluginManagement>
