@@ -6,6 +6,7 @@ import fr.uga.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,11 +14,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+import org.springframework.core.io.Resource;
 
 /**
  * REST controller for managing {@link fr.uga.domain.Etudiant}.
@@ -116,4 +133,35 @@ public class EtudiantResource {
         etudiantRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+    
+
+    
+    @GetMapping("/etudiants/export")
+    public void export(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=etudiants_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+         
+        List<Etudiant> listEtudiants = etudiantRepository.findAll();
+ 
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"ID", "Niveau Scolaire", "Departement", "Niveau Planche", "Permis de Conduire", "Lieu Depart", "Option Semestre", "Compte Valide", "Profil", "Flotteur", "Voile", "Combinaison", "Gestionnaire"};
+        String[] nameMapping = {"id", "niveauScolaire", "departement", "niveauPlanche", "permisDeConduire", "lieuDepart", "optionSemestre", "compteValide", "profil", "flotteur", "voile", "combinaison", "Gestionnaire"};
+         
+        csvWriter.writeHeader(csvHeader);
+         
+        for (Etudiant etudiant : listEtudiants) {
+            csvWriter.write(etudiant, nameMapping);
+        }
+         
+        csvWriter.close();
+
+         
+    }
+    
+    
 }

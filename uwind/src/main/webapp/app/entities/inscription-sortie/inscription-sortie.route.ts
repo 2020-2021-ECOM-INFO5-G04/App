@@ -39,7 +39,7 @@ export const inscriptionSortieRoute: Routes = [
     path: '',
     component: InscriptionSortieComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT'],
       pageTitle: 'uwindApp.inscriptionSortie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const inscriptionSortieRoute: Routes = [
       inscriptionSortie: InscriptionSortieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT'],
       pageTitle: 'uwindApp.inscriptionSortie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const inscriptionSortieRoute: Routes = [
       inscriptionSortie: InscriptionSortieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT'],
       pageTitle: 'uwindApp.inscriptionSortie.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -26,6 +26,8 @@
     "bootstrap": "4.5.0",
     "child_process": "^1.0.2",
     "fs": "0.0.1-security",
+    "@types/file-saver": "^2.0.1",
+    "file-saver": "^2.0.5",
     "moment": "2.27.0",
     "net": "^1.0.2",
     "ng-jhipster": "0.15.0",
