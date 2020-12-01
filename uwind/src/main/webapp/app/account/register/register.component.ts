@@ -102,11 +102,7 @@ export class RegisterComponent implements AfterViewInit {
 
       //Saving user
 
-      // eslint-disable-next-line no-console
-      console.log('Salut les terriens');
-
       this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        // eslint-disable-next-line no-console
         responseUser => {
           // eslint-disable-next-line no-console
           console.log(responseUser);
