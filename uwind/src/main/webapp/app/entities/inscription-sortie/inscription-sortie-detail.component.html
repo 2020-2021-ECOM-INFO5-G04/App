@@ -11,25 +11,25 @@
                 <dt><span jhiTranslate="uwindApp.inscriptionSortie.etudiant">Etudiant</span></dt>
                 <dd>
                     <div *ngIf="inscriptionSortie.etudiant">
-                        <a [routerLink]="['/etudiant', inscriptionSortie.etudiant?.id, 'view']">{{ inscriptionSortie.etudiant?.id }}</a>
+                        <a [routerLink]="['/etudiant', inscriptionSortie.etudiant?.id, 'view']">{{ inscriptionSortie.etudiant?.profil?.nom+" "+inscriptionSortie.etudiant?.profil?.prenom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.inscriptionSortie.sortie">Sortie</span></dt>
                 <dd>
                     <div *ngIf="inscriptionSortie.sortie">
-                        <a [routerLink]="['/sortie', inscriptionSortie.sortie?.id, 'view']">{{ inscriptionSortie.sortie?.id }}</a>
+                        <a [routerLink]="['/sortie', inscriptionSortie.sortie?.id, 'view']">{{ inscriptionSortie.sortie?.nom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.inscriptionSortie.moniteur">Moniteur</span></dt>
                 <dd>
                     <div *ngIf="inscriptionSortie.moniteur">
-                        <a [routerLink]="['/moniteur', inscriptionSortie.moniteur?.id, 'view']">{{ inscriptionSortie.moniteur?.id }}</a>
+                        <a [routerLink]="['/moniteur', inscriptionSortie.moniteur?.id, 'view']">{{ inscriptionSortie.moniteur?.profil?.nom+" "+inscriptionSortie.moniteur?.profil?.prenom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.inscriptionSortie.gestionnaire">Gestionnaire</span></dt>
                 <dd>
                     <div *ngIf="inscriptionSortie.gestionnaire">
-                        <a [routerLink]="['/gestionnaire', inscriptionSortie.gestionnaire?.id, 'view']">{{ inscriptionSortie.gestionnaire?.id }}</a>
+                        <a [routerLink]="['/gestionnaire', inscriptionSortie.gestionnaire?.id, 'view']">{{ inscriptionSortie.gestionnaire?.profil?.nom+" "+inscriptionSortie.gestionnaire?.profil?.prenom }}</a>
                     </div>
                 </dd>
             </dl>

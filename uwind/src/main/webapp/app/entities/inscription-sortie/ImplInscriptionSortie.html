@@ -15,7 +15,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.inscriptionSortie.etudiant" for="field_etudiant">Etudiant</label>
                     <select class="form-control" id="field_etudiant" name="etudiant" formControlName="etudiant">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="etudiantOption.id === editForm.get('etudiant')!.value?.id ? editForm.get('etudiant')!.value : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackById">{{ etudiantOption.profil?.nom+" "+etudiantOption.profil?.prenom}}</option>
+                        <option [ngValue]="etudiantOption.id === editForm.get('etudiant')!.value?.id ? editForm.get('etudiant')!.value : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackById">{{ etudiantOption.id }}</option>
                     </select>
                 </div>
 
@@ -23,7 +23,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.inscriptionSortie.sortie" for="field_sortie">Sortie</label>
                     <select class="form-control" id="field_sortie" name="sortie" formControlName="sortie">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="sortieOption.id === editForm.get('sortie')!.value?.id ? editForm.get('sortie')!.value : sortieOption" *ngFor="let sortieOption of sorties; trackBy: trackById">{{ sortieOption.nom }}</option>
+                        <option [ngValue]="sortieOption.id === editForm.get('sortie')!.value?.id ? editForm.get('sortie')!.value : sortieOption" *ngFor="let sortieOption of sorties; trackBy: trackById">{{ sortieOption.id }}</option>
                     </select>
                 </div>
 
@@ -31,7 +31,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.inscriptionSortie.moniteur" for="field_moniteur">Moniteur</label>
                     <select class="form-control" id="field_moniteur" name="moniteur" formControlName="moniteur">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="moniteurOption.id === editForm.get('moniteur')!.value?.id ? editForm.get('moniteur')!.value : moniteurOption" *ngFor="let moniteurOption of moniteurs; trackBy: trackById">{{ moniteurOption.profil?.nom+" "+moniteurOption.profil?.prenom }}</option>
+                        <option [ngValue]="moniteurOption.id === editForm.get('moniteur')!.value?.id ? editForm.get('moniteur')!.value : moniteurOption" *ngFor="let moniteurOption of moniteurs; trackBy: trackById">{{ moniteurOption.id }}</option>
                     </select>
                 </div>
 
@@ -39,7 +39,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.inscriptionSortie.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
                     <select class="form-control" id="field_gestionnaire" name="gestionnaire" formControlName="gestionnaire">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.profil?.nom+" "+gestionnaireOption.profil?.prenom }}</option>
+                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.id }}</option>
                     </select>
                 </div>
             </div>
