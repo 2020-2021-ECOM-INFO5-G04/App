@@ -17,6 +17,8 @@ else
 
 	#Connecting to VM and installing docker and docker engine
 	ssh -i $keypath $vmadress "
+		echo \"---Installing Open JDK 11...---\"
+		sudo apt install openjdk-11-jdk
 		echo \"---Installing docker...---\"
 		echo \"------Checking for previous docker...---\"
 		sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -68,12 +70,20 @@ else
 		exit
 	"
 
-	#Reconnecting and installing Jhipster
+	#Reconnecting and installing Jhipster, cloning repo
 	ssh -i $keypath $vmadress "
 		echo \"---Installing Jhispster...---\"
 		sudo npm install -g generator-jhipster
-		sudo chmod +rwx /home/\$USER/.config/generator-jhipster-nodejs/jhipster-insight.json
-		sudo chmod a+rwx /home/\$USER/.config/
+		if [ -f /home/\$USER/.config/generator-jhipster-nodejs/jhipster-insight.json ]; then
+    		sudo chmod +rwx /home/\$USER/.config/generator-jhipster-nodejs/jhipster-insight.json
+		fi
+		if [ -f /home/\$USER/.config/ ]; then
+    		sudo chmod a+rwx /home/\$USER/.config/
+		fi
+		echo \"---Cloning App repo...---\"
+		git clone https://github.com/2020-2021-ECOM-INFO5-G04/App.git
+		sudo chown -R 1000:1000 \"/home/azureuser/.npm\"
+
 	"
 
 fi
