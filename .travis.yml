@@ -11,13 +11,6 @@ addons:
   sonarcloud:
     organization: "2020-2021-ecom-info5-g04"
 
-# safelist, just for testing on this specific branch
-branches:
-  only:
-  - Continuous_Integration
-  except:
-  - master
-
 script:
   - cd uwind
   - chmod +x mvnw
