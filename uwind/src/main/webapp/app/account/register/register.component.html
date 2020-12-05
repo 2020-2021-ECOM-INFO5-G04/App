@@ -146,6 +146,151 @@
                     </div>
                 </div>
 
+                <!-- Added for profile creation -->
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.prenom" for="prenom">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" id="prenom"
+                           formControlName="prenom"/>
+                    <div *ngIf="registerForm.get('prenom')!.invalid && (registerForm.get('prenom')!.dirty || registerForm.get('prenom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('prenom')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('prenom')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.nom" for="nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="nom"
+                           formControlName="nom"/>
+                    <div *ngIf="registerForm.get('nom')!.invalid && (registerForm.get('nom')!.dirty || registerForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('nom')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('nom')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.numTel" for="numTel">Num Tel</label>
+                    <input type="text" class="form-control" name="numTel" id="numTel"
+                           formControlName="numTel"/>
+                    <div *ngIf="registerForm.get('numTel')!.invalid && (registerForm.get('numTel')!.dirty || registerForm.get('numTel')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('numTel')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('numTel')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 10 }">
+                        This field is required to be at least 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Added for student creation -->
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauScolaire" for="niveauScolaire">Niveau Scolaire</label>
+                    <select class="form-control" name="niveauScolaire" formControlName="niveauScolaire" id="niveauScolaire">
+                        <option value="Bac_plus_1">{{ 'uwindApp.NiveauEtudes.Bac_plus_1' | translate }}</option>
+                        <option value="Bac_plus_2">{{ 'uwindApp.NiveauEtudes.Bac_plus_2' | translate }}</option>
+                        <option value="Bac_plus_3">{{ 'uwindApp.NiveauEtudes.Bac_plus_3' | translate }}</option>
+                        <option value="Bac_plus_4">{{ 'uwindApp.NiveauEtudes.Bac_plus_4' | translate }}</option>
+                        <option value="Bac_plus_5">{{ 'uwindApp.NiveauEtudes.Bac_plus_5' | translate }}</option>
+                        <option value="Bac_plus_6">{{ 'uwindApp.NiveauEtudes.Bac_plus_6' | translate }}</option>
+                        <option value="Bac_plus_7">{{ 'uwindApp.NiveauEtudes.Bac_plus_7' | translate }}</option>
+                        <option value="Bac_plus_8">{{ 'uwindApp.NiveauEtudes.Bac_plus_8' | translate }}</option>
+                    </select>
+                    <div *ngIf="registerForm.get('niveauScolaire')!.invalid && (registerForm.get('niveauScolaire')!.dirty || registerForm.get('niveauScolaire')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('niveauScolaire')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.departement" for="departement">Departement</label>
+                    <select class="form-control" name="departement" formControlName="departement" id="departement">
+                        <option value="STAPS_Entrainement_sportif">{{ 'uwindApp.Filiere.STAPS_Entrainement_sportif' | translate }}</option>
+                        <option value="STAPS_Management_du_sport">{{ 'uwindApp.Filiere.STAPS_Management_du_sport' | translate }}</option>
+                        <option value="STAPS_Education_et_motricite">{{ 'uwindApp.Filiere.STAPS_Education_et_motricite' | translate }}</option>
+                        <option value="STAPS_APAS">{{ 'uwindApp.Filiere.STAPS_APAS' | translate }}</option>
+                    </select>
+                    <div *ngIf="registerForm.get('departement')!.invalid && (registerForm.get('departement')!.dirty || registerForm.get('departement')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('departement')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauPlanche" for="niveauPlanche">Niveau Planche</label>
+                    <select class="form-control" name="niveauPlanche" formControlName="niveauPlanche" id="niveauPlanche">
+                        <option value="Deb">{{ 'uwindApp.NiveauPlancheAVoile.Deb' | translate }}</option>
+                        <option value="DebPlus">{{ 'uwindApp.NiveauPlancheAVoile.DebPlus' | translate }}</option>
+                        <option value="Perf">{{ 'uwindApp.NiveauPlancheAVoile.Perf' | translate }}</option>
+                        <option value="Fun">{{ 'uwindApp.NiveauPlancheAVoile.Fun' | translate }}</option>
+                        <option value="Monitor">{{ 'uwindApp.NiveauPlancheAVoile.Monitor' | translate }}</option>
+                    </select>
+                    <div *ngIf="registerForm.get('niveauPlanche')!.invalid && (registerForm.get('niveauPlanche')!.dirty || registerForm.get('niveauPlanche')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('niveauPlanche')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.permisDeConduire" for="permisDeConduire">Permis De Conduire</label>
+                    <input type="checkbox" class="form-control" name="permisDeConduire" id="permisDeConduire"
+                           formControlName="permisDeConduire"/>
+                    <div *ngIf="registerForm.get('permisDeConduire')!.invalid && (registerForm.get('permisDeConduire')!.dirty)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.lieuDepart" for="lieuDepart">Lieu Depart</label>
+                    <select class="form-control" name="lieuDepart" formControlName="lieuDepart" id="lieuDepart">
+                        <option value="SMH">Campus de Saint-Martin d'Hères</option>
+                        <option value="Minatec">Campus de Minatec</option>
+                    </select>
+                    <div *ngIf="registerForm.get('lieuDepart')!.invalid && (registerForm.get('lieuDepart')!.dirty || registerForm.get('lieuDepart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('lieuDepart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.optionSemestre" for="optionSemestre">Option Semestre</label>
+                    <input type="checkbox" class="form-control" name="optionSemestre" id="optionSemestre"
+                           formControlName="optionSemestre"/>
+                    <div *ngIf="registerForm.get('optionSemestre')!.invalid && (registerForm.get('optionSemestre')!.dirty)">
+                    </div>
+                </div>
+
+            
+
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
 

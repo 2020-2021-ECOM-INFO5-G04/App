@@ -1,11 +1,15 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
+import { EtudiantService } from '../../entities/etudiant/etudiant.service';
+import { ProfilService } from 'app/entities/profil/profil.service';
+import { UserService } from 'app/core/user/user.service';
+import { IUser } from 'app/core/user/user.model';
 
 @Component({
   selector: 'jhi-register',
@@ -34,12 +38,33 @@ export class RegisterComponent implements AfterViewInit {
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+
+    // Relative to a profile
+    prenom: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    nom: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    numTel: [null, [Validators.required, Validators.minLength(10)]],
+
+    // Relative to a student
+    niveauScolaire: [null, [Validators.required]],
+    departement: [null, [Validators.required]],
+    niveauPlanche: [null, [Validators.required]],
+    permisDeConduire: [null],
+    lieuDepart: [null, [Validators.required]],
+    optionSemestre: [null],
+    profil: [],
+    flotteur: [],
+    voile: [],
+    combinaison: [],
+    gestionnaire: [],
   });
 
   constructor(
     private languageService: JhiLanguageService,
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
+    private userService: UserService, // to retrieve lastly created user
+    private profilService: ProfilService, // to create new profile
+    private etudiantService: EtudiantService, // to create new student
     private fb: FormBuilder
   ) {}
 
@@ -61,9 +86,75 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       const login = this.registerForm.get(['login'])!.value;
       const email = this.registerForm.get(['email'])!.value;
+
+      //creating a new profil
+      const prenom = this.registerForm.get(['prenom'])!.value;
+      const nom = this.registerForm.get(['nom'])!.value;
+      const numTel = this.registerForm.get(['numTel'])!.value;
+
+      //creating an Etudiant entity after inscription
+      const niveauScolaire = this.registerForm.get(['niveauScolaire'])!.value;
+      const departement = this.registerForm.get(['departement'])!.value;
+      const niveauPlanche = this.registerForm.get(['niveauPlanche'])!.value;
+      const permisDeConduire = this.registerForm.get(['permisDeConduire'])!.value;
+      const lieuDepart = this.registerForm.get(['lieuDepart'])!.value;
+      const optionSemestre = this.registerForm.get(['optionSemestre'])!.value;
+
+      //Saving user
+
+      // eslint-disable-next-line no-console
+      console.log('Salut les terriens');
+
       this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
+        // eslint-disable-next-line no-console
+        responseUser => {
+          // eslint-disable-next-line no-console
+          console.log(responseUser);
+
+          // Pushing profil to DB if the User saving was successful
+          const utilisateur = responseUser;
+          this.profilService.create({ prenom, nom, email, numTel, utilisateur }).subscribe(
+            responseProfil => {
+              //Passing from type IProfil | null to type IProfil | undefined required by method etudiantService.create
+              const profil = responseProfil.body != null ? responseProfil.body : undefined;
+
+              // eslint-disable-next-line no-console
+              console.log(profil);
+
+              // Pushing student to DB if Profil creation was successful
+              this.etudiantService
+                .create({
+                  niveauScolaire,
+                  departement,
+                  niveauPlanche,
+                  permisDeConduire,
+                  lieuDepart,
+                  optionSemestre,
+                  compteValide: false,
+                  profil,
+                  flotteur: undefined,
+                  voile: undefined,
+                  combinaison: undefined,
+                  observations: [],
+                  evaluations: [],
+                  inscriptionSorties: [],
+                  gestionnaire: undefined,
+                })
+                .subscribe(
+                  () => (this.success = true),
+                  error => {
+                    //TODO
+                  }
+                );
+            },
+            errorProfil => {
+              //TODO
+            }
+          );
+        },
+        errorUser => {
+          this.processRegisteringError(errorUser);
+        }
       );
     }
   }
@@ -72,7 +163,7 @@ export class RegisterComponent implements AfterViewInit {
     this.loginModalService.open();
   }
 
-  private processError(response: HttpErrorResponse): void {
+  private processRegisteringError(response: HttpErrorResponse): void {
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
       this.errorUserExists = true;
     } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {

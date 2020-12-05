@@ -2,14 +2,14 @@
   "uwindApp": {
     "NiveauEtudes": {
       "null": "",
-      "Bac_plus_1": "Bac_plus_1",
-      "Bac_plus_2": "Bac_plus_2",
-      "Bac_plus_3": "Bac_plus_3",
-      "Bac_plus_4": "Bac_plus_4",
-      "Bac_plus_5": "Bac_plus_5",
-      "Bac_plus_6": "Bac_plus_6",
-      "Bac_plus_7": "Bac_plus_7",
-      "Bac_plus_8": "Bac_plus_8"
+      "Bac_plus_1": "Bac+1",
+      "Bac_plus_2": "Bac+2",
+      "Bac_plus_3": "Bac+3",
+      "Bac_plus_4": "Bac+4",
+      "Bac_plus_5": "Bac+5",
+      "Bac_plus_6": "Bac+6",
+      "Bac_plus_7": "Bac+7",
+      "Bac_plus_8": "Bac+8"
     }
   }
 }

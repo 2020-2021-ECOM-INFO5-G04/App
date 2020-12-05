@@ -34,12 +34,20 @@ export class EtudiantResolve implements Resolve<IEtudiant> {
   }
 }
 
+@Injectable({ providedIn: 'root' })
+export class EtudiantExport {
+  constructor(private service: EtudiantService) {}
+  resolve(): any {
+    return this.service.export();
+  }
+}
+
 export const etudiantRoute: Routes = [
   {
     path: '',
     component: EtudiantComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT', 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +59,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -73,6 +81,18 @@ export const etudiantRoute: Routes = [
     component: EtudiantUpdateComponent,
     resolve: {
       etudiant: EtudiantResolve,
+    },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'uwindApp.etudiant.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'export',
+    component: EtudiantComponent,
+    resolve: {
+      etudiant: EtudiantExport,
     },
     data: {
       authorities: [Authority.USER],
