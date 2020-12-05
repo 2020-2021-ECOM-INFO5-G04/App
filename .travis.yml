@@ -17,6 +17,6 @@ script:
     #The following command builds project, prepares JaCoCo, initializes Sonar, runs the tests with "verify" and then executes the SonarCloud analysis
     #Using JaCoCo because multiple maven commands
     #We choose to connect thanks to a Travis environment variable, SONAR_TOKEN
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent initialize sonar:sonar verify sonar:sonar -Pcoverage -Dsonar.branch.name=Continuous_Integration -Dsonar.projectKey=2020-2021-ECOM-INFO5-G04_App -Dsonar.login=${SONAR_TOKEN_APP}
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent initialize sonar:sonar verify sonar:sonar -Pcoverage -Dsonar.projectKey=2020-2021-ECOM-INFO5-G04_App -Dsonar.login=${SONAR_TOKEN_APP}
 
 #https://docs.travis-ci.com/user/deployment/azure-web-apps/
