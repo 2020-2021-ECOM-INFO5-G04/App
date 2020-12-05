@@ -61,7 +61,7 @@ public class AccountResource {
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserDTO> registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
@@ -69,7 +69,7 @@ public class AccountResource {
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
 
-        //Modified to return the created user instead of returning void. : /!\ Returns 200 if successful
+        //Modified to return the created user instead of returning void. Returns 200 if successful
         Optional<User> oUser = Optional.of(user);
         return ResponseUtil.wrapOrNotFound(oUser.map(UserDTO::new));
     }
