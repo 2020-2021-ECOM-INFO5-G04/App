@@ -21,8 +21,10 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
-
-import io.github.jhipster.web.util.ResponseUtil;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.server.ResponseStatusException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * REST controller for managing the current user's account.
@@ -62,17 +64,24 @@ public class AccountResource {
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UserDTO> registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public ResponseEntity<UserDTO> registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
 
-        //Modified to return the created user instead of returning void
+        //Modified to return the created user instead of returning void. Returns 201 thanks to "created", as asked by the jhipster specs
         Optional<User> oUser = Optional.of(user);
-        return ResponseUtil.wrapOrNotFound(oUser.map(UserDTO::new));
+        Optional<UserDTO> oUserDTO = oUser.map(UserDTO::new);
+        HttpHeaders header = null;
+        URI uri = new URI("/api/users/" + user.getLogin());
+        ResponseEntity<UserDTO> resp = oUserDTO.map(
+            response -> ResponseEntity.created(uri).headers(header).body(response)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
+        return resp; //ResponseUtil.wrapOrNotFound(maybeResponse, header)
     }
+
 
     /**
      * {@code GET  /activate} : activate the registered user.
