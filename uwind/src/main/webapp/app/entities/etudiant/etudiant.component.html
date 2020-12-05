@@ -56,7 +56,7 @@
                     <td>{{ etudiant.compteValide }}</td>
                     <td>
                         <div *ngIf="etudiant.profil">
-                            <a [routerLink]="['/profil', etudiant.profil?.id, 'view']" >{{ etudiant.profil?.id }}</a>
+                            <a [routerLink]="['/profil', etudiant.profil?.nom, 'view']" >{{ etudiant.profil?.nom+" "+etudiant.profil?.prenom }}</a>
                         </div>
                     </td>
                     <td>
@@ -76,7 +76,7 @@
                     </td>
                     <td>
                         <div *ngIf="etudiant.gestionnaire">
-                            <a [routerLink]="['/gestionnaire', etudiant.gestionnaire?.id, 'view']" >{{ etudiant.gestionnaire?.id }}</a>
+                            <a [routerLink]="['/gestionnaire', etudiant.gestionnaire?.id, 'view']" >{{ etudiant.gestionnaire.profil?.nom+" "+etudiant.gestionnaire.profil?.prenom  }}</a>
                         </div>
                     </td>
                     <td class="text-right">
