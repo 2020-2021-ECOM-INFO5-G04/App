@@ -67,11 +67,17 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         if (!(problem instanceof ConstraintViolationProblem || problem instanceof DefaultProblem)) {
             return entity;
         }
+
+        String reqURI = null;
+        if (request.getNativeRequest(HttpServletRequest.class) != null){
+            reqURI = request.getNativeRequest(HttpServletRequest.class).getRequestURI();
+        }
+
         ProblemBuilder builder = Problem.builder()
             .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
             .withStatus(problem.getStatus())
             .withTitle(problem.getTitle())
-            .with(PATH_KEY, request.getNativeRequest(HttpServletRequest.class).getRequestURI());
+            .with(PATH_KEY, reqURI);
 
         if (problem instanceof ConstraintViolationProblem) {
             builder
