@@ -39,7 +39,7 @@ export const profilRoute: Routes = [
     path: '',
     component: ProfilComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.profil.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const profilRoute: Routes = [
       profil: ProfilResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.profil.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const profilRoute: Routes = [
       profil: ProfilResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.profil.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const profilRoute: Routes = [
       profil: ProfilResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.profil.home.title',
     },
     canActivate: [UserRouteAccessService],
