@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.nom" for="field_nom">Nom</label>
+                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.nom" for="field_nom">Titre de la sortie</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
                            formControlName="nom"/>
                     <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.planDeau" for="field_planDeau">Plan Deau</label>
+                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.planDeau" for="field_planDeau">Lieu</label>
                     <select class="form-control" name="planDeau" formControlName="planDeau" id="field_planDeau">
                         <option value="Laffrey">{{ 'uwindApp.PlanDEau.Laffrey' | translate }}</option>
                         <option value="Monteynard">{{ 'uwindApp.PlanDEau.Monteynard' | translate }}</option>
@@ -65,7 +65,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.coeff" for="field_coeff">Coeff</label>
+                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.nom" for="field_nom">Titre de la sortie</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.coeff" for="field_coeff">Coefficient</label>
                     <input type="number" class="form-control" name="coeff" id="field_coeff"
                            formControlName="coeff"/>
                     <div *ngIf="editForm.get('coeff')!.invalid && (editForm.get('coeff')!.dirty || editForm.get('coeff')!.touched)">
