@@ -81,7 +81,7 @@ else
     		sudo chmod a+rwx /home/\$USER/.config/
 		fi
 		echo \"---Cloning App repo...---\"
-		git clone https://github.com/2020-2021-ECOM-INFO5-G04/App.git
+		sudo git clone https://github.com/2020-2021-ECOM-INFO5-G04/App.git
 		sudo chown -R 1000:1000 \"/home/azureuser/.npm\"
 
 	"
