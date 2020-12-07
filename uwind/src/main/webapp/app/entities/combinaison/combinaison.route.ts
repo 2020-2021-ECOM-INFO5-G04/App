@@ -39,7 +39,7 @@ export const combinaisonRoute: Routes = [
     path: '',
     component: CombinaisonComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.combinaison.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const combinaisonRoute: Routes = [
       combinaison: CombinaisonResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.combinaison.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const combinaisonRoute: Routes = [
       combinaison: CombinaisonResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.combinaison.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const combinaisonRoute: Routes = [
       combinaison: CombinaisonResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.combinaison.home.title',
     },
     canActivate: [UserRouteAccessService],

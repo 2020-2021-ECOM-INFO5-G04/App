@@ -4,6 +4,7 @@ import fr.uga.UwindApp;
 import fr.uga.config.Constants;
 import fr.uga.domain.User;
 import fr.uga.repository.AuthorityRepository;
+import fr.uga.domain.Authority;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.service.UserService;
@@ -391,8 +392,8 @@ public class AccountResourceIT {
 
         Optional<User> userDup = userRepository.findOneWithAuthoritiesByLogin("badguy");
         assertThat(userDup.isPresent()).isTrue();
-        assertThat(userDup.get().getAuthorities()).hasSize(1)
-            .containsExactly(authorityRepository.findById(AuthoritiesConstants.USER).get());
+        assertThat(userDup.get().getAuthorities()).hasSize(2)
+            .containsExactly(authorityRepository.findById(AuthoritiesConstants.USER).get(), authorityRepository.findById(AuthoritiesConstants.ETUDIANT).get());
     }
 
     @Test

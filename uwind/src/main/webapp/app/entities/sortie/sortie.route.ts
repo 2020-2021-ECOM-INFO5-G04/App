@@ -39,7 +39,7 @@ export const sortieRoute: Routes = [
     path: '',
     component: SortieComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_ETUDIANT', 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.sortie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const sortieRoute: Routes = [
       sortie: SortieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_ETUDIANT'],
       pageTitle: 'uwindApp.sortie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const sortieRoute: Routes = [
       sortie: SortieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.sortie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const sortieRoute: Routes = [
       sortie: SortieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.sortie.home.title',
     },
     canActivate: [UserRouteAccessService],
