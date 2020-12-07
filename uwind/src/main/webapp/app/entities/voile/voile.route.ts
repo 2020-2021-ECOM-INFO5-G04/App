@@ -39,7 +39,7 @@ export const voileRoute: Routes = [
     path: '',
     component: VoileComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_MONITEUR', 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.voile.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const voileRoute: Routes = [
       voile: VoileResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_MONITEUR', 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.voile.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const voileRoute: Routes = [
       voile: VoileResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.voile.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const voileRoute: Routes = [
       voile: VoileResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.voile.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -39,7 +39,7 @@ export const evaluationRoute: Routes = [
     path: '',
     component: EvaluationComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.evaluation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const evaluationRoute: Routes = [
       evaluation: EvaluationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.evaluation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const evaluationRoute: Routes = [
       evaluation: EvaluationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.evaluation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const evaluationRoute: Routes = [
       evaluation: EvaluationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.evaluation.home.title',
     },
     canActivate: [UserRouteAccessService],
