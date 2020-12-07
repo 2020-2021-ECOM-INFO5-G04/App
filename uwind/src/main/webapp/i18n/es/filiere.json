@@ -2,10 +2,10 @@
   "uwindApp": {
     "Filiere": {
       "null": "",
-      "STAPS_Entrainement_sportif": "STAPS_Entrainement_sportif",
-      "STAPS_Management_du_sport": "STAPS_Management_du_sport",
-      "STAPS_Education_et_motricite": "STAPS_Education_et_motricite",
-      "STAPS_APAS": "STAPS_APAS"
+      "STAPS_Entrainement_sportif": "STAPS Entrainement sportif",
+      "STAPS_Management_du_sport": "STAPS Management du sport",
+      "STAPS_Education_et_motricite": "STAPS Education et motricite",
+      "STAPS_APAS": "STAPS APAS"
     }
   }
 }
