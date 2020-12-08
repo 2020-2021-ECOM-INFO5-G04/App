@@ -2,27 +2,29 @@
   "uwindApp": {
     "sortie": {
       "home": {
-        "title": "Sorties",
-        "createLabel": "Create a new Sortie",
-        "createOrEditLabel": "Create or edit a Sortie",
-        "notFound": "No Sorties found"
+        "title": "Outings",
+        "createLabel": "Create a new outing",
+        "createOrEditLabel": "Create or edit an outing",
+        "notFound": "No outing found"
       },
-      "created": "A new Sortie is created with identifier {{ param }}",
-      "updated": "A Sortie is updated with identifier {{ param }}",
+      "created": "A new outing has been created with the identifier {{ param }}",
+      "updated": "The outing with the {{ param }}} identifier has been updated",
       "deleted": "A Sortie is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Sortie {{ id }}?"
+        "question": "Are you sure you want to delete the outing {{ id }}?"
       },
       "detail": {
-        "title": "Sortie"
+        "title": "Outing"
       },
-      "nom": "Nom",
+      "nom": "Name",
       "date": "Date",
       "planDeau": "Plan Deau",
-      "coeff": "Coeff",
-      "commentaire": "Commentaire",
-      "inscriptionSortie": "Inscription Sortie",
-      "gestionnaire": "Gestionnaire"
+      "lieu": "Location",
+      "titre": "Outing Title",
+      "coeff": "Coefficient",
+      "commentaire": "Comment",
+      "inscriptionSortie": "Outing Registration",
+      "gestionnaire": "Manager"
     }
   }
 }
