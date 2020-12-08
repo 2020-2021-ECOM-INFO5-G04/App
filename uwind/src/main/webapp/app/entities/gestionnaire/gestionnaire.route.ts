@@ -39,7 +39,7 @@ export const gestionnaireRoute: Routes = [
     path: '',
     component: GestionnaireComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.gestionnaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const gestionnaireRoute: Routes = [
       gestionnaire: GestionnaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.gestionnaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const gestionnaireRoute: Routes = [
       gestionnaire: GestionnaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.gestionnaire.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const gestionnaireRoute: Routes = [
       gestionnaire: GestionnaireResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.gestionnaire.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -1,13 +1,14 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
-        <span jhiTranslate="global.title" class="navbar-title">Uwind</span> <span class="navbar-version">{{ version }}</span>
+        <span jhiTranslate="global.title" class="navbar-title">Uwind</span> <!--<span class="navbar-version">{{ version }}</span>-->
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
+            
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
@@ -16,8 +17,88 @@
                     </span>
                 </a>
             </li>
+            
+            <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR','ROLE_ETUDIANT']" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="user-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Menu
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <li *jhiHasAnyAuthority="'ROLE_GESTIONNAIRE'">
+                        <a class="dropdown-item" routerLink="profil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.profil">Profil</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_GESTIONNAIRE'">
+                        <a class="dropdown-item" routerLink="etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.etudiant">Etudiant</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_GESTIONNAIRE'">
+                        <a class="dropdown-item" routerLink="moniteur" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.moniteur">Moniteur</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_GESTIONNAIRE'">
+                        <a class="dropdown-item" routerLink="gestionnaire" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.gestionnaire">Gestionnaire</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_ETUDIANT']">
+                        <a class="dropdown-item" routerLink="sortie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.sortie">Sortie</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']">
+                        <a class="dropdown-item" routerLink="inscription-sortie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.inscriptionSortie">Inscription Sortie</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']">
+                        <a class="dropdown-item" routerLink="observation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.observation">Observation</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_MONITEUR','ROLE_GESTIONNAIRE']">
+                        <a class="dropdown-item" routerLink="evaluation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.evaluation">Evaluation</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']">
+                        <a class="dropdown-item" routerLink="voile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.voile">Voile</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']"> 
+                        <a class="dropdown-item" routerLink="flotteur" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.flotteur">Flotteur</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']">
+                        <a class="dropdown-item" routerLink="combinaison" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.combinaison">Combinaison</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>

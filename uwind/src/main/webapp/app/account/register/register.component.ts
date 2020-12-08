@@ -48,9 +48,9 @@ export class RegisterComponent implements AfterViewInit {
     niveauScolaire: [null, [Validators.required]],
     departement: [null, [Validators.required]],
     niveauPlanche: [null, [Validators.required]],
-    permisDeConduire: [null],
+    permisDeConduire: [false],
     lieuDepart: [null, [Validators.required]],
-    optionSemestre: [null],
+    optionSemestre: [false],
     profil: [],
     flotteur: [],
     voile: [],
@@ -96,66 +96,66 @@ export class RegisterComponent implements AfterViewInit {
       const niveauScolaire = this.registerForm.get(['niveauScolaire'])!.value;
       const departement = this.registerForm.get(['departement'])!.value;
       const niveauPlanche = this.registerForm.get(['niveauPlanche'])!.value;
-      const permisDeConduire = this.registerForm.get(['permisDeConduire'])!.value;
+      const permisDeConduire =
+        this.registerForm.get(['permisDeConduire'])!.value != null ? this.registerForm.get(['permisDeConduire'])!.value : false;
       const lieuDepart = this.registerForm.get(['lieuDepart'])!.value;
-      const optionSemestre = this.registerForm.get(['optionSemestre'])!.value;
+      const optionSemestre =
+        this.registerForm.get(['optionSemestre'])!.value != null ? this.registerForm.get(['optionSemestre'])!.value : false;
 
       //Saving user
 
-      // eslint-disable-next-line no-console
-      console.log('Salut les terriens');
+      this.registerService
+        .save({ login, firstName: prenom, lastName: nom, email, password, langKey: this.languageService.getCurrentLanguage() })
+        .subscribe(
+          responseUser => {
+            // eslint-disable-next-line no-console
+            console.log(responseUser);
 
-      this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        // eslint-disable-next-line no-console
-        responseUser => {
-          // eslint-disable-next-line no-console
-          console.log(responseUser);
+            // Pushing profil to DB if the User saving was successful
+            const utilisateur = responseUser;
+            this.profilService.create({ prenom, nom, email, numTel, utilisateur }).subscribe(
+              responseProfil => {
+                //Passing from type IProfil | null to type IProfil | undefined required by method etudiantService.create
+                const profil = responseProfil.body != null ? responseProfil.body : undefined;
 
-          // Pushing profil to DB if the User saving was successful
-          const utilisateur = responseUser;
-          this.profilService.create({ prenom, nom, email, numTel, utilisateur }).subscribe(
-            responseProfil => {
-              //Passing from type IProfil | null to type IProfil | undefined required by method etudiantService.create
-              const profil = responseProfil.body != null ? responseProfil.body : undefined;
+                // eslint-disable-next-line no-console
+                console.log(profil);
 
-              // eslint-disable-next-line no-console
-              console.log(profil);
-
-              // Pushing student to DB if Profil creation was successful
-              this.etudiantService
-                .create({
-                  niveauScolaire,
-                  departement,
-                  niveauPlanche,
-                  permisDeConduire,
-                  lieuDepart,
-                  optionSemestre,
-                  compteValide: false,
-                  profil,
-                  flotteur: undefined,
-                  voile: undefined,
-                  combinaison: undefined,
-                  observations: [],
-                  evaluations: [],
-                  inscriptionSorties: [],
-                  gestionnaire: undefined,
-                })
-                .subscribe(
-                  () => (this.success = true),
-                  error => {
-                    //TODO
-                  }
-                );
-            },
-            errorProfil => {
-              //TODO
-            }
-          );
-        },
-        errorUser => {
-          this.processRegisteringError(errorUser);
-        }
-      );
+                // Pushing student to DB if Profil creation was successful
+                this.etudiantService
+                  .create({
+                    niveauScolaire,
+                    departement,
+                    niveauPlanche,
+                    permisDeConduire,
+                    lieuDepart,
+                    optionSemestre,
+                    compteValide: false,
+                    profil,
+                    flotteur: undefined,
+                    voile: undefined,
+                    combinaison: undefined,
+                    observations: [],
+                    evaluations: [],
+                    inscriptionSorties: [],
+                    gestionnaire: undefined,
+                  })
+                  .subscribe(
+                    () => (this.success = true),
+                    error => {
+                      //TODO
+                    }
+                  );
+              },
+              errorProfil => {
+                //TODO
+              }
+            );
+          },
+          errorUser => {
+            this.processRegisteringError(errorUser);
+          }
+        );
     }
   }
 
