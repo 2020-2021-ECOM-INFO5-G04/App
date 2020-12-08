@@ -3,15 +3,15 @@
     "sortie": {
       "home": {
         "title": "Sorties",
-        "createLabel": "Créer un nouveau Sortie",
-        "createOrEditLabel": "Créer ou éditer un Sortie",
-        "notFound": "Aucun Sortie trouvé"
+        "createLabel": "Créer une nouvelle sortie",
+        "createOrEditLabel": "Créer ou éditer une sortie",
+        "notFound": "Aucune sortie trouvée"
       },
-      "created": "Un nouveau Sortie a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Sortie avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Sortie avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle sortie a été créée avec l'identifiant {{ param }}",
+      "updated": "La sortie avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La sortie avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Sortie {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la sortie {{ id }} ?"
       },
       "detail": {
         "title": "Sortie"
@@ -19,7 +19,9 @@
       "nom": "Nom",
       "date": "Date",
       "planDeau": "Plan Deau",
-      "coeff": "Coeff",
+      "lieu": "Lieu",
+      "titre": "Titre de la sortie",
+      "coeff": "Coefficient",
       "commentaire": "Commentaire",
       "inscriptionSortie": "Inscription Sortie",
       "gestionnaire": "Gestionnaire"
