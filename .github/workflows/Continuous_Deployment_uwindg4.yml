@@ -21,7 +21,9 @@ jobs:
         java-version: '11'
 
     - name: Build with Maven
-      run: mvn clean install
+      run: |
+        cd uwind
+        mvn clean install
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -29,4 +31,4 @@ jobs:
         app-name: 'uwindg4'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_234fa3b4d84748ce9109b7a3a6cb97b6 }}
-        package: '${{ github.workspace }}/target/*.jar'
+        package: '${{ github.workspace }}/uwind/target/*.jar'
