@@ -23,6 +23,7 @@ jobs:
 
     - name: Build with Maven
       run: |
+        rm uwind/target/*.jar
         cd uwind
         ./mvnw -Pprod clean verify
     - name: Deploy to Azure Web App
