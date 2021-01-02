@@ -24,7 +24,7 @@ jobs:
     - name: Build with Maven
       run: |
         cd uwind
-        mvn clean install
+        mvn clean install -Pprod
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
