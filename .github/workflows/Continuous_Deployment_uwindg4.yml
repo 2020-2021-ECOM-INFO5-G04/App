@@ -1,3 +1,9 @@
+
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy JAR app to Azure Web App - uwindg4
+
 on:
   push:
     branches:
@@ -6,29 +12,23 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-    # checkout the repo
-    - name: 'Checkout Github Action'
-      uses: actions/checkout@master
 
-    - uses: azure/docker-login@v1
-      with:
-        login-server: uwindcont.azurecr.io
+    steps:
+    - uses: actions/checkout@master
 
     - name: Set up Java version
       uses: actions/setup-java@v1
       with:
         java-version: '11'
 
-    - name: Build Dockerfile
+    - name: Build with Maven
       run: |
         cd uwind
-        ./mvnw package jib:dockerBuild
-        docker tag uwind uwindcont.azurecr.io/uwind:${{ github.sha }}
-        docker push uwindcont.azurecr.io/uwind:${{ github.sha }}
-
-    - uses: azure/webapps-deploy@v2
+        mvn clean install
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'uwindg4'
+        slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_234fa3b4d84748ce9109b7a3a6cb97b6 }}
-        images: 'uwindcont.azurecr.io/uwind:${{ github.sha }}'
+        package: '${{ github.workspace }}/uwind/target/*.jar'
