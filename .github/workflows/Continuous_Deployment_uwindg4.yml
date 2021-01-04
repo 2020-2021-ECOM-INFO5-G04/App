@@ -7,7 +7,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    # checkout the repository
+    # checkout the repo
     - name: 'Checkout Github Action'
       uses: actions/checkout@master
 
