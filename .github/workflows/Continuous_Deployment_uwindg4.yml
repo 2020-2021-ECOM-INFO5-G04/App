@@ -26,7 +26,7 @@ jobs:
     - name: Build Dockerfile
       run: |
         cd uwind
-        ./mvnw -Pprod package jib:dockerBuild
+        ./mvnw package -Pprod jib:dockerBuild
         docker tag uwind uwindcont.azurecr.io/uwind:${{ github.sha }}
         docker push uwindcont.azurecr.io/uwind:${{ github.sha }}
     - uses: azure/webapps-deploy@v2
