@@ -11,14 +11,11 @@ Main page styles
 }
 
 .background {
-  display: inline-block;
-  width: 910px;
-  height: 511px;
-  background: url('../../content/images/sailboard.jpg') no-repeat center top;
-  background-size: contain;
+  width: 75%;
+  height: auto;
 }
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
+/* wait autoprefixer update to allow simple generation of high pixel density media query*/
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),
   only screen and (-o-min-device-pixel-ratio: 2/1),

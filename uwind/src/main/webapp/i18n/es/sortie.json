@@ -2,27 +2,29 @@
   "uwindApp": {
     "sortie": {
       "home": {
-        "title": "Sorties",
+        "title": "Salidas",
         "createLabel": "Crear nuevo Sortie",
         "createOrEditLabel": "Crear o editar Sortie",
         "notFound": "Ningún Sorties encontrado"
       },
-      "created": "Un nuevo Sortie ha sido creado con el identificador {{ param }}",
-      "updated": "Un Sortie ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Sortie ha sido eliminado con el identificador {{ param }}",
+      "created": "Se ha creado una nueva salida con el identificador {{ param }}",
+      "updated": "La salida con el identificador {{param}} ha sido actualizada",
+      "deleted": "La salida con el identificador {{ param }} ha sido eliminada",
       "delete": {
         "question": "¿Seguro que quiere eliminar Sortie {{ id }}?"
       },
       "detail": {
-        "title": "Sortie"
+        "title": "Salida"
       },
-      "nom": "Nom",
-      "date": "Date",
-      "planDeau": "Plan Deau",
-      "coeff": "Coeff",
-      "commentaire": "Commentaire",
-      "inscriptionSortie": "Inscription Sortie",
-      "gestionnaire": "Gestionnaire"
+      "nom": "Nombre",
+      "date": "Fecha",
+      "planDeau": "Cuerpo de agua",
+      "coeff": "Coeficiente",
+      "lieu": "Ubicación",
+      "titre": "Título salida",
+      "commentaire": "Comentario",
+      "inscriptionSortie": "Inscripción salida",
+      "gestionnaire": "Gerente"
     }
   }
 }
