@@ -2,7 +2,7 @@
 
     <base href="/">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    
+
 </head>
 
 <div class="row justify-content-center">
@@ -56,13 +56,25 @@
             </button>
         </div>
     </div>
+
+    <div class="col-8" *ngIf="tmp">
+        <div style="height: 500px;"
+                leaflet
+                [leafletOptions]="options1"
+                [leafletLayers]="layers1"
+                (leafletMapReady)="onMapReady($event)">
+    </div>
+    </div>
+
+    <div class="col-8" *ngIf="!tmp">
+        <div style="height: 500px;"
+            leaflet
+            [leafletOptions]="options2"
+            [leafletLayers]="layers2"
+            (leafletMapReady)="onMapReady($event)">
+    </div>
+    </div>
+
 </div>
 
-<div *ngIf="true">
-    <div style="height: 1000px;"
-            leaflet
-            [leafletOptions]="options1"
-            [leafletLayers]="layers1"
-            (leafletMapReady)="onMapReady($event)">
-</div>
-</div>
+
