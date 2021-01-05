@@ -7,7 +7,7 @@ name: Build and deploy JAR app to Azure Web App - uwindg4
 on:
   push:
     branches:
-      - Continuous_Deployment
+      - master
 
 jobs:
   build-and-deploy:
