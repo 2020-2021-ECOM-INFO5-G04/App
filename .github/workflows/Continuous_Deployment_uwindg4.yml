@@ -31,6 +31,6 @@ jobs:
         docker push uwindcont.azurecr.io/uwind:${{ github.sha }}
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'uwindg4bis'
+        app-name: 'uwindg4'
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
         images: 'uwindcont.azurecr.io/uwind:${{ github.sha }}'
