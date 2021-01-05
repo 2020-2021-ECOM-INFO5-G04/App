@@ -108,9 +108,6 @@ export class RegisterComponent implements AfterViewInit {
         .save({ login, firstName: prenom, lastName: nom, email, password, langKey: this.languageService.getCurrentLanguage() })
         .subscribe(
           responseUser => {
-            // eslint-disable-next-line no-console
-            console.log(responseUser);
-
             // Pushing profil to DB if the User saving was successful
             const utilisateur = responseUser;
             this.profilService.create({ prenom, nom, email, numTel, utilisateur }).subscribe(
