@@ -8,16 +8,22 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="uwindApp.profil.nom">Profil</span></dt>
+                <dt><span jhiTranslate="uwindApp.profil.nom">Name</span></dt>
                 <dd>
                     <div *ngIf="moniteur.profil">
-                        <a [routerLink]="['/profil', moniteur.profil?.nom, 'view']">{{ moniteur.profil?.nom }}</a>
+                        {{ moniteur.profil?.nom }}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="uwindApp.profil.prenom">Profil</span></dt>
+                <dt><span jhiTranslate="uwindApp.profil.prenom">First name</span></dt>
                 <dd>
                     <div *ngIf="moniteur.profil">
-                        <a [routerLink]="['/profil', moniteur.profil?.prenom, 'view']">{{ moniteur.profil?.prenom }}</a>
+                        {{ moniteur.profil?.prenom }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.profil.numTel">Phone number</span></dt>
+                <dd>
+                    <div *ngIf="moniteur.profil">
+                        {{ moniteur.profil?.numTel }}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.moniteur.flotteur">Flotteur</span></dt>

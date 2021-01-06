@@ -8,10 +8,22 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="uwindApp.gestionnaire.profil">Profil</span></dt>
+                <dt><span jhiTranslate="uwindApp.profil.nom">Name</span></dt>
                 <dd>
                     <div *ngIf="gestionnaire.profil">
-                        <a [routerLink]="['/profil', gestionnaire.profil?.id, 'view']">{{ gestionnaire.profil?.id }}</a>
+                        {{ gestionnaire.profil?.nom }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.profil.prenom">First name</span></dt>
+                <dd>
+                    <div *ngIf="gestionnaire.profil">
+                        {{ gestionnaire.profil?.prenom }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.profil.numTel">Phone number</span></dt>
+                <dd>
+                    <div *ngIf="gestionnaire.profil">
+                        {{ gestionnaire.profil?.numTel }}
                     </div>
                 </dd>
             </dl>

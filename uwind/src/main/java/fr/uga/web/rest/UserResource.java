@@ -1,7 +1,15 @@
 package fr.uga.web.rest;
 
 import fr.uga.config.Constants;
+import fr.uga.domain.Etudiant;
+import fr.uga.domain.Moniteur;
+import fr.uga.domain.Gestionnaire;
+import fr.uga.domain.Profil;
 import fr.uga.domain.User;
+import fr.uga.repository.ProfilRepository;
+import fr.uga.repository.EtudiantRepository;
+import fr.uga.repository.MoniteurRepository;
+import fr.uga.repository.GestionnaireRepository;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.service.MailService;
@@ -20,6 +28,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -72,12 +81,25 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
+    private final ProfilRepository profilRepository;
+
+    private final EtudiantRepository etudiantRepository;
+
+    private final MoniteurRepository moniteurRepository;
+
+    private final GestionnaireRepository gestionnaireRepository;
+
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService,
+    ProfilRepository profilRepository, EtudiantRepository etudiantRepository, MoniteurRepository moniteurRepository, GestionnaireRepository gestionnaireRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.profilRepository = profilRepository;
+        this.etudiantRepository = etudiantRepository;
+        this.moniteurRepository = moniteurRepository;
+        this.gestionnaireRepository = gestionnaireRepository;
     }
 
     /**
@@ -194,6 +216,42 @@ public class UserResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
+        /* 
+        We can't delete a user if there are dependencies to this user.
+        It means we have to delete the corresponding profil and thus etudiant/moniteur/gestionnaire */
+        Optional<User> optUser = userService.getUserWithAuthoritiesByLogin(login);
+        if(optUser.isPresent()){
+            User user = optUser.get();
+            Profil profil = new Profil();
+            profil.setUtilisateur(user);
+            Example<Profil> exampleProfil = Example.of(profil);
+            List<Profil> listProfil = profilRepository.findAll(exampleProfil);
+            listProfil.forEach((profilElem) -> {
+                //finding all dependences to this user and removing them
+                Etudiant etudiant = new Etudiant();
+                etudiant.setProfil(profilElem);
+                Example<Etudiant> exampleEtudiant = Example.of(etudiant);
+                etudiantRepository.findAll(exampleEtudiant).forEach((etudiantElem) -> {
+                    etudiantRepository.delete(etudiantElem); //deleting every possible etudiant linked to this profil (there should be only one)
+                });
+
+                Moniteur moniteur = new Moniteur();
+                moniteur.setProfil(profilElem);
+                Example<Moniteur> exampleMoniteur = Example.of(moniteur);
+                moniteurRepository.findAll(exampleMoniteur).forEach((moniteurElem) -> {
+                    moniteurRepository.delete(moniteurElem);
+                });
+
+                Gestionnaire gestionnaire = new Gestionnaire();
+                gestionnaire.setProfil(profilElem);
+                Example<Gestionnaire> exampleGestionnaire = Example.of(gestionnaire);
+                gestionnaireRepository.findAll(exampleGestionnaire).forEach((gestionnaireElem) -> {
+                    gestionnaireRepository.delete(gestionnaireElem);
+                });
+
+                profilRepository.delete(profilElem);
+            });
+        }
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
     }

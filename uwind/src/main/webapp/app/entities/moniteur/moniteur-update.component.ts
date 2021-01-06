@@ -32,9 +32,8 @@ export class MoniteurUpdateComponent implements OnInit {
   @ViewChild('login', { static: false })
   login?: ElementRef;
 
-  error = false;
-  errorEmailExists = false;
-  errorUserExists = false;
+  errorUser = false;
+  errorProfil = false;
 
   isSaving = false;
 
@@ -182,6 +181,8 @@ export class MoniteurUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
+    this.errorUser = false;
+    this.errorProfil = false;
 
     const user = this.createUserFromForm();
 
@@ -198,12 +199,14 @@ export class MoniteurUpdateComponent implements OnInit {
               }
             },
             errorProfil => {
-              //TODO
+              this.onSaveError();
+              this.errorProfil = true;
             }
           );
         },
         error => {
-          //TODO
+          this.onSaveError();
+          this.errorUser = true;
         }
       );
     } else {
@@ -220,12 +223,14 @@ export class MoniteurUpdateComponent implements OnInit {
               }
             },
             errorProfil => {
-              //TODO
+              this.onSaveError();
+              this.errorProfil = true;
             }
           );
         },
         error => {
-          //TODO
+          this.onSaveError();
+          this.errorUser = true;
         }
       );
     }
@@ -287,15 +292,5 @@ export class MoniteurUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
-  }
-
-  private processRegisteringError(response: HttpErrorResponse): void {
-    if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
-      this.errorUserExists = true;
-    } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {
-      this.errorEmailExists = true;
-    } else {
-      this.error = true;
-    }
   }
 }

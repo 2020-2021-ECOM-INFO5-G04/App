@@ -23,7 +23,8 @@
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="uwindApp.gestionnaire.profil">Profil</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.profil.prenom">Prenom</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.profil.nom">Nom</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -32,7 +33,12 @@
                     <td><a [routerLink]="['/gestionnaire', gestionnaire.id, 'view']">{{ gestionnaire.id }}</a></td>
                     <td>
                         <div *ngIf="gestionnaire.profil">
-                            <a [routerLink]="['/profil', gestionnaire.profil?.id, 'view']" >{{ gestionnaire.profil?.id }}</a>
+                            <a [routerLink]="['/profil', gestionnaire.profil?.prenom, 'view']" >{{ gestionnaire.profil?.prenom }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="gestionnaire.profil">
+                            <a [routerLink]="['/profil', gestionnaire.profil?.nom, 'view']" >{{ gestionnaire.profil?.nom }}</a>
                         </div>
                     </td>
                     <td class="text-right">
