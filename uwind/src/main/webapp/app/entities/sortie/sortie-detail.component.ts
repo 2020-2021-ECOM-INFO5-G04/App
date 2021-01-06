@@ -79,11 +79,6 @@ export class SortieDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
-  onMapReady(map: L.Map): void {
-    setTimeout(() => {
-      map.invalidateSize(true);
-    }, 100);
-  }
 
   studentdetect(profils: IProfil[]): number {
     for (let i = 0; i < profils.length; i++) {
