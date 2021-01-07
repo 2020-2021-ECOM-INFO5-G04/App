@@ -12,4 +12,10 @@ export class RegisterService {
   save(account: IUser): Observable<{}> {
     return this.http.post(SERVER_API_URL + 'api/register', account);
   }
+
+  makeLogin(nom: string, prenom: string): string {
+    const nom2 = nom.replace(/\s/g, '');
+    const prenom2 = prenom.replace(/\s/g, '');
+    return nom2 + prenom2[0] + prenom2[1];
+  }
 }
