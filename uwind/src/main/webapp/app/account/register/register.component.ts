@@ -24,6 +24,7 @@ export class RegisterComponent implements AfterViewInit {
   errorEmailExists = false;
   errorUserExists = false;
   success = false;
+  paymentPart = false;
 
   registerForm = this.fb.group({
     login: [
@@ -72,6 +73,13 @@ export class RegisterComponent implements AfterViewInit {
     if (this.login) {
       this.login.nativeElement.focus();
     }
+  }
+
+  pay(): void {
+    /* eslint-disable no-console */
+    console.log('oui');
+    /* eslint-enable no-console */
+    this.paymentPart = true;
   }
 
   register(): void {

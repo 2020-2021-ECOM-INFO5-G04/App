@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!paymentPart">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 jhiTranslate="register.title">Registration</h1>
@@ -27,7 +27,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+            <form name="form" role="form" (ngSubmit)="pay()" [formGroup]="registerForm" *ngIf="!success">
                 <div class="form-group">
                     <label class="form-control-label" for="login" jhiTranslate="global.form.username.label">Username</label>
                     <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.username.placeholder' | translate }}"
@@ -289,10 +289,28 @@
                     </div>
                 </div>
 
-            
+
 
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
         </div>
     </div>
+</div>
+
+<div *ngIf="paymentPart">
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <h1 jhiTranslate="register.title">Prix de l'inscription</h1>
+      </div>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <form name="form" role="form" (ngSubmit)="register()">
+              <label class="montantInsc" for="montantInsc" >Vous devez payer 15€</label>
+              <button type="submit" >Payer</button>
+          </form>
+
+      </div>
+  </div>
 </div>
