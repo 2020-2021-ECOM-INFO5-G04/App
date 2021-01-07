@@ -18,6 +18,7 @@
         "voile": "Voile",
         "flotteur": "Flotteur",
         "combinaison": "Combinaison",
+        "prix": "Prix",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,25 @@
+{
+  "uwindApp": {
+    "prix": {
+      "home": {
+        "title": "Prixes",
+        "createLabel": "Crear nuevo Prix",
+        "createOrEditLabel": "Crear o editar Prix",
+        "notFound": "Ningún Prixes encontrado"
+      },
+      "created": "Un nuevo Prix ha sido creado con el identificador {{ param }}",
+      "updated": "Un Prix ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Prix ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Prix {{ id }}?"
+      },
+      "detail": {
+        "title": "Prix"
+      },
+      "date": "Date",
+      "prixFP": "Prix FP",
+      "prixFQ": "Prix FQ",
+      "active": "Active"
+    }
+  }
+}
