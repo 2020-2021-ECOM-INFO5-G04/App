@@ -31,6 +31,7 @@
       },
       "admin": {
         "main": "Administración",
+        "priceManagement": "Gestión del precio",
         "userManagement": "Gestión de usuarios",
         "tracker": "Registro de usuarios",
         "metrics": "Métricas",

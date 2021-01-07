@@ -31,6 +31,7 @@
       },
       "admin": {
         "main": "Administration",
+        "priceManagement": "Price management",
         "userManagement": "User management",
         "tracker": "User tracker",
         "metrics": "Metrics",
