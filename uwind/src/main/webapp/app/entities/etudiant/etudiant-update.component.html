@@ -1,4 +1,19 @@
 <div class="row justify-content-center">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 jhiTranslate="register.title">Registration</h1>
+
+            <div class="alert alert-danger" *ngIf="errorUser" jhiTranslate="uwindApp.moniteur.update.userfail">
+                <strong>User creation failed ! </strong> The login or email is probably already taken, please try another one.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="errorProfil" jhiTranslate="uwindApp.moniteur.update.profilfail">
+                <strong>Profil creation failed ! </strong>
+            </div>
+        </div>
+    </div>
+
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-etudiant-heading" jhiTranslate="uwindApp.etudiant.home.createOrEditLabel">Create or edit a Etudiant</h2>
@@ -10,6 +25,132 @@
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
+
+                <div class="form-group" [hidden]="true">
+                    <label for="profilId">ProfilID</label>
+                    <input type="text" class="form-control" id="profilId" name="profilId" formControlName="profilId" readonly />
+                </div>
+
+                <div class="form-group" [hidden]="true">
+                    <label for="userId">userID</label>
+                    <input type="text" class="form-control" id="userId" name="userId" formControlName="userId" readonly />
+                </div>
+
+                <!-- Added for User creation -->
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_login" jhiTranslate="global.form.username.label">Username</label>
+                    <input type="text" class="form-control" id="field_login" name="login" placeholder="{{ 'global.form.username.label' | translate }}"
+                           formControlName="login" #login>
+
+                    <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('login')?.errors?.required"
+                               jhiTranslate="register.messages.validate.login.required">
+                            Your username is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('login')?.errors?.minlength"
+                               jhiTranslate="register.messages.validate.login.minlength">
+                            Your username is required to be at least 1 character.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('login')?.errors?.maxlength"
+                               jhiTranslate="register.messages.validate.login.maxlength">
+                            Your username cannot be longer than 50 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('login')?.errors?.pattern"
+                               jhiTranslate="register.messages.validate.login.pattern">
+                            Your username can only contain letters and digits.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email" jhiTranslate="global.form.email.label">Email</label>
+                    <input type="email" class="form-control" id="field_email" name="email" placeholder="{{ 'global.form.email.label' | translate }}"
+                             formControlName="email">
+
+                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.required"
+                               jhiTranslate="global.messages.validate.email.required">
+                            Your email is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.invalid"
+                               jhiTranslate="global.messages.validate.email.invalid">
+                            Your email is invalid.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.minlength"
+                               jhiTranslate="global.messages.validate.email.minlength">
+                            Your email is required to be at least 5 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.maxlength"
+                               jhiTranslate="global.messages.validate.email.maxlength">
+                            Your email cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Added for profile creation -->
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.prenom" for="field_prenom">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                           formControlName="prenom"/>
+                    <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prenom')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prenom')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.profil.numTel" for="field_numTel">Num Tel</label>
+                    <input type="text" class="form-control" name="numTel" id="field_numTel"
+                           formControlName="numTel"/>
+                </div>
+
+                <!-- -->
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauScolaire" for="field_niveauScolaire">Niveau Scolaire</label>
@@ -78,8 +219,10 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="uwindApp.etudiant.lieuDepart" for="field_lieuDepart">Lieu Depart</label>
-                    <input type="text" class="form-control" name="lieuDepart" id="field_lieuDepart"
-                           formControlName="lieuDepart"/>
+                    <select class="form-control" name="lieuDepart" formControlName="lieuDepart" id="field_lieuDepart">
+                        <option value="SMH">Campus de Saint-Martin d'Hères</option>
+                        <option value="Minatec">Campus de Minatec</option>
+                    </select>
                     <div *ngIf="editForm.get('lieuDepart')!.invalid && (editForm.get('lieuDepart')!.dirty || editForm.get('lieuDepart')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('lieuDepart')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -113,14 +256,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.profil" for="field_profil">Profil</label>
-                    <select class="form-control" id="field_profil" name="profil" formControlName="profil">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="profilOption.id === editForm.get('profil')!.value?.id ? editForm.get('profil')!.value : profilOption" *ngFor="let profilOption of profils; trackBy: trackById">{{ profilOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="uwindApp.etudiant.flotteur" for="field_flotteur">Flotteur</label>
                     <select class="form-control" id="field_flotteur" name="flotteur" formControlName="flotteur">
                         <option [ngValue]="null"></option>
@@ -148,7 +283,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.etudiant.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
                     <select class="form-control" id="field_gestionnaire" name="gestionnaire" formControlName="gestionnaire">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.id }}</option>
+                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.profil?.prenom }} {{ gestionnaireOption.profil?.prenom }}</option>
                     </select>
                 </div>
             </div>

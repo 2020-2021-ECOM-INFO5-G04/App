@@ -1,7 +1,13 @@
 package fr.uga.web.rest;
 
 import fr.uga.domain.Etudiant;
+import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Observation;
+import fr.uga.domain.Evaluation;
 import fr.uga.repository.EtudiantRepository;
+import fr.uga.repository.InscriptionSortieRepository;
+import fr.uga.repository.EvaluationRepository;
+import fr.uga.repository.ObservationRepository;
 import fr.uga.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -13,7 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.Example;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -53,8 +59,18 @@ public class EtudiantResource {
 
     private final EtudiantRepository etudiantRepository;
 
-    public EtudiantResource(EtudiantRepository etudiantRepository) {
+    private final InscriptionSortieRepository inscriptionSortiesRepository;
+
+    private final ObservationRepository observationRepository;
+
+    private final EvaluationRepository evaluationRepository;
+
+    public EtudiantResource(EtudiantRepository etudiantRepository, InscriptionSortieRepository inscriptionSortiesRepository,
+    ObservationRepository observationRepository, EvaluationRepository evaluationRepository) {
         this.etudiantRepository = etudiantRepository;
+        this.inscriptionSortiesRepository = inscriptionSortiesRepository;
+        this.observationRepository = observationRepository;
+        this.evaluationRepository = evaluationRepository;
     }
 
     /**
@@ -129,6 +145,31 @@ public class EtudiantResource {
      */
     @DeleteMapping("/etudiants/{id}")
     public ResponseEntity<Void> deleteEtudiant(@PathVariable Long id) {
+        Optional<Etudiant> optEtudiant = etudiantRepository.findById(id);
+        if(optEtudiant.isPresent()){
+            Etudiant etudiant = optEtudiant.get();
+
+            InscriptionSortie insc = new InscriptionSortie();
+            insc.setEtudiant(etudiant);
+            Example<InscriptionSortie> exampleInsc = Example.of(insc);
+            inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                inscriptionSortiesRepository.delete(inscElem);
+            });
+
+            Observation obs = new Observation();
+            obs.setEtudiant(etudiant);
+            Example<Observation> exampleObs = Example.of(obs);
+            observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                observationRepository.delete(obsElem);
+            });
+
+            Evaluation eval = new Evaluation();
+            eval.setEtudiant(etudiant);
+            Example<Evaluation> exampleEval = Example.of(eval);
+            evaluationRepository.findAll(exampleEval).forEach((evalElem) -> {
+                evaluationRepository.delete(evalElem);
+            });
+        }
         log.debug("REST request to delete Etudiant : {}", id);
         etudiantRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
