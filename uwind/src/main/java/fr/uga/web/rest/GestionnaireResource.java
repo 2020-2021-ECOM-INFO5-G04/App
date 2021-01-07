@@ -1,7 +1,15 @@
 package fr.uga.web.rest;
 
 import fr.uga.domain.Gestionnaire;
+import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Sortie;
+import fr.uga.domain.Observation;
+import fr.uga.domain.Evaluation;
 import fr.uga.repository.GestionnaireRepository;
+import fr.uga.repository.InscriptionSortieRepository;
+import fr.uga.repository.SortieRepository;
+import fr.uga.repository.EvaluationRepository;
+import fr.uga.repository.ObservationRepository;
 import fr.uga.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -12,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Example;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,8 +44,21 @@ public class GestionnaireResource {
 
     private final GestionnaireRepository gestionnaireRepository;
 
-    public GestionnaireResource(GestionnaireRepository gestionnaireRepository) {
+    private final InscriptionSortieRepository inscriptionSortiesRepository;
+
+    private final SortieRepository sortieRepository;
+
+    private final ObservationRepository observationRepository;
+
+    private final EvaluationRepository evaluationRepository;
+
+    public GestionnaireResource(GestionnaireRepository gestionnaireRepository, InscriptionSortieRepository inscriptionSortiesRepository,
+    SortieRepository sortieRepository, ObservationRepository observationRepository, EvaluationRepository evaluationRepository) {
         this.gestionnaireRepository = gestionnaireRepository;
+        this.inscriptionSortiesRepository = inscriptionSortiesRepository;
+        this.sortieRepository = sortieRepository;
+        this.observationRepository = observationRepository;
+        this.evaluationRepository = evaluationRepository;
     }
 
     /**
@@ -111,6 +133,39 @@ public class GestionnaireResource {
      */
     @DeleteMapping("/gestionnaires/{id}")
     public ResponseEntity<Void> deleteGestionnaire(@PathVariable Long id) {
+
+        Optional<Gestionnaire> optGestionnaire = gestionnaireRepository.findById(id);
+        if(optGestionnaire.isPresent()){
+            Gestionnaire gestionnaire = optGestionnaire.get();
+
+            InscriptionSortie insc = new InscriptionSortie();
+            insc.setGestionnaire(gestionnaire);
+            Example<InscriptionSortie> exampleInsc = Example.of(insc);
+            inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                inscriptionSortiesRepository.delete(inscElem);
+            });
+
+            Sortie sortie = new Sortie();
+            sortie.setGestionnaire(gestionnaire);
+            Example<Sortie> exampleSortie = Example.of(sortie);
+            sortieRepository.findAll(exampleSortie).forEach((sortieElem) -> {
+                sortieRepository.delete(sortieElem);
+            });
+
+            Observation obs = new Observation();
+            obs.setGestionnaire(gestionnaire);
+            Example<Observation> exampleObs = Example.of(obs);
+            observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                observationRepository.delete(obsElem);
+            });
+
+            Evaluation eval = new Evaluation();
+            eval.setGestionnaire(gestionnaire);
+            Example<Evaluation> exampleEval = Example.of(eval);
+            evaluationRepository.findAll(exampleEval).forEach((evalElem) -> {
+                evaluationRepository.delete(evalElem);
+            });
+        }
         log.debug("REST request to delete Gestionnaire : {}", id);
         gestionnaireRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
