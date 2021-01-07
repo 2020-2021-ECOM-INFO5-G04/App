@@ -1,3 +1,10 @@
+<head>
+
+    <base href="/">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+</head>
+
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="sortie">
@@ -49,4 +56,24 @@
             </button>
         </div>
     </div>
+
+    <div class="col-8" *ngIf="tmp">
+        <div style="height: 500px;"
+                leaflet
+                [leafletOptions]="options1"
+                [leafletLayers]="layers1">
+    </div>
+    </div>
+
+    <div class="col-8" *ngIf="!tmp">
+        <div style="height: 500px;"
+            leaflet
+            [leafletOptions]="options2"
+            [leafletLayers]="layers2"
+        >
+    </div>
+    </div>
+
 </div>
+
+
