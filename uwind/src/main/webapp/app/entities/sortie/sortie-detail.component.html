@@ -57,23 +57,24 @@
         </div>
     </div>
 
-    <div class="col-8" *ngIf="tmp">
+    <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'" class="col-8" >
+    <div *ngIf="tmp">
         <div style="height: 500px;"
                 leaflet
                 [leafletOptions]="options1"
                 [leafletLayers]="layers1">
-    </div>
+        </div>
     </div>
 
-    <div class="col-8" *ngIf="!tmp">
+    <div *ngIf="!tmp">
         <div style="height: 500px;"
             leaflet
             [leafletOptions]="options2"
             [leafletLayers]="layers2"
         >
+        </div>
     </div>
     </div>
-
 </div>
 
 

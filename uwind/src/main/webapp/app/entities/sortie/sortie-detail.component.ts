@@ -64,15 +64,17 @@ export class SortieDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ sortie }) => (this.sortie = sortie));
     this.accountService.getAuthenticationState().subscribe(account => {
-      this.account = account;
-      this.profilService.query().subscribe((res: HttpResponse<IProfil[]>) => {
-        this.profils = res.body || [];
-        this.id = this.studentdetect(this.profils);
-        this.etudiantService.find(this.id).subscribe((etu: HttpResponse<IEtudiant>) => {
-          this.etudiant = etu.body;
-          this.placedetect(this.etudiant?.lieuDepart!);
+      if (account?.authorities.includes('ROLE_ETUDIANT')) {
+        this.account = account;
+        this.profilService.query().subscribe((res: HttpResponse<IProfil[]>) => {
+          this.profils = res.body || [];
+          this.id = this.studentdetect(this.profils);
+          this.etudiantService.find(this.id).subscribe((etu: HttpResponse<IEtudiant>) => {
+            this.etudiant = etu.body;
+            this.placedetect(this.etudiant?.lieuDepart!);
+          });
         });
-      });
+      }
     });
   }
 
