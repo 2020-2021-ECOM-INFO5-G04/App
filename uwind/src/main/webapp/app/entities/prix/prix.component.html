@@ -40,10 +40,14 @@
                     <td class="text-right">
                         <div class="btn-group">
 
-                            <button type="submit" (click)="activate(prix)"
+                            <button *ngIf="prix.active==false" type="submit" (click)="activate(prix)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.activate">Activate</span>
+                            </button>
+
+                            <button *ngIf="prix.active==true" type="submit" (click)="activate(prix)"
+                                    class="btn btn-success btn-sm">
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.deactivate">Deactivate</span>
                             </button>
 
                             <button type="submit"

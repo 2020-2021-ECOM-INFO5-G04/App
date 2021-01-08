@@ -38,6 +38,12 @@ export class PrixService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  getActive(): Observable<EntityResponseType> {
+    return this.http
+      .get<IPrix>(`${this.resourceUrl}/getActive`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

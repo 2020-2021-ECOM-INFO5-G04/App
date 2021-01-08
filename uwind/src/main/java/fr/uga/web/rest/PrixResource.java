@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Example;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -53,6 +54,9 @@ public class PrixResource {
         if (prix.getId() != null) {
             throw new BadRequestAlertException("A new prix cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if(prix.isActive()){
+            deactivatePrices();
+        }
         Prix result = prixRepository.save(prix);
         return ResponseEntity.created(new URI("/api/prixes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -73,6 +77,9 @@ public class PrixResource {
         log.debug("REST request to update Prix : {}", prix);
         if (prix.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        if(prix.isActive()){
+            deactivatePrices();
         }
         Prix result = prixRepository.save(prix);
         return ResponseEntity.ok()
@@ -96,11 +103,10 @@ public class PrixResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         //Deactivate all rules
-        prixRepository.findAll().forEach((prixElem) -> {
-            prixElem.setActive(false);
-        });
+        deactivatePrices();
+
         //And activate only the interesting one
-        prix.setActive(true);
+        prix.setActive(!prix.isActive());
 
         Prix result = prixRepository.save(prix);
         return ResponseEntity.ok()
@@ -133,6 +139,25 @@ public class PrixResource {
     }
 
     /**
+     * {@code GET  /prixes/getActive} : get the active price rule.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the prix, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/prixes/getActive")
+    public ResponseEntity<Prix> getActivePrix() {
+        log.debug("REST request to get the currently active prix");
+        Prix prix = new Prix();
+        prix.setActive(true);
+        Example<Prix> examplePrix = Example.of(prix);
+        List<Prix> prixes = prixRepository.findAll(examplePrix);
+        Optional<Prix> res = Optional.empty();
+        if(prixes.size() != 0){ //if there is an active price rule
+            res = Optional.of(prixes.get(0));
+        }
+        return ResponseUtil.wrapOrNotFound(res);
+    }
+
+    /**
      * {@code DELETE  /prixes/:id} : delete the "id" prix.
      *
      * @param id the id of the prix to delete.
@@ -143,5 +168,11 @@ public class PrixResource {
         log.debug("REST request to delete Prix : {}", id);
         prixRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    public void deactivatePrices(){
+        prixRepository.findAll().forEach((prixElem) -> {
+            prixElem.setActive(false);
+        });
     }
 }

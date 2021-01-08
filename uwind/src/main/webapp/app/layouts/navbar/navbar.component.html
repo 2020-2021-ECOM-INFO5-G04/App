@@ -174,12 +174,6 @@
                             <span jhiTranslate="global.menu.entities.combinaison">Combinaison</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="prix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.prix">Prix</span>
-                        </a>
-                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
@@ -192,7 +186,7 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
                     <li>
-                        <a class="dropdown-item" routerLink="account/calculPrix" routerLinkActive="active" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="prix" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="euro-sign" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.admin.priceManagement">Price management</span>
                         </a>

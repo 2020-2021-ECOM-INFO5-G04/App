@@ -111,7 +111,9 @@
       "delete": "Supprimer",
       "open": "Ouvrir",
       "save": "Sauvegarder",
-      "view": "Voir"
+      "view": "Voir",
+      "activate": "Activer",
+      "deactivate": "Desactiver"
     },
     "detail": {
       "field": "Champs",

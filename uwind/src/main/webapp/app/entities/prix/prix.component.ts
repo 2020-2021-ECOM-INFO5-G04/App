@@ -52,5 +52,6 @@ export class PrixComponent implements OnInit, OnDestroy {
       () => {},
       () => {}
     );
+    window.location.reload();
   }
 }
