@@ -82,7 +82,7 @@ export class SortieDetailComponent implements OnInit {
 
   studentdetect(profils: IProfil[]): number {
     for (let i = 0; i < profils.length; i++) {
-      if (this.account?.lastName === profils[i].prenom && this.account?.firstName === profils[i].nom) {
+      if (this.account?.login === profils[i].utilisateur?.login) {
         return profils[i].id!;
       }
     }
