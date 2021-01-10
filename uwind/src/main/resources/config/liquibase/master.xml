@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql, mariadb"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="clob" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110075704_added_entity_Profil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110075804_added_entity_Etudiant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110075904_added_entity_Moniteur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080004_added_entity_Gestionnaire.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080104_added_entity_Sortie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080204_added_entity_InscriptionSortie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080304_added_entity_Observation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080404_added_entity_Evaluation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080504_added_entity_Voile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080604_added_entity_Flotteur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080704_added_entity_Combinaison.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210107154653_added_entity_Prix.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20201110075704_added_entity_constraints_Profil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110075804_added_entity_constraints_Etudiant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110075904_added_entity_constraints_Moniteur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080004_added_entity_constraints_Gestionnaire.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080104_added_entity_constraints_Sortie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080204_added_entity_constraints_InscriptionSortie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080304_added_entity_constraints_Observation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110080404_added_entity_constraints_Evaluation.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

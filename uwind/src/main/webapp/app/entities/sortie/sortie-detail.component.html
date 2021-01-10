@@ -1,0 +1,79 @@
+<head>
+
+    <base href="/">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+</head>
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sortie">
+            <h2><span jhiTranslate="uwindApp.sortie.detail.title">Sortie</span> {{ sortie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uwindApp.sortie.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ sortie.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.sortie.date">Date</span></dt>
+                <dd>
+                    <span>{{ sortie.date }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.sortie.planDeau">Plan Deau</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'uwindApp.PlanDEau.' + sortie.planDeau }}">{{ sortie.planDeau }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.sortie.coeff">Coeff</span></dt>
+                <dd>
+                    <span>{{ sortie.coeff }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.sortie.commentaire">Commentaire</span></dt>
+                <dd>
+                    <span>{{ sortie.commentaire }}</span>
+                </dd>
+                <dt><span jhiTranslate="uwindApp.sortie.gestionnaire">Gestionnaire</span></dt>
+                <dd>
+                    <div *ngIf="sortie.gestionnaire">
+                        <a [routerLink]="['/gestionnaire', sortie.gestionnaire?.id, 'view']">{{ sortie.gestionnaire?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sortie', sortie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="col-8" *ngIf="tmp">
+        <div style="height: 500px;"
+                leaflet
+                [leafletOptions]="options1"
+                [leafletLayers]="layers1">
+    </div>
+    </div>
+
+    <div class="col-8" *ngIf="!tmp">
+        <div style="height: 500px;"
+            leaflet
+            [leafletOptions]="options2"
+            [leafletLayers]="layers2"
+        >
+    </div>
+    </div>
+
+</div>
+
+
