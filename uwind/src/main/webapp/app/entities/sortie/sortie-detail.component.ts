@@ -68,11 +68,14 @@ export class SortieDetailComponent implements OnInit {
         this.account = account;
         this.profilService.query().subscribe((res: HttpResponse<IProfil[]>) => {
           this.profils = res.body || [];
-          this.id = this.studentdetect(this.profils);
-          this.etudiantService.find(this.id).subscribe((etu: HttpResponse<IEtudiant>) => {
-            this.etudiant = etu.body;
+          this.etudiant = this.studentdetect(this.profils);
+          if (this.etudiant !== null) {
+            this.id = this.etudiant?.id;
             this.placedetect(this.etudiant?.lieuDepart!);
-          });
+          } else {
+            this.id = -1;
+            this.placedetect('SMH');
+          }
         });
       }
     });
@@ -82,13 +85,25 @@ export class SortieDetailComponent implements OnInit {
     window.history.back();
   }
 
-  studentdetect(profils: IProfil[]): number {
+  studentdetect(profils: IProfil[]): IEtudiant | null {
+    let profilId = -1;
     for (let i = 0; i < profils.length; i++) {
-      if (this.account?.lastName === profils[i].prenom && this.account?.firstName === profils[i].nom) {
-        return profils[i].id!;
+      if (this.account?.lastName === profils[i].nom && this.account?.firstName === profils[i].prenom) {
+        profilId = profils[i].id!;
       }
     }
-    return -1;
+    if (profilId !== -1) {
+      this.etudiantService.query().subscribe((res: HttpResponse<IEtudiant[]>) => {
+        const etudiants = res.body || [];
+        for (let i = 0; i < etudiants.length; i++) {
+          if (profilId === etudiants[i].profil?.id) {
+            return etudiants[i];
+          }
+        }
+        return null;
+      });
+    }
+    return null;
   }
 
   placedetect(place: string): void {
