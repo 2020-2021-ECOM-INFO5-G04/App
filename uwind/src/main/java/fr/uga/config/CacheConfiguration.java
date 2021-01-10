@@ -69,6 +69,7 @@ public class CacheConfiguration {
             createCache(cm, fr.uga.domain.Voile.class.getName());
             createCache(cm, fr.uga.domain.Flotteur.class.getName());
             createCache(cm, fr.uga.domain.Combinaison.class.getName());
+            createCache(cm, fr.uga.domain.Prix.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
