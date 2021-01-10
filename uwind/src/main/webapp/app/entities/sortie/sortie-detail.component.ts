@@ -89,7 +89,7 @@ export class SortieDetailComponent implements OnInit {
     let profilId = -1;
     for (let i = 0; i < profils.length; i++) {
       if (this.account?.login === profils[i].utilisateur?.login) {
-        return profils[i].id!;
+        profilId = profils[i].id!;
       }
     }
     if (profilId !== -1) {
