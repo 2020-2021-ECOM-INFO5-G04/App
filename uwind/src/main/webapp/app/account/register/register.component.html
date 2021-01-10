@@ -306,9 +306,9 @@
 
   <div class="row justify-content-center">
       <div class="col-md-8">
-          <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
+          <form name="form" role="form" (ngSubmit)="register()">
               <label class="montantInsc" for="montantInsc" >Vous devez payer 15€</label>
-              <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Payer</button>
+              <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" >Payer</button>
           </form>
 
       </div>
