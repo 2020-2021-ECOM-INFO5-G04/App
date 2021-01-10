@@ -311,4 +311,70 @@ public class PrixResourceIT {
         List<Prix> prixList = prixRepository.findAll();
         assertThat(prixList).hasSize(databaseSizeBeforeDelete - 1);
     }
+
+
+    @Test
+    @Transactional
+    public void useGetActive() throws Exception {
+        // Initialize the database
+        prixRepository.saveAndFlush(prix);
+
+        // Get the active price rule
+        restPrixMockMvc.perform(get("/api/prixes/getActive"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].active").value(hasItem(true)));
+    }
+
+    @Test
+    @Transactional
+    public void activatePrix() throws Exception {
+        // Initialize the database
+        prixRepository.saveAndFlush(prix);
+
+        // Update the prix
+        Prix prixToActivate = prixRepository.findById(prix.getId()).get();
+        // Disconnect from session so that the updates on updatedPrix are not directly saved in db
+        prixToActivate
+            .date(DEFAULT_DATE)
+            .prixFP(DEFAULT_PRIX_FP)
+            .prixFQ(DEFAULT_PRIX_FQ)
+            .active(false);
+
+        //Saving the active one before making changes in order to put it back after
+        Prix[] lastActivePrix = {null}; //Array because enclosing scope
+        prixRepository.findAll().forEach((prixElem) -> {
+            if(prixElem.isActive()){
+                lastActivePrix[0] = prixElem;
+            }
+        });
+
+        restPrixMockMvc.perform(put("/api/prixes/activate")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(prixToActivate)))
+            .andExpect(status().isOk());
+    
+        assertThat(!lastActivePrix[0].isActive());
+        assertThat(prixToActivate.isActive()); //Assert the price rule is active
+        prixRepository.findAll().forEach((prixElem) -> {
+            if(prixElem.isActive()){
+                assertThat(prixElem.getId() == prixToActivate.getId()); //Assert it is the only one active
+            }
+        });
+
+        if(lastActivePrix[0] != null){ //Restoring everything
+            restPrixMockMvc.perform(put("/api/prixes/activate")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(lastActivePrix[0])))
+            .andExpect(status().isOk());
+
+            assertThat(lastActivePrix[0].isActive());
+            prixRepository.findAll().forEach((prixElem) -> {
+                if(prixElem.isActive()){
+                    assertThat(prixElem.getId() == lastActivePrix[0].getId()); //Assert it is the only one active
+                }
+            });
+        }
+
+    }
 }
