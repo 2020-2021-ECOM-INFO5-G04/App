@@ -100,6 +100,29 @@ public class InscriptionSortieResourceIT {
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
         assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
     }
+    
+    @Test
+    @Transactional
+    public void createInscriptionSortieNullFields() throws Exception {
+        int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
+
+        // Create the InscriptionSortie with Null fields
+        inscriptionSortie.setId(null);
+        inscriptionSortie.setEtudiant(null);
+        inscriptionSortie.setGestionnaire(null);
+        inscriptionSortie.setMoniteur(null);
+        inscriptionSortie.setSortie(null);
+
+        // An entity with null fields cannot be created, so this API call must fail
+        restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
+            .andExpect(status().isBadRequest());
+
+        // Validate the InscriptionSortie in the database
+        List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
+        assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
+    }
 
 
     @Test
