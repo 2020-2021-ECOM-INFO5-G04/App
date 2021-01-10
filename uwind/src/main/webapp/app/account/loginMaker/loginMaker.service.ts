@@ -4,7 +4,7 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class LoginService {
+export class LoginMakerService {
   nom?: string;
   prenom?: string;
   login?: string;
