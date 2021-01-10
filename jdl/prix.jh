@@ -1,7 +1,0 @@
-//ENTITIES
-entity Prix {
-	Date LocalDate required
-	PrixFP Double required
-	PrixFQ Double required
-	Active Boolean required
-}
