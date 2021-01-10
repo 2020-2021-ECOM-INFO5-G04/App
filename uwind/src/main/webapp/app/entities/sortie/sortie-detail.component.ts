@@ -88,8 +88,8 @@ export class SortieDetailComponent implements OnInit {
   studentdetect(profils: IProfil[]): IEtudiant | null {
     let profilId = -1;
     for (let i = 0; i < profils.length; i++) {
-      if (this.account?.lastName === profils[i].nom && this.account?.firstName === profils[i].prenom) {
-        profilId = profils[i].id!;
+      if (this.account?.login === profils[i].utilisateur?.login) {
+        return profils[i].id!;
       }
     }
     if (profilId !== -1) {

@@ -11,6 +11,9 @@
           "minlength": "Su nombre de usuario debe tener al menos 1 caracter.",
           "maxlength": "Su nombre de usuario no puede tener más de 50 caracteres.",
           "pattern": "Your username is invalid."
+        },
+        "numTel": {
+          "pattern": "El numerod de telephono solo puede tener digitos, mas, guion, parentesis y punto simbolos"
         }
       },
       "success": "<strong>¡Registro guardado!</strong> Por favor, revise su correo electrónico para confirmar.",
