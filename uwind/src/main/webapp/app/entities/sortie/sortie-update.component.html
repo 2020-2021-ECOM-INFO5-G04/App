@@ -90,14 +90,15 @@
                            formControlName="commentaire"/>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uwindApp.sortie.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
-                    <select class="form-control" id="field_gestionnaire" name="gestionnaire" formControlName="gestionnaire">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.id }}</option>
-                    </select>
-                </div>
+
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="uwindApp.sortie.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
+                <select class="form-control" id="field_gestionnaire" name="gestionnaire" formControlName="gestionnaire">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.profil?.nom+" "+gestionnaireOption.profil?.prenom }}</option>
+                </select>
             </div>
+        </div>
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">

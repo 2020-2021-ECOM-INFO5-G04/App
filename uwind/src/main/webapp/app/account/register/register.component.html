@@ -28,37 +28,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
-                <div class="form-group">
-                    <label class="form-control-label" for="login" jhiTranslate="global.form.username.label">Username</label>
-                    <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.username.placeholder' | translate }}"
-                           formControlName="login" #login>
-
-                    <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.required"
-                               jhiTranslate="register.messages.validate.login.required">
-                            Your username is required.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.minlength"
-                               jhiTranslate="register.messages.validate.login.minlength">
-                            Your username is required to be at least 1 character.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.maxlength"
-                               jhiTranslate="register.messages.validate.login.maxlength">
-                            Your username cannot be longer than 50 characters.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.pattern"
-                               jhiTranslate="register.messages.validate.login.pattern">
-                            Your username can only contain letters and digits.
-                        </small>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
@@ -200,6 +169,11 @@
                         <small class="form-text text-danger"
                                *ngIf="registerForm.get('numTel')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 10 }">
                         This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('numTel')?.errors?.pattern"
+                               jhiTranslate="register.messages.validate.numTel.pattern">
+                               Your phone number can only contains digits, plus, space, parenthesis, hyphen, and dot symbols.
                         </small>
                     </div>
                 </div>
