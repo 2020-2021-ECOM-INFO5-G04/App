@@ -107,7 +107,6 @@ public class InscriptionSortieResourceIT {
         int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
 
         // Create the InscriptionSortie with Null fields
-        inscriptionSortie.setId(null);
         inscriptionSortie.setEtudiant(null);
         inscriptionSortie.setGestionnaire(null);
         inscriptionSortie.setMoniteur(null);
