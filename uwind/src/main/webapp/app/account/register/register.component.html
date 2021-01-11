@@ -218,6 +218,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.formation" for="formation">Niveau Planche</label>
+                    <select class="form-control" name="formation" formControlName="formation" id="formation">
+                        <option value="Perso">Personnelle</option>
+                        <option value="Qualif">Qualifiante</option>
+                    </select>
+                    <div *ngIf="registerForm.get('formation')!.invalid && (registerForm.get('formation')!.dirty || registerForm.get('formation')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('formation')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="uwindApp.etudiant.niveauPlanche" for="niveauPlanche">Niveau Planche</label>
                     <select class="form-control" name="niveauPlanche" formControlName="niveauPlanche" id="niveauPlanche">
                         <option value="Deb">{{ 'uwindApp.NiveauPlancheAVoile.Deb' | translate }}</option>

@@ -312,20 +312,6 @@ public class PrixResourceIT {
         assertThat(prixList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
-
-    @Test
-    @Transactional
-    public void useGetActive() throws Exception {
-        // Initialize the database
-        prixRepository.saveAndFlush(prix);
-
-        // Get the active price rule
-        restPrixMockMvc.perform(get("/api/prixes/getActive"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].active").value(hasItem(true)));
-    }
-
     @Test
     @Transactional
     public void activatePrix() throws Exception {

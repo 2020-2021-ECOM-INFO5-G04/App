@@ -56,6 +56,7 @@ export class RegisterComponent implements AfterViewInit {
     voile: [],
     combinaison: [],
     gestionnaire: [],
+    formation: [null, [Validators.required]],
   });
 
   constructor(
@@ -78,19 +79,26 @@ export class RegisterComponent implements AfterViewInit {
 
   pay(): void {
     this.doNotMatch = false;
+    this.errorEmailExists = false;
     const password = this.registerForm.get(['password'])!.value;
     if (password !== this.registerForm.get(['confirmPassword'])!.value) {
       this.doNotMatch = true;
     } else {
-      this.prixService.getActive().subscribe(activePriceRule => {
-        if (this.registerForm.get(['optionSemestre'])!.value === true) {
-          const prixFQ = activePriceRule.body !== null ? activePriceRule.body.prixFQ : 0;
-          this.amount = prixFQ !== undefined ? prixFQ : 0;
+      this.loginMakerService.checkEmail(this.registerForm.get(['email'])!.value).subscribe(exist => {
+        if (!exist) {
+          this.prixService.getActive().subscribe(activePriceRule => {
+            if (this.registerForm.get(['formation'])!.value === 'Qualif') {
+              const prixFQ = activePriceRule.body !== null ? activePriceRule.body.prixFQ : 0;
+              this.amount = prixFQ !== undefined ? prixFQ : 0;
+            } else {
+              const prixFP = activePriceRule.body !== null ? activePriceRule.body.prixFP : 0;
+              this.amount = prixFP !== undefined ? prixFP : 0;
+            }
+            this.paymentPart = true;
+          });
         } else {
-          const prixFP = activePriceRule.body !== null ? activePriceRule.body.prixFP : 0;
-          this.amount = prixFP !== undefined ? prixFP : 0;
+          this.errorEmailExists = true;
         }
-        this.paymentPart = true;
       });
     }
   }

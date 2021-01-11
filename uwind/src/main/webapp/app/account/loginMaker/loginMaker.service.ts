@@ -31,4 +31,8 @@ export class LoginMakerService {
   checkLogin(login: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.resourceUrl}/${login}`);
   }
+
+  checkEmail(email: string): Observable<boolean> {
+    return this.http.get<boolean>(SERVER_API_URL + 'api/checkEmail/' + email);
+  }
 }
