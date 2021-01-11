@@ -26,6 +26,7 @@ export class RegisterComponent implements AfterViewInit {
   errorEmailExists = false;
   errorUserExists = false;
   success = false;
+  paymentPart = false;
 
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
@@ -69,6 +70,10 @@ export class RegisterComponent implements AfterViewInit {
     if (this.login) {
       this.login.nativeElement.focus();
     }
+  }
+
+  pay(): void {
+    this.paymentPart = true;
   }
 
   register(): void {
@@ -141,7 +146,11 @@ export class RegisterComponent implements AfterViewInit {
                         gestionnaire: undefined,
                       })
                       .subscribe(
-                        () => (this.success = true),
+                        () => {
+                          this.paymentPart = false;
+                          this.success = true;
+                          //TODO add payment code
+                      },
                         error => {
                           //TODO
                         }
