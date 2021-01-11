@@ -780,7 +780,6 @@ public class AccountResourceIT {
     }
 
     @Test
-    @Transactional
     public void testCheckLogin() throws Exception{
         User user = new User();
         user.setLogin("test");
