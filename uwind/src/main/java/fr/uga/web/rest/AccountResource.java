@@ -191,4 +191,11 @@ public class AccountResource {
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
             password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
     }
+
+
+    @GetMapping(path = "/checkLogin/{login}")
+    public boolean getUsers(@PathVariable String login) {
+        log.debug("REST request to check if User exists : {}", login);
+        return userService.getUserWithAuthoritiesByLogin(login).isPresent();
+    }
 }
