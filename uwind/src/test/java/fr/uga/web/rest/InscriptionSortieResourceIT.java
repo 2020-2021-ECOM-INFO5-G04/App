@@ -106,10 +106,10 @@ public class InscriptionSortieResourceIT {
     public void checkEtudiantIsRequired() throws Exception {
         int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
 
-        // Create the InscriptionSortie with Null fields
+        // set the field Etudiant Null
         inscriptionSortie.setEtudiant(null);
 
-        // An entity with null fields cannot be created, so this API call must fail
+        // An entity with null Etudiant field cannot be created, so this API call must fail
         restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
