@@ -4,6 +4,7 @@ import fr.uga.UwindApp;
 import fr.uga.config.Constants;
 import fr.uga.domain.User;
 import fr.uga.repository.AuthorityRepository;
+import fr.uga.domain.Authority;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.service.UserService;
@@ -24,14 +25,11 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.*;
 
-import com.jayway.jsonpath.JsonPath;
-import com.mysql.cj.util.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static fr.uga.web.rest.AccountResourceIT.TEST_USER_LOGIN;
