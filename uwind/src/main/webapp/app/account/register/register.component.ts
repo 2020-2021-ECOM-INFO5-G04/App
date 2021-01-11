@@ -12,6 +12,7 @@ import { UserService } from 'app/core/user/user.service';
 import { LoginMakerService } from '../loginMaker/loginMaker.service';
 import { IUser } from 'app/core/user/user.model';
 import { LoginService } from 'app/core/login/login.service';
+import { PrixService } from 'app/entities/prix/prix.service';
 
 @Component({
   selector: 'jhi-register',
@@ -27,6 +28,8 @@ export class RegisterComponent implements AfterViewInit {
   errorUserExists = false;
   success = false;
   paymentPart = false;
+  amount = 0;
+  validaccount = false;
 
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
@@ -38,7 +41,7 @@ export class RegisterComponent implements AfterViewInit {
     nom: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
     numTel: [
       null,
-      [Validators.required, Validators.minLength(10), Validators.pattern('/^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$')],
+      [Validators.required, Validators.minLength(10)], //Validators.pattern('^(?:(?:+|00)33|0)s*[1-9](?:[s.-]*d{2}){4}$')],
     ],
 
     // Relative to a student
@@ -63,6 +66,7 @@ export class RegisterComponent implements AfterViewInit {
     private userService: UserService, // to retrieve lastly created user
     private profilService: ProfilService, // to create new profile
     private etudiantService: EtudiantService, // to create new student
+    private prixService: PrixService,
     private fb: FormBuilder
   ) {}
 
@@ -73,7 +77,32 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   pay(): void {
-    this.paymentPart = true;
+    this.doNotMatch = false;
+    const password = this.registerForm.get(['password'])!.value;
+    if (password !== this.registerForm.get(['confirmPassword'])!.value) {
+      this.doNotMatch = true;
+    } else {
+      this.prixService.getActive().subscribe(activePriceRule => {
+        if (this.registerForm.get(['optionSemestre'])!.value === true) {
+          const prixFQ = activePriceRule.body !== null ? activePriceRule.body.prixFQ : 0;
+          this.amount = prixFQ !== undefined ? prixFQ : 0;
+        } else {
+          const prixFP = activePriceRule.body !== null ? activePriceRule.body.prixFP : 0;
+          this.amount = prixFP !== undefined ? prixFP : 0;
+        }
+        this.paymentPart = true;
+      });
+    }
+  }
+
+  validateaccount(): void {
+    this.validaccount = true;
+    this.register();
+  }
+
+  unvalidateaccount(): void {
+    this.validaccount = false;
+    this.register();
   }
 
   register(): void {
@@ -135,7 +164,7 @@ export class RegisterComponent implements AfterViewInit {
                         permisDeConduire,
                         lieuDepart,
                         optionSemestre,
-                        compteValide: false,
+                        compteValide: this.validaccount,
                         profil,
                         flotteur: undefined,
                         voile: undefined,
@@ -150,7 +179,7 @@ export class RegisterComponent implements AfterViewInit {
                           this.paymentPart = false;
                           this.success = true;
                           //TODO add payment code
-                      },
+                        },
                         error => {
                           //TODO
                         }

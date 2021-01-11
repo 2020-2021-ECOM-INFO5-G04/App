@@ -2,7 +2,9 @@
   "register": {
     "title": "Registration",
     "form": {
-      "button": "Register"
+      "button": "Register",
+      "paynow": "Pay now on PBOX",
+      "paylater": "Pay later"
     },
     "messages": {
       "validate": {

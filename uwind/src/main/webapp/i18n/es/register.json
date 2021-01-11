@@ -2,7 +2,9 @@
   "register": {
     "title": "Registro",
     "form": {
-      "button": "Crear la cuenta"
+      "button": "Crear la cuenta",
+      "paynow": "Pagar en PBOX",
+      "paylater": "Pagar màs tarde"
     },
     "messages": {
       "validate": {

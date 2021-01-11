@@ -264,8 +264,6 @@
                     </div>
                 </div>
 
-
-
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
         </div>
@@ -281,11 +279,14 @@
 
   <div class="row justify-content-center">
       <div class="col-md-8">
-          <form name="form" role="form" (ngSubmit)="register()">
-              <label class="montantInsc" for="montantInsc" >Vous devez payer 15€</label>
-              <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" >Payer</button>
+          <form name="form" role="form" (ngSubmit)="validateaccount()">
+              <label class="montantInsc" for="montantInsc" > {{amount}} </label>
+              <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paynow" >Pay now</button>
           </form>
-
+          <form name="form" role="form" (ngSubmit)="unvalidateaccount()">
+            <label class="montantInsc" for="montantInsc" > {{amount}} </label>
+            <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paylater" >Pay later</button>
+        </form>
       </div>
   </div>
 </div>

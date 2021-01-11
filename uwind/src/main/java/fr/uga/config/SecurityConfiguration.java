@@ -86,6 +86,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/etudiants").permitAll() //allows access for etudiant creation when registering. A finer control might be needed later
             .antMatchers("/api/etudiants/export").authenticated()
             .antMatchers("/api/checkLogin/**").permitAll()
+            .antMatchers("/api/prixes/getActive").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()

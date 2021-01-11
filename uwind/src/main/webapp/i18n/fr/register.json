@@ -2,7 +2,9 @@
   "register": {
     "title": "Création de compte utilisateur",
     "form": {
-      "button": "Enregistrement"
+      "button": "Enregistrement",
+      "paynow": "Payer maintenant sur PBOX",
+      "paylater": "Payer plus tard"
     },
     "messages": {
       "validate": {
