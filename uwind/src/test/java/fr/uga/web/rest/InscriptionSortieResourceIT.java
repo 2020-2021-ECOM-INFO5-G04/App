@@ -116,7 +116,7 @@ public class InscriptionSortieResourceIT {
         restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
-        	.andExpect(status().isNotFound());
+        	.andExpect(status().isCreated());
 
         // Validate the InscriptionSortie in the database
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
