@@ -103,20 +103,17 @@ public class InscriptionSortieResourceIT {
     
     @Test
     @Transactional
-    public void createInscriptionSortieNullFields() throws Exception {
+    public void checkEtudiantIsRequired() throws Exception {
         int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
 
         // Create the InscriptionSortie with Null fields
         inscriptionSortie.setEtudiant(null);
-        inscriptionSortie.setGestionnaire(null);
-        inscriptionSortie.setMoniteur(null);
-        inscriptionSortie.setSortie(null);
 
         // An entity with null fields cannot be created, so this API call must fail
         restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
-        	.andExpect(status().isCreated());
+        	.andExpect(status().isBadRequest());
 
         // Validate the InscriptionSortie in the database
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
