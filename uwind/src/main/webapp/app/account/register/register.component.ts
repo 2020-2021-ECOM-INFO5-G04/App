@@ -76,9 +76,6 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   pay(): void {
-    /* eslint-disable no-console */
-    console.log('oui');
-    /* eslint-enable no-console */
     this.paymentPart = true;
   }
 
@@ -146,9 +143,16 @@ export class RegisterComponent implements AfterViewInit {
                     gestionnaire: undefined,
                   })
                   .subscribe(
-                    () => (this.success = true),
+                    () => {
+                      this.paymentPart = false;
+                      this.success = true;
+                      //TODO add payment code
+                      // eslint-disable-next-line no-console
+                      console.log('Transition from Payment Page to Email Confirmation Page');
+                    },
                     error => {
-                      //TODO
+                      // eslint-disable-next-line no-console
+                      console.log(error);
                     }
                   );
               },
