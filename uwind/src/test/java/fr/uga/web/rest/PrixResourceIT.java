@@ -353,8 +353,10 @@ public class PrixResourceIT {
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(prixToActivate)))
             .andExpect(status().isOk());
-    
-        assertThat(!lastActivePrix[0].isActive());
+        
+        if(lastActivePrix[0] != null){
+            assertThat(!lastActivePrix[0].isActive());
+        }
         assertThat(prixToActivate.isActive()); //Assert the price rule is active
         prixRepository.findAll().forEach((prixElem) -> {
             if(prixElem.isActive()){
