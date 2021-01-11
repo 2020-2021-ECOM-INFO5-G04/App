@@ -100,6 +100,82 @@ public class InscriptionSortieResourceIT {
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
         assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
     }
+    
+    @Test
+    @Transactional
+    public void checkEtudiantIsRequired() throws Exception {
+        int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
+
+        // set the field Etudiant null
+        inscriptionSortie.setEtudiant(null);
+
+        // An entity with the field Etudiant null cannot be created, so this API call must fail
+        restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
+            .andExpect(status().isBadRequest());
+
+        // Validate the InscriptionSortie in the database
+        List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
+        assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
+    }
+    
+    @Test
+    @Transactional
+    public void checkGestionnaireIsRequired() throws Exception {
+        int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
+
+        // set the field Gestionnaire null
+        inscriptionSortie.setGestionnaire(null);
+
+        // An entity with the field Gestionnaire null cannot be created, so this API call must fail
+        restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
+            .andExpect(status().isBadRequest());
+
+        // Validate the InscriptionSortie in the database
+        List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
+        assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
+    }
+    
+    @Test
+    @Transactional
+    public void checkMoniteurIsRequired() throws Exception {
+        int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
+
+        // set the field Moniteur null
+        inscriptionSortie.setMoniteur(null);
+
+        // An entity with the field Moniteur null cannot be created, so this API call must fail
+        restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
+            .andExpect(status().isBadRequest());
+
+        // Validate the InscriptionSortie in the database
+        List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
+        assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
+    }
+    
+    @Test
+    @Transactional
+    public void checkSortieIsRequired() throws Exception {
+        int databaseSizeBeforeCreate = inscriptionSortieRepository.findAll().size();
+
+        // set the field Sortie null
+        inscriptionSortie.setSortie(null);
+
+        // An entity with the field Sortie null cannot be created, so this API call must fail
+        restInscriptionSortieMockMvc.perform(post("/api/inscription-sorties")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(inscriptionSortie)))
+            .andExpect(status().isBadRequest());
+
+        // Validate the InscriptionSortie in the database
+        List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
+        assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate);
+    }
 
 
     @Test
