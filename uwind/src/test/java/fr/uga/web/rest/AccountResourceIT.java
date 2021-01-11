@@ -781,13 +781,19 @@ public class AccountResourceIT {
 
     @Test
     public void testCheckLogin() throws Exception{
-        User user = new User();
+        Set<String> authorities = new HashSet<>();
+        authorities.add(AuthoritiesConstants.ETUDIANT);
+        UserDTO user = new UserDTO();
         user.setLogin("test");
-        user.setEmail("test@example.com");
-        user.setActivated(true);
-        user.setPassword(passwordEncoder.encode("test"));
-        
-        userRepository.saveAndFlush(user);
+        user.setFirstName("john");
+        user.setLastName("doe");
+        user.setEmail("john.doe@jhipster.com");
+        user.setImageUrl("http://placehold.it/50x50");
+        user.setLangKey("en");
+        user.setAuthorities(authorities);
+        userService.createUser(user);
+
+
         MvcResult result = restAccountMockMvc.perform(MockMvcRequestBuilders
          .get("/api/checkLogin/test")
          .accept(MediaType.APPLICATION_JSON))
@@ -795,8 +801,10 @@ public class AccountResourceIT {
         String res = result.getResponse().getContentAsString(); 
         assertThat(res).isEqualTo("true");
         
+        userService.deleteUser("test");
+
         result = restAccountMockMvc.perform(MockMvcRequestBuilders
-         .get("/api/checkLogin/non-existent-user")
+         .get("/api/checkLogin/test")
          .accept(MediaType.APPLICATION_JSON))
          .andReturn();
         res = result.getResponse().getContentAsString(); 
