@@ -17,12 +17,6 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="etudiantOption.id === editForm.get('etudiant')!.value?.id ? editForm.get('etudiant')!.value : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackById">{{ etudiantOption.profil?.nom+" "+etudiantOption.profil?.prenom}}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_etudiant')!.invalid && (editForm.get('field_etudiant')!.dirty || editForm.get('field_etudiant')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_etudiant')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
 
                 <div class="form-group">
@@ -31,12 +25,6 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="sortieOption.id === editForm.get('sortie')!.value?.id ? editForm.get('sortie')!.value : sortieOption" *ngFor="let sortieOption of sorties; trackBy: trackById">{{ sortieOption.nom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_sortie')!.invalid && (editForm.get('field_sortie')!.dirty || editForm.get('field_sortie')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_sortie')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
 
                 <div class="form-group">
@@ -45,12 +33,6 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="moniteurOption.id === editForm.get('moniteur')!.value?.id ? editForm.get('moniteur')!.value : moniteurOption" *ngFor="let moniteurOption of moniteurs; trackBy: trackById">{{ moniteurOption.profil?.nom+" "+moniteurOption.profil?.prenom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_moniteur')!.invalid && (editForm.get('field_moniteur')!.dirty || editForm.get('field_moniteur')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_moniteur')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
 
                 <div class="form-group">
@@ -59,12 +41,6 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.profil?.nom+" "+gestionnaireOption.profil?.prenom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_gestionnaire')!.invalid && (editForm.get('field_gestionnaire')!.dirty || editForm.get('field_gestionnaire')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_gestionnaire')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
             </div>
 
