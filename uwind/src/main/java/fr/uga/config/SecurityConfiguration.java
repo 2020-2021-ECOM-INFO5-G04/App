@@ -64,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(problemSupport)
         .and()
             .headers()
-            .contentSecurityPolicy("default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:")
+            .contentSecurityPolicy("default-src 'self'; frame-src 'self' data: https://*; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com http://*; style-src 'self' 'unsafe-inline' http://*; img-src 'self' data: http://*; font-src 'self' data: http://*;")
         .and()
             .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
         .and()
@@ -85,6 +85,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/profils").permitAll() //allows access for profil creation when registering. A finer control might be needed later
             .antMatchers("/api/etudiants").permitAll() //allows access for etudiant creation when registering. A finer control might be needed later
             .antMatchers("/api/etudiants/export").authenticated()
+            .antMatchers("/api/checkLogin/**").permitAll()
+            .antMatchers("/api/checkEmail/**").permitAll()
+            .antMatchers("/api/prixes/getActive").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()

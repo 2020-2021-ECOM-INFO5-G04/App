@@ -1,7 +1,11 @@
 package fr.uga.web.rest;
 
 import fr.uga.domain.Moniteur;
+import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Observation;
 import fr.uga.repository.MoniteurRepository;
+import fr.uga.repository.InscriptionSortieRepository;
+import fr.uga.repository.ObservationRepository;
 import fr.uga.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -12,6 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Example;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,9 +41,16 @@ public class MoniteurResource {
 
     private final MoniteurRepository moniteurRepository;
 
-    public MoniteurResource(MoniteurRepository moniteurRepository) {
+    private final InscriptionSortieRepository inscriptionSortiesRepository;
+
+    private final ObservationRepository observationRepository;
+
+
+    public MoniteurResource(MoniteurRepository moniteurRepository, InscriptionSortieRepository inscriptionSortiesRepository,
+    ObservationRepository observationRepository) {
         this.moniteurRepository = moniteurRepository;
-    }
+        this.inscriptionSortiesRepository = inscriptionSortiesRepository;
+        this.observationRepository = observationRepository;    }
 
     /**
      * {@code POST  /moniteurs} : Create a new moniteur.
@@ -111,6 +124,26 @@ public class MoniteurResource {
      */
     @DeleteMapping("/moniteurs/{id}")
     public ResponseEntity<Void> deleteMoniteur(@PathVariable Long id) {
+
+        Optional<Moniteur> optMoniteur = moniteurRepository.findById(id);
+        if(optMoniteur.isPresent()){
+            Moniteur moniteur = optMoniteur.get();
+
+            InscriptionSortie insc = new InscriptionSortie();
+            insc.setMoniteur(moniteur);
+            Example<InscriptionSortie> exampleInsc = Example.of(insc);
+            inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                inscriptionSortiesRepository.delete(inscElem);
+            });
+
+            Observation obs = new Observation();
+            obs.setMoniteur(moniteur);
+            Example<Observation> exampleObs = Example.of(obs);
+            observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                observationRepository.delete(obsElem);
+            });
+        }
+
         log.debug("REST request to delete Moniteur : {}", id);
         moniteurRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();

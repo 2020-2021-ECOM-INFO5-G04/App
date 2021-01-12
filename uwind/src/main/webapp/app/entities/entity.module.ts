@@ -48,6 +48,10 @@ import { RouterModule } from '@angular/router';
         path: 'combinaison',
         loadChildren: () => import('./combinaison/combinaison.module').then(m => m.UwindCombinaisonModule),
       },
+      {
+        path: 'prix',
+        loadChildren: () => import('./prix/prix.module').then(m => m.UwindPrixModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

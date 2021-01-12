@@ -18,6 +18,7 @@
         "voile": "Voile",
         "flotteur": "Flotteur",
         "combinaison": "Combinaison",
+        "prix": "Prix",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -31,6 +32,7 @@
       },
       "admin": {
         "main": "Administration",
+        "priceManagement": "Gestion du prix",
         "userManagement": "Gestion des utilisateurs",
         "tracker": "Suivi des utilisateurs",
         "metrics": "Métriques",
@@ -109,7 +111,9 @@
       "delete": "Supprimer",
       "open": "Ouvrir",
       "save": "Sauvegarder",
-      "view": "Voir"
+      "view": "Voir",
+      "activate": "Activer",
+      "deactivate": "Desactiver"
     },
     "detail": {
       "field": "Champs",

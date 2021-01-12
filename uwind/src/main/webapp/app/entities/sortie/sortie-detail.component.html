@@ -1,3 +1,10 @@
+<head>
+
+    <base href="/">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <title>Detail</title>
+</head>
+
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="sortie">
@@ -42,11 +49,32 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']" type="button"
                     [routerLink]="['/sortie', sortie.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>
+
+    <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'" class="col-8" >
+    <div *ngIf="tmp">
+        <div style="height: 500px;"
+                leaflet
+                [leafletOptions]="options1"
+                [leafletLayers]="layers1">
+        </div>
+    </div>
+
+    <div *ngIf="!tmp">
+        <div style="height: 500px;"
+            leaflet
+            [leafletOptions]="options2"
+            [leafletLayers]="layers2"
+        >
+        </div>
+    </div>
+    </div>
 </div>
+
+

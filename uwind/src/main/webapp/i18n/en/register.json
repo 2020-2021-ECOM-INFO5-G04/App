@@ -2,7 +2,9 @@
   "register": {
     "title": "Registration",
     "form": {
-      "button": "Register"
+      "button": "Register",
+      "paynow": "Pay now on PBOX",
+      "paylater": "Pay later"
     },
     "messages": {
       "validate": {
@@ -11,6 +13,9 @@
           "minlength": "Your username is required to be at least 1 character.",
           "maxlength": "Your username cannot be longer than 50 characters.",
           "pattern": "Your username is invalid."
+        },
+        "numTel": {
+          "pattern": "Your phone number can only contains digits, plus, space, parenthesis, hyphen, and dot symbols."
         }
       },
       "success": "<strong>Registration saved!</strong> Please check your email for confirmation.",

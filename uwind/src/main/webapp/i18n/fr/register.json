@@ -2,7 +2,9 @@
   "register": {
     "title": "Création de compte utilisateur",
     "form": {
-      "button": "Enregistrement"
+      "button": "Enregistrement",
+      "paynow": "Payer maintenant sur PBOX",
+      "paylater": "Payer plus tard"
     },
     "messages": {
       "validate": {
@@ -11,6 +13,9 @@
           "minlength": "Votre nom d'utilisateur doit contenir plus d'un caractère.",
           "maxlength": "Votre nom d'utilisateur ne peut pas contenir plus de 50 caractères.",
           "pattern": "Votre nom d'utilisateur est invalide."
+        },
+        "numTel": {
+          "pattern": "Le numéro de téléphone ne peut contenir que des chiffres, espaces, symbole plus, parenthèses ou tirets."
         }
       },
       "success": "<strong>Compte enregistré !</strong> Merci de vérifier votre email de confirmation.",

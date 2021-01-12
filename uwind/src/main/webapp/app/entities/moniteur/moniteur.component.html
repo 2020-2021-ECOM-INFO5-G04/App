@@ -23,7 +23,8 @@
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="uwindApp.moniteur.profil">Profil</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.profil.prenom">Prenom</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.profil.nom">Nom</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.moniteur.flotteur">Flotteur</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.moniteur.voile">Voile</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.moniteur.combinaison">Combinaison</span></th>
@@ -35,7 +36,12 @@
                     <td><a [routerLink]="['/moniteur', moniteur.id, 'view']">{{ moniteur.id }}</a></td>
                     <td>
                         <div *ngIf="moniteur.profil">
-                            <a [routerLink]="['/profil', moniteur.profil?.id, 'view']" >{{ moniteur.profil?.id }}</a>
+                            <a [routerLink]="['/profil', moniteur.profil?.prenom, 'view']" >{{ moniteur.profil?.prenom }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="moniteur.profil">
+                            <a [routerLink]="['/profil', moniteur.profil?.nom, 'view']" >{{ moniteur.profil?.nom }}</a>
                         </div>
                     </td>
                     <td>

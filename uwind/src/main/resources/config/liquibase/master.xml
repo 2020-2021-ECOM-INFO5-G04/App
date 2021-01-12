@@ -25,6 +25,7 @@
     <include file="config/liquibase/changelog/20201110080504_added_entity_Voile.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201110080604_added_entity_Flotteur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201110080704_added_entity_Combinaison.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210107154653_added_entity_Prix.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201110075704_added_entity_constraints_Profil.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201110075804_added_entity_constraints_Etudiant.xml" relativeToChangelogFile="false"/>

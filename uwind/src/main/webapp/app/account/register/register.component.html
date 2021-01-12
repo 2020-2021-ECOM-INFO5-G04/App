@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!paymentPart">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 jhiTranslate="register.title">Registration</h1>
@@ -27,38 +27,8 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
-                <div class="form-group">
-                    <label class="form-control-label" for="login" jhiTranslate="global.form.username.label">Username</label>
-                    <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.username.placeholder' | translate }}"
-                           formControlName="login" #login>
 
-                    <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.required"
-                               jhiTranslate="register.messages.validate.login.required">
-                            Your username is required.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.minlength"
-                               jhiTranslate="register.messages.validate.login.minlength">
-                            Your username is required to be at least 1 character.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.maxlength"
-                               jhiTranslate="register.messages.validate.login.maxlength">
-                            Your username cannot be longer than 50 characters.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('login')?.errors?.pattern"
-                               jhiTranslate="register.messages.validate.login.pattern">
-                            Your username can only contain letters and digits.
-                        </small>
-                    </div>
-                </div>
+            <form name="form" role="form" (ngSubmit)="pay()" [formGroup]="registerForm" *ngIf="!success">
 
                 <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
@@ -201,6 +171,11 @@
                                *ngIf="registerForm.get('numTel')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 10 }">
                         This field is required to be at least 10 characters.
                         </small>
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('numTel')?.errors?.pattern"
+                               jhiTranslate="register.messages.validate.numTel.pattern">
+                               Your phone number can only contains digits, plus, space, parenthesis, hyphen, and dot symbols.
+                        </small>
                     </div>
                 </div>
 
@@ -237,6 +212,20 @@
                     <div *ngIf="registerForm.get('departement')!.invalid && (registerForm.get('departement')!.dirty || registerForm.get('departement')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="registerForm.get('departement')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uwindApp.etudiant.formation" for="formation">Niveau Planche</label>
+                    <select class="form-control" name="formation" formControlName="formation" id="formation">
+                        <option value="Perso">Personnelle</option>
+                        <option value="Qualif">Qualifiante</option>
+                    </select>
+                    <div *ngIf="registerForm.get('formation')!.invalid && (registerForm.get('formation')!.dirty || registerForm.get('formation')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('formation')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
@@ -289,10 +278,29 @@
                     </div>
                 </div>
 
-            
-
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
         </div>
     </div>
+</div>
+
+<div *ngIf="paymentPart">
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <h1 jhiTranslate="register.title">Prix de l'inscription</h1>
+      </div>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <form name="form" role="form" (ngSubmit)="validateaccount()">
+              <label class="montantInsc" for="montantInsc" > {{amount}} </label>
+              <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paynow" >Pay now</button>
+          </form>
+          <form name="form" role="form" (ngSubmit)="unvalidateaccount()">
+            <label class="montantInsc" for="montantInsc" > {{amount}} </label>
+            <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paylater" >Pay later</button>
+        </form>
+      </div>
+  </div>
 </div>
