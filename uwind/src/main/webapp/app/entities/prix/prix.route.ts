@@ -39,7 +39,7 @@ export const prixRoute: Routes = [
     path: '',
     component: PrixComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.prix.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const prixRoute: Routes = [
       prix: PrixResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.prix.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const prixRoute: Routes = [
       prix: PrixResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.prix.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const prixRoute: Routes = [
       prix: PrixResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.prix.home.title',
     },
     canActivate: [UserRouteAccessService],

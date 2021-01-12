@@ -292,13 +292,14 @@
   </div>
 
   <div class="row justify-content-center">
+    <div class="col-md-8">
+        <label class="montantInsc" for="montantInsc" > Montant à régler : {{amount}} euros </label>
+    </div>
       <div class="col-md-8">
           <form name="form" role="form" (ngSubmit)="validateaccount()">
-              <label class="montantInsc" for="montantInsc" > {{amount}} </label>
               <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paynow" >Pay now</button>
           </form>
           <form name="form" role="form" (ngSubmit)="unvalidateaccount()">
-            <label class="montantInsc" for="montantInsc" > {{amount}} </label>
             <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.paylater" >Pay later</button>
         </form>
       </div>
