@@ -53,7 +53,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: test.uwind@gmail.com
-    password: Test123456789
+    password: Test123456789!
     protocol: smtp
     tls: true
     properties.mail.smtp:
