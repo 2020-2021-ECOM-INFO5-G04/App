@@ -25,7 +25,7 @@ export class SortieDetailComponent implements OnInit {
   id?: number;
 
   options1 = {
-    layers: [L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
+    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
     zoom: 15,
     center: L.latLng(45.1933502, 5.7647807),
   };
@@ -40,7 +40,7 @@ export class SortieDetailComponent implements OnInit {
   ];
 
   options2 = {
-    layers: [L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
+    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
     zoom: 15,
     center: L.latLng(45.1959346, 5.708299),
   };
