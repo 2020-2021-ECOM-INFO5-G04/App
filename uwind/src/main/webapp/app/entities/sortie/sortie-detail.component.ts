@@ -24,36 +24,6 @@ export class SortieDetailComponent implements OnInit {
   tmp?: boolean;
   id?: number;
 
-  options1 = {
-    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
-    zoom: 15,
-    center: L.latLng(45.1933502, 5.7647807),
-  };
-  layers1 = [
-    L.marker([45.1933502, 5.7647807], {
-      icon: L.icon({
-        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-        iconUrl: require('leaflet/dist/images/marker-icon.png'),
-        shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-      }),
-    }),
-  ];
-
-  options2 = {
-    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
-    zoom: 15,
-    center: L.latLng(45.1959346, 5.708299),
-  };
-  layers2 = [
-    L.marker([45.1959346, 5.708299], {
-      icon: L.icon({
-        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-        iconUrl: require('leaflet/dist/images/marker-icon.png'),
-        shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-      }),
-    }),
-  ];
-
   constructor(
     protected activatedRoute: ActivatedRoute,
     private etudiantService: EtudiantService,
