@@ -8,8 +8,10 @@ import { SortieUpdateComponent } from './sortie-update.component';
 import { SortieDeleteDialogComponent } from './sortie-delete-dialog.component';
 import { sortieRoute } from './sortie.route';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
-  imports: [UwindSharedModule, RouterModule.forChild(sortieRoute)],
+  imports: [UwindSharedModule, RouterModule.forChild(sortieRoute), LeafletModule],
   declarations: [SortieComponent, SortieDetailComponent, SortieUpdateComponent, SortieDeleteDialogComponent],
   entryComponents: [SortieDeleteDialogComponent],
 })

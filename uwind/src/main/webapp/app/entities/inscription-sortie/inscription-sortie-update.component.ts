@@ -31,10 +31,10 @@ export class InscriptionSortieUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    etudiant: [],
-    sortie: [],
-    moniteur: [],
-    gestionnaire: [],
+    etudiant: [null, [Validators.required]],
+    sortie: [null, [Validators.required]],
+    moniteur: [null, [Validators.required]],
+    gestionnaire: [null, [Validators.required]],
   });
 
   constructor(

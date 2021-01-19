@@ -30,7 +30,8 @@
       "observation": "Observation",
       "evaluation": "Evaluation",
       "inscriptionSortie": "Inscription Sortie",
-      "gestionnaire": "Gestionnaire"
+      "gestionnaire": "Gestionnaire",
+      "formation": "Formation"
     }
   }
 }

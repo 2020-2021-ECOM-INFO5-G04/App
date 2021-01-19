@@ -21,7 +21,11 @@
       "voile": "Voile",
       "combinaison": "Combinaison",
       "observation": "Observation",
-      "inscriptionSortie": "Inscription Sortie"
+      "inscriptionSortie": "Inscription Sortie",
+      "update": {
+        "userfail": "User creation failed ! The login or email is probably already taken, please try another one.",
+        "profilfail": "Profil creation failed !"
+      }
     }
   }
 }

@@ -20,7 +20,11 @@
       "evaluation": "Evaluation",
       "observation": "Observation",
       "sortie": "Sortie",
-      "inscriptionSortie": "Inscription Sortie"
+      "inscriptionSortie": "Inscription Sortie",
+      "update": {
+        "userfail": "Error al crear el usuario. Probablemente el inicio de sesión o el correo electrónico ya estén en uso, intente con otro.",
+        "profilfail": "¡Falló la creación del perfil!"
+      }
     }
   }
 }

@@ -18,6 +18,7 @@
         "voile": "Voile",
         "flotteur": "Flotteur",
         "combinaison": "Combinaison",
+        "prix": "Prix",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -31,6 +32,7 @@
       },
       "admin": {
         "main": "Administration",
+        "priceManagement": "Price management",
         "userManagement": "User management",
         "tracker": "User tracker",
         "metrics": "Metrics",
@@ -109,7 +111,9 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "activate": "Activate",
+      "deactivate": "Deactivate"
     },
     "detail": {
       "field": "Field",

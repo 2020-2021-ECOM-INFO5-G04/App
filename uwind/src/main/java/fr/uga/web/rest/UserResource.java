@@ -1,7 +1,23 @@
 package fr.uga.web.rest;
 
 import fr.uga.config.Constants;
+import fr.uga.domain.Etudiant;
+import fr.uga.domain.Moniteur;
+import fr.uga.domain.Gestionnaire;
+import fr.uga.domain.Profil;
+import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Sortie;
+import fr.uga.domain.Observation;
+import fr.uga.domain.Evaluation;
 import fr.uga.domain.User;
+import fr.uga.repository.ProfilRepository;
+import fr.uga.repository.EtudiantRepository;
+import fr.uga.repository.MoniteurRepository;
+import fr.uga.repository.GestionnaireRepository;
+import fr.uga.repository.InscriptionSortieRepository;
+import fr.uga.repository.SortieRepository;
+import fr.uga.repository.EvaluationRepository;
+import fr.uga.repository.ObservationRepository;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.service.MailService;
@@ -20,6 +36,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -72,12 +89,39 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
+    private final ProfilRepository profilRepository;
+
+    private final EtudiantRepository etudiantRepository;
+
+    private final MoniteurRepository moniteurRepository;
+
+    private final GestionnaireRepository gestionnaireRepository;
+
+    private final InscriptionSortieRepository inscriptionSortiesRepository;
+
+    private final SortieRepository sortieRepository;
+
+    private final ObservationRepository observationRepository;
+
+    private final EvaluationRepository evaluationRepository;
+
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService,
+    ProfilRepository profilRepository, EtudiantRepository etudiantRepository, MoniteurRepository moniteurRepository,
+    GestionnaireRepository gestionnaireRepository, InscriptionSortieRepository inscriptionSortiesRepository, SortieRepository sortieRepository,
+    ObservationRepository observationRepository, EvaluationRepository evaluationRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.profilRepository = profilRepository;
+        this.etudiantRepository = etudiantRepository;
+        this.moniteurRepository = moniteurRepository;
+        this.gestionnaireRepository = gestionnaireRepository;
+        this.inscriptionSortiesRepository = inscriptionSortiesRepository;
+        this.sortieRepository = sortieRepository;
+        this.observationRepository = observationRepository;
+        this.evaluationRepository = evaluationRepository;
     }
 
     /**
@@ -194,6 +238,112 @@ public class UserResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
+        /* 
+        We can't delete a user if there are dependencies to this user.
+        It means we have to delete the corresponding profil and thus etudiant/moniteur/gestionnaire */
+        Optional<User> optUser = userService.getUserWithAuthoritiesByLogin(login);
+        if(optUser.isPresent()){
+            User user = optUser.get();
+            Profil profil = new Profil();
+            profil.setUtilisateur(user);
+            Example<Profil> exampleProfil = Example.of(profil);
+            List<Profil> listProfil = profilRepository.findAll(exampleProfil);
+            listProfil.forEach((profilElem) -> {
+                //finding all dependences to this user and removing them
+
+                //A student can be linked to InscriptionSortie, Observation or Evaluation
+                Etudiant etudiant = new Etudiant();
+                etudiant.setProfil(profilElem);
+                Example<Etudiant> exampleEtudiant = Example.of(etudiant);
+                etudiantRepository.findAll(exampleEtudiant).forEach((etudiantElem) -> {
+
+                    InscriptionSortie insc = new InscriptionSortie();
+                    insc.setEtudiant(etudiantElem);
+                    Example<InscriptionSortie> exampleInsc = Example.of(insc);
+                    inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                        inscriptionSortiesRepository.delete(inscElem);
+                    });
+
+                    Observation obs = new Observation();
+                    obs.setEtudiant(etudiantElem);
+                    Example<Observation> exampleObs = Example.of(obs);
+                    observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                        observationRepository.delete(obsElem);
+                    });
+
+                    Evaluation eval = new Evaluation();
+                    eval.setEtudiant(etudiantElem);
+                    Example<Evaluation> exampleEval = Example.of(eval);
+                    evaluationRepository.findAll(exampleEval).forEach((evalElem) -> {
+                        evaluationRepository.delete(evalElem);
+                    });
+
+                    etudiantRepository.delete(etudiantElem); //deleting every possible etudiant linked to this profil (there should be only one)
+                });
+
+                //A moniteur can be linked to InscriptionSorti or Observation
+                Moniteur moniteur = new Moniteur();
+                moniteur.setProfil(profilElem);
+                Example<Moniteur> exampleMoniteur = Example.of(moniteur);
+                moniteurRepository.findAll(exampleMoniteur).forEach((moniteurElem) -> {
+
+                    InscriptionSortie insc = new InscriptionSortie();
+                    insc.setMoniteur(moniteurElem);
+                    Example<InscriptionSortie> exampleInsc = Example.of(insc);
+                    inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                        inscriptionSortiesRepository.delete(inscElem);
+                    });
+
+                    Observation obs = new Observation();
+                    obs.setMoniteur(moniteurElem);
+                    Example<Observation> exampleObs = Example.of(obs);
+                    observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                        observationRepository.delete(obsElem);
+                    });
+
+                    moniteurRepository.delete(moniteurElem);
+                });
+
+                //A Gestonnaire an be linked to a Sortie, an InscriptonSortie, an Observation or an Evaluation
+                Gestionnaire gestionnaire = new Gestionnaire();
+                gestionnaire.setProfil(profilElem);
+                Example<Gestionnaire> exampleGestionnaire = Example.of(gestionnaire);
+                gestionnaireRepository.findAll(exampleGestionnaire).forEach((gestionnaireElem) -> {
+
+                    InscriptionSortie insc = new InscriptionSortie();
+                    insc.setGestionnaire(gestionnaireElem);
+                    Example<InscriptionSortie> exampleInsc = Example.of(insc);
+                    inscriptionSortiesRepository.findAll(exampleInsc).forEach((inscElem) -> {
+                        inscriptionSortiesRepository.delete(inscElem);
+                    });
+
+                    Sortie sortie = new Sortie();
+                    sortie.setGestionnaire(gestionnaireElem);
+                    Example<Sortie> exampleSortie = Example.of(sortie);
+                    sortieRepository.findAll(exampleSortie).forEach((sortieElem) -> {
+                        sortieRepository.delete(sortieElem);
+                    });
+
+                    Observation obs = new Observation();
+                    obs.setGestionnaire(gestionnaireElem);
+                    Example<Observation> exampleObs = Example.of(obs);
+                    observationRepository.findAll(exampleObs).forEach((obsElem) -> {
+                        observationRepository.delete(obsElem);
+                    });
+
+                    Evaluation eval = new Evaluation();
+                    eval.setGestionnaire(gestionnaireElem);
+                    Example<Evaluation> exampleEval = Example.of(eval);
+                    evaluationRepository.findAll(exampleEval).forEach((evalElem) -> {
+                        evaluationRepository.delete(evalElem);
+                    });
+
+                    gestionnaireRepository.delete(gestionnaireElem);
+                });
+
+                profilRepository.delete(profilElem);
+            });
+        }
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
     }
