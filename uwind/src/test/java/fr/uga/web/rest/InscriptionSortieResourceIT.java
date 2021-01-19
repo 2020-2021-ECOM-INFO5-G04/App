@@ -109,7 +109,11 @@ public class InscriptionSortieResourceIT {
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
         assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeCreate + 1);
         InscriptionSortie testInscriptionSortie = inscriptionSortieList.get(inscriptionSortieList.size() - 1);
-    }
+        assertThat(testInscriptionSortie.getEtudiant()).isEqualTo(etudiant);
+        assertThat(testInscriptionSortie.getGestionnaire()).isEqualTo(gestionnaire);        
+        assertThat(testInscriptionSortie.getMoniteur()).isEqualTo(moniteur);
+        assertThat(testInscriptionSortie.getSortie()).isEqualTo(sortie);
+     }
 
     @Test
     @Transactional
@@ -230,7 +234,11 @@ public class InscriptionSortieResourceIT {
         restInscriptionSortieMockMvc.perform(get("/api/inscription-sorties/{id}", inscriptionSortie.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(inscriptionSortie.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(inscriptionSortie.getId().intValue()))
+            .andExpect(jsonPath("$.etudiant").value(inscriptionSortie.getEtudiant()))
+            .andExpect(jsonPath("$.gestionnaire").value(inscriptionSortie.getGestionnaire()))
+            .andExpect(jsonPath("$.moniteur").value(inscriptionSortie.getMoniteur()))
+            .andExpect(jsonPath("$.sortie").value(inscriptionSortie.getSortie()));
     }
     @Test
     @Transactional
@@ -252,6 +260,12 @@ public class InscriptionSortieResourceIT {
         InscriptionSortie updatedInscriptionSortie = inscriptionSortieRepository.findById(inscriptionSortie.getId()).get();
         // Disconnect from session so that the updates on updatedInscriptionSortie are not directly saved in db
         em.detach(updatedInscriptionSortie);
+        updatedInscriptionSortie
+        	.etudiant(etudiantUpdate)
+        	.gestionnaire(gestionnaireUpdate)
+        	.moniteur(moniteurUpdate)
+        	.sortie(sortieUpdate);
+        
 
         restInscriptionSortieMockMvc.perform(put("/api/inscription-sorties")
             .contentType(MediaType.APPLICATION_JSON)
@@ -262,6 +276,10 @@ public class InscriptionSortieResourceIT {
         List<InscriptionSortie> inscriptionSortieList = inscriptionSortieRepository.findAll();
         assertThat(inscriptionSortieList).hasSize(databaseSizeBeforeUpdate);
         InscriptionSortie testInscriptionSortie = inscriptionSortieList.get(inscriptionSortieList.size() - 1);
+        assertThat(testInscriptionSortie.getEtudiant()).isEqualTo(etudiantUpdate);
+        assertThat(testInscriptionSortie.getGestionnaire()).isEqualTo(gestionnaireUpdate);        
+        assertThat(testInscriptionSortie.getMoniteur()).isEqualTo(moniteurUpdate);
+        assertThat(testInscriptionSortie.getSortie()).isEqualTo(sortieUpdate);
     }
 
     @Test
