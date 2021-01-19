@@ -1,7 +1,11 @@
 package fr.uga.web.rest;
 
 import fr.uga.UwindApp;
+import fr.uga.domain.Etudiant;
+import fr.uga.domain.Gestionnaire;
 import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Moniteur;
+import fr.uga.domain.Sortie;
 import fr.uga.repository.InscriptionSortieRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WithMockUser
 public class InscriptionSortieResourceIT {
-
+	
     @Autowired
     private InscriptionSortieRepository inscriptionSortieRepository;
 
@@ -39,6 +43,15 @@ public class InscriptionSortieResourceIT {
     private MockMvc restInscriptionSortieMockMvc;
 
     private InscriptionSortie inscriptionSortie;
+    private static Etudiant etudiant;
+    private static Moniteur moniteur;
+    private static Gestionnaire gestionnaire;
+    private static Sortie sortie;
+    
+    private static Etudiant etudiantUpdate;
+    private static Moniteur moniteurUpdate;
+    private static Gestionnaire gestionnaireUpdate;
+    private static Sortie sortieUpdate;
 
     /**
      * Create an entity for this test.
@@ -47,7 +60,15 @@ public class InscriptionSortieResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static InscriptionSortie createEntity(EntityManager em) {
-        InscriptionSortie inscriptionSortie = new InscriptionSortie();
+    	etudiant = new Etudiant();
+    	moniteur = new Moniteur();
+    	gestionnaire = new Gestionnaire();
+    	sortie = new Sortie();
+        InscriptionSortie inscriptionSortie = new InscriptionSortie()
+        		.etudiant(etudiant)
+        		.moniteur(moniteur)
+        		.gestionnaire(gestionnaire)
+        		.sortie(sortie);
         return inscriptionSortie;
     }
     /**
@@ -57,7 +78,15 @@ public class InscriptionSortieResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static InscriptionSortie createUpdatedEntity(EntityManager em) {
-        InscriptionSortie inscriptionSortie = new InscriptionSortie();
+    	etudiantUpdate = new Etudiant();
+    	moniteurUpdate = new Moniteur();
+    	gestionnaireUpdate = new Gestionnaire();
+    	sortieUpdate = new Sortie();
+        InscriptionSortie inscriptionSortie = new InscriptionSortie()
+        		.etudiant(etudiantUpdate)
+        		.moniteur(moniteurUpdate)
+        		.gestionnaire(gestionnaireUpdate)
+        		.sortie(sortieUpdate);;
         return inscriptionSortie;
     }
 
