@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ISortie } from 'app/shared/model/sortie.model';
 
-import * as L from 'leaflet';
 import { HttpResponse } from '@angular/common/http';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
@@ -11,6 +10,7 @@ import { IProfil } from 'app/shared/model/profil.model';
 import { ProfilService } from '../profil/profil.service';
 import { IEtudiant } from 'app/shared/model/etudiant.model';
 import { EtudiantService } from '../etudiant/etudiant.service';
+import { SortieService } from './sortie.service';
 
 @Component({
   selector: 'jhi-sortie-detail',
@@ -21,18 +21,21 @@ export class SortieDetailComponent implements OnInit {
   account: Account | null = null;
   profils?: IProfil[];
   etudiant: IEtudiant | null = null;
-  tmp?: boolean;
+  smh?: boolean;
   id?: number;
 
   constructor(
     protected activatedRoute: ActivatedRoute,
     private etudiantService: EtudiantService,
     private accountService: AccountService,
-    private profilService: ProfilService
+    private profilService: ProfilService,
+    private sortieService: SortieService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ sortie }) => (this.sortie = sortie));
+    this.activatedRoute.data.subscribe(({ sortie }) => {
+      this.sortie = sortie;
+    });
     this.accountService.getAuthenticationState().subscribe(account => {
       if (account?.authorities.includes('ROLE_ETUDIANT')) {
         this.account = account;
@@ -78,9 +81,26 @@ export class SortieDetailComponent implements OnInit {
 
   placedetect(place: string): void {
     if (place === 'SMH') {
-      this.tmp = true;
+      this.smh = true;
     } else {
-      this.tmp = false;
+      this.smh = false;
     }
+  }
+
+  export(): any {
+    this.sortieService.export(this.sortie?.id!).subscribe((data: any) => this.downloadFile(data));
+  }
+
+  downloadFile(data: any): any {
+    const blob = new Blob([data], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = window.document.createElement('a');
+    a.href = url;
+    a.download = 'etudiants du sortie ' + this.sortie?.nom + '.csv';
+    window.document.body.appendChild(a);
+    a.click();
+    window.document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   }
 }

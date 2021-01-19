@@ -15,8 +15,8 @@ th {
   text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
-  table tr th {
+@media screen and (max-width: 500px) {
+  th {
     display: block;
   }
 }
