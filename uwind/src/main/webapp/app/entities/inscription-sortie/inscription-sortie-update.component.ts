@@ -28,6 +28,7 @@ export class InscriptionSortieUpdateComponent implements OnInit {
   sorties: ISortie[] = [];
   moniteurs: IMoniteur[] = [];
   gestionnaires: IGestionnaire[] = [];
+  listsorties?: IInscriptionSortie[];
 
   editForm = this.fb.group({
     id: [],
@@ -58,6 +59,8 @@ export class InscriptionSortieUpdateComponent implements OnInit {
       this.moniteurService.query().subscribe((res: HttpResponse<IMoniteur[]>) => (this.moniteurs = res.body || []));
 
       this.gestionnaireService.query().subscribe((res: HttpResponse<IGestionnaire[]>) => (this.gestionnaires = res.body || []));
+
+      this.inscriptionSortieService.query().subscribe((res: HttpResponse<IInscriptionSortie[]>) => (this.listsorties = res.body || []));
     });
   }
 
@@ -76,13 +79,15 @@ export class InscriptionSortieUpdateComponent implements OnInit {
   }
 
   save(): void {
-    this.isSaving = true;
     const inscriptionSortie = this.createFromForm();
-    if (inscriptionSortie.id !== undefined) {
-      this.subscribeToSaveResponse(this.inscriptionSortieService.update(inscriptionSortie));
-    } else {
-      this.subscribeToSaveResponse(this.inscriptionSortieService.create(inscriptionSortie));
-    }
+    if (this.validesave(inscriptionSortie, this.listsorties!)) {
+      this.isSaving = true;
+      if (inscriptionSortie.id !== undefined) {
+        this.subscribeToSaveResponse(this.inscriptionSortieService.update(inscriptionSortie));
+      } else {
+        this.subscribeToSaveResponse(this.inscriptionSortieService.create(inscriptionSortie));
+      }
+    } else alert('This student is already registered for this outing!');
   }
 
   private createFromForm(): IInscriptionSortie {
@@ -114,5 +119,14 @@ export class InscriptionSortieUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  validesave(thissortie: IInscriptionSortie, listsortie: IInscriptionSortie[]): boolean {
+    for (let i = 0; i < listsortie.length; i++) {
+      if (listsortie[i].sortie!.id === thissortie.sortie?.id && listsortie[i].etudiant?.id === thissortie.etudiant?.id) {
+        return false;
+      }
+    }
+    return true;
   }
 }
