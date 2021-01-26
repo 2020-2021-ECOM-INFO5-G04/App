@@ -24,6 +24,7 @@ type SelectableEntity = IEtudiant | ISortie | IMoniteur | IGestionnaire;
 })
 export class InscriptionSortieUpdateComponent implements OnInit {
   isSaving = false;
+  alreadyRegistered = false;
   etudiants: IEtudiant[] = [];
   sorties: ISortie[] = [];
   moniteurs: IMoniteur[] = [];
@@ -79,6 +80,7 @@ export class InscriptionSortieUpdateComponent implements OnInit {
   }
 
   save(): void {
+    this.alreadyRegistered = false;
     const inscriptionSortie = this.createFromForm();
     if (this.validesave(inscriptionSortie, this.listsorties!)) {
       this.isSaving = true;
@@ -87,7 +89,8 @@ export class InscriptionSortieUpdateComponent implements OnInit {
       } else {
         this.subscribeToSaveResponse(this.inscriptionSortieService.create(inscriptionSortie));
       }
-    } else alert('This student is already registered for this outing!');
+    }
+    this.alreadyRegistered = true;
   }
 
   private createFromForm(): IInscriptionSortie {

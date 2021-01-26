@@ -153,8 +153,10 @@ public class SortieResource {
         List<Etudiant> listEtudiants= new ArrayList<Etudiant>();
 
         for(int i = 0 ; i < listInscriptions.size(); i++){
-            if(sortieRepository.findById(id).isPresent() && sortieRepository.findById(id).get().getId().equals(listInscriptions.get(i).getSortie().getId())){
-                listEtudiants.add(listInscriptions.get(i).getEtudiant());
+            if(sortieRepository.findById(id).isPresent()){
+                if(sortieRepository.findById(id).get().getId().equals(listInscriptions.get(i).getSortie().getId())){
+                    listEtudiants.add(listInscriptions.get(i).getEtudiant());
+                }
             }
         }
         ICsvListWriter listWriter= new CsvListWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
