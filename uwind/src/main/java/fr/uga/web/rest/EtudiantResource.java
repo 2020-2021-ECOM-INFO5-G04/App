@@ -197,12 +197,8 @@ public class EtudiantResource {
          
         for (Etudiant etudiant : listEtudiants) {
             csvWriter.write(etudiant, nameMapping);
-        }
-         
-        csvWriter.close();
-
-         
+        }         
+        csvWriter.close();         
     }
-    
-    
+
 }
