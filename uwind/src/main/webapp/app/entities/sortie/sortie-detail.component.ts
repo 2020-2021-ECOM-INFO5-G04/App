@@ -20,9 +20,9 @@ export class SortieDetailComponent implements OnInit {
   sortie: ISortie | null = null;
   account: Account | null = null;
   profils?: IProfil[];
+  etudiants?: IEtudiant[];
   etudiant: IEtudiant | null = null;
   smh?: boolean;
-  id?: number;
 
   constructor(
     protected activatedRoute: ActivatedRoute,
@@ -41,14 +41,15 @@ export class SortieDetailComponent implements OnInit {
         this.account = account;
         this.profilService.query().subscribe((res: HttpResponse<IProfil[]>) => {
           this.profils = res.body || [];
-          this.etudiant = this.studentdetect(this.profils);
-          if (this.etudiant !== null) {
-            this.id = this.etudiant?.id;
-            this.placedetect(this.etudiant?.lieuDepart!);
-          } else {
-            this.id = -1;
-            this.placedetect('SMH');
-          }
+          this.etudiantService.query().subscribe((res2: HttpResponse<IEtudiant[]>) => {
+            this.etudiants = res2.body || [];
+            this.etudiant = this.studentdetect(this.profils!, this.etudiants);
+            if (this.etudiant !== null) {
+              this.placedetect(this.etudiant?.lieuDepart!);
+            } else {
+              this.placedetect('SMH');
+            }
+          });
         });
       }
     });
@@ -58,7 +59,7 @@ export class SortieDetailComponent implements OnInit {
     window.history.back();
   }
 
-  studentdetect(profils: IProfil[]): IEtudiant | null {
+  studentdetect(profils: IProfil[], etudiants: IEtudiant[]): IEtudiant | null {
     let profilId = -1;
     for (let i = 0; i < profils.length; i++) {
       if (this.account?.login === profils[i].utilisateur?.login) {
@@ -66,15 +67,11 @@ export class SortieDetailComponent implements OnInit {
       }
     }
     if (profilId !== -1) {
-      this.etudiantService.query().subscribe((res: HttpResponse<IEtudiant[]>) => {
-        const etudiants = res.body || [];
-        for (let i = 0; i < etudiants.length; i++) {
-          if (profilId === etudiants[i].profil?.id) {
-            return etudiants[i];
-          }
+      for (let i = 0; i < etudiants.length; i++) {
+        if (profilId === etudiants[i].profil?.id) {
+          return etudiants[i];
         }
-        return null;
-      });
+      }
     }
     return null;
   }
