@@ -57,6 +57,18 @@ export const flotteurRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: ':id/assign',
+    component: FlotteurDetailComponent,
+    resolve: {
+      flotteur: FlotteurResolve,
+    },
+    data: {
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      pageTitle: 'uwindApp.flotteur.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
     path: 'new',
     component: FlotteurUpdateComponent,
     resolve: {

@@ -27,6 +27,7 @@
                     <th scope="col" ><span jhiTranslate="uwindApp.flotteur.volume">Volume</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.flotteur.niveauPlancheAVoile">Niveau Planche A Voile</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.flotteur.utilisable">Utilisable</span></th>
+                    <th scope="col" ><span jhiTranslate="uwindApp.flotteur.available">Disponible</span></th>
                     <th scope="col" ><span jhiTranslate="uwindApp.flotteur.commentaire">Commentaire</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -38,6 +39,7 @@
                     <td>{{ flotteur.volume }}</td>
                     <td jhiTranslate="{{ 'uwindApp.NiveauPlancheAVoile.' + flotteur.niveauPlancheAVoile }}">{{ flotteur.niveauPlancheAVoile }}</td>
                     <td>{{ flotteur.utilisable }}</td>
+                    <td>{{ flotteur.available }}</td>
                     <td>{{ flotteur.commentaire }}</td>
                     <td class="text-right">
                         <div class="btn-group">
@@ -46,6 +48,13 @@
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/flotteur', flotteur.id, 'assign']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.assign">Assign</span>
                             </button>
 
                             <button type="submit"
