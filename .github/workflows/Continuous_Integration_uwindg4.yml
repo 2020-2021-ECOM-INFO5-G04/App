@@ -1,24 +1,26 @@
-name: Build an test app
+#https://github.com/SonarSource/sonarcloud-github-action
 
 on:
   push:
       branches:
       - CITravisDownFix
+  pull_request:
+      types: [opened, synchronize, reopened]
 
+name: Main Workflow
 jobs:
-  build-and-deploy:
-    runs-on: windows-latest
+  sonarcloud:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Java version
-      uses: actions/setup-java@v1
       with:
-        java-version: '11'
-
-    - name: Build and inspect
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         cd uwind
-        chmod +x mvnw
         mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
