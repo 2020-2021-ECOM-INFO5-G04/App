@@ -21,4 +21,4 @@ jobs:
       run: |
         cd uwind
         chmod +x mvnw
-        mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent initialize sonar:sonar verify sonar:sonar -Pcoverage -Dsonar.projectKey=2020-2021-ECOM-INFO5-G04_App -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
