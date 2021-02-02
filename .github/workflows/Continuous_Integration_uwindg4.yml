@@ -40,4 +40,5 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         cd uwind
-        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        chmod +x mvnw
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=2020-2021-ECOM-INFO5-G04_App -Dsonar.login=${{ secrets.SONAR_TOKEN }}
