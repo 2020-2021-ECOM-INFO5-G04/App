@@ -45,6 +45,10 @@ public class Flotteur implements Serializable {
     @Column(name = "utilisable", nullable = false)
     private Boolean utilisable;
 
+    @NotNull
+    @Column(name = "available", nullable = false)
+    private Boolean available;
+
     @Column(name = "commentaire")
     private String commentaire;
 
@@ -107,6 +111,19 @@ public class Flotteur implements Serializable {
 
     public void setUtilisable(Boolean utilisable) {
         this.utilisable = utilisable;
+    }
+
+    public Boolean isAvailable() {
+        return available;
+    }
+
+    public Flotteur available(Boolean available) {
+        this.available = available;
+        return this;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     public String getCommentaire() {
