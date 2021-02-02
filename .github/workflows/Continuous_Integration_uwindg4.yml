@@ -1,10 +1,10 @@
-name: Build an test app
+#https://github.com/SonarSource/sonarcloud-github-action
 
 on:
   push:
       branches:
       - CITravisDownFix
-   pull_request:
+  pull_request:
       types: [opened, synchronize, reopened]
 
 jobs:
