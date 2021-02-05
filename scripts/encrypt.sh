@@ -1,3 +1,3 @@
 #!/bin/sh
 
-gpg --symmetric --cipher-algo AES256 ../uwind/testfile.json
+gpg --symmetric --cipher-algo AES256 $HOME/uwind/testfile.json
