@@ -13,6 +13,7 @@
       "delete": {
         "question": "Are you sure you want to delete Inscription Sortie {{ id }}?"
       },
+      "alreadyRegistered": "This student is already registered for this trip",
       "detail": {
         "title": "Inscription Sortie"
       },

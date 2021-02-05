@@ -1,21 +1,47 @@
-<div class="footer">
+<div *ngIf="medium" class="footer">
   <table style ="width:100%">
+  <caption></caption>
    <tr>
-    <th>
+    <th id="th_uga">
         <img src="../../../content/images/logo_uga.png" width="273" height="45" alt="Sailboard" class="logo_uga">
     </th>
     
-    <th>
+    <th id="th_polytech">
         <img src="../../../content/images/logo_polytech.png" width="289" height="45" alt="Sailboard" class="logo_polytech">
     </th>
-    
-    <th>
+   </tr>
+   <tr>     
+    <th id="th_info">
         <img src="../../../content/images/logo_info.jpg" width="295" height="105" alt="Sailboard" class="logo_info">
     </th>
     
-    <th>
+    <th id="th_jhipster">
         <img src="../../../content/images/logo-jhipster.png" width="105" height="45" alt="Sailboard" class="logo_jhipster">
     </th>
+        
    </tr>
   </table>
 </div>
+
+<div *ngIf="!medium" class="footer">
+    <table style ="width:100%">
+     <tr>
+      <th id="th_uga">
+          <img src="../../../content/images/logo_uga.png" width="273" height="45" alt="Sailboard" class="logo_uga">
+      </th>
+      
+      <th id="th_polytech">
+          <img src="../../../content/images/logo_polytech.png" width="289" height="45" alt="Sailboard" class="logo_polytech">
+      </th>
+ 
+      <th id="th_info">
+          <img src="../../../content/images/logo_info.jpg" width="295" height="105" alt="Sailboard" class="logo_info">
+      </th>
+      
+      <th id="th_jhipster">
+          <img src="../../../content/images/logo-jhipster.png" width="105" height="45" alt="Sailboard" class="logo_jhipster">
+      </th>
+          
+     </tr>
+    </table>
+  </div>

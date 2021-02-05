@@ -1,21 +1,39 @@
 package fr.uga.web.rest;
 
+import fr.uga.domain.Etudiant;
+import fr.uga.domain.InscriptionSortie;
+import fr.uga.domain.Profil;
 import fr.uga.domain.Sortie;
+import fr.uga.repository.InscriptionSortieRepository;
 import fr.uga.repository.SortieRepository;
 import fr.uga.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.CsvListWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.io.ICsvListWriter;
+import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +54,11 @@ public class SortieResource {
 
     private final SortieRepository sortieRepository;
 
-    public SortieResource(SortieRepository sortieRepository) {
+    private final InscriptionSortieRepository inscriptionSortieRepository;
+
+    public SortieResource(SortieRepository sortieRepository, InscriptionSortieRepository inscriptionSortieRepository) {
         this.sortieRepository = sortieRepository;
+        this.inscriptionSortieRepository = inscriptionSortieRepository;
     }
 
     /**
@@ -115,5 +136,63 @@ public class SortieResource {
         log.debug("REST request to delete Sortie : {}", id);
         sortieRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+
+    @GetMapping("/sorties/export/{id}")
+    public void export(HttpServletResponse response, @PathVariable Long id) throws IOException {
+        response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=etudiants_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+         
+        List<InscriptionSortie> listInscriptions = inscriptionSortieRepository.findAll();
+        List<Etudiant> listEtudiants= new ArrayList<Etudiant>();
+
+        for(int i = 0 ; i < listInscriptions.size(); i++){
+            if(sortieRepository.findById(id).isPresent()){
+                if(sortieRepository.findById(id).get().getId().equals(listInscriptions.get(i).getSortie().getId())){
+                    listEtudiants.add(listInscriptions.get(i).getEtudiant());
+                }
+            }
+        }
+        ICsvListWriter listWriter= new CsvListWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"ID","Nom", "Prenom", "Email", "Num tel" , "Niveau Scolaire", "Departement", "Niveau Planche", "Permis de Conduire", "Lieu Depart", "Option Semestre", "Flotteur", "Voile", "Combinaison", "Gestionnaire"};
+
+        listWriter.writeHeader(csvHeader);
+
+        List<Object> elem;
+        Profil profil;
+
+        for (Etudiant etudiant : listEtudiants) {
+            profil = etudiant.getProfil();
+            elem = Arrays.asList(
+                etudiant.getId(),
+                profil.getNom(),
+                profil.getPrenom(),
+                profil.getEmail(),
+                profil.getNumTel(),
+                etudiant.getNiveauScolaire(),
+                etudiant.getDepartement(),
+                etudiant.getNiveauPlanche(),
+                etudiant.isPermisDeConduire(),
+                etudiant.getLieuDepart(),
+                etudiant.isOptionSemestre(),
+                etudiant.getFlotteur(),
+                etudiant.getVoile(),
+                etudiant.getCombinaison(),
+                etudiant.getGestionnaire()
+            );
+            listWriter.write(elem);
+        }
+        if(listEtudiants.isEmpty()){
+            elem = Arrays.asList("liste vide");
+            listWriter.write(elem);
+        }
+        listWriter.close(); 
+        
     }
 }

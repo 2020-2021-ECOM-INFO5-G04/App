@@ -23,10 +23,13 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.*;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static fr.uga.web.rest.AccountResourceIT.TEST_USER_LOGIN;
@@ -775,4 +778,38 @@ public class AccountResourceIT {
                 .content(TestUtil.convertObjectToJsonBytes(keyAndPassword)))
             .andExpect(status().isInternalServerError());
     }
+
+    @Test
+    public void testCheckLogin() throws Exception{
+        Set<String> authorities = new HashSet<>();
+        authorities.add(AuthoritiesConstants.ETUDIANT);
+        UserDTO user = new UserDTO();
+        user.setLogin("test");
+        user.setFirstName("john");
+        user.setLastName("doe");
+        user.setEmail("john.doe@jhipster.com");
+        user.setImageUrl("http://placehold.it/50x50");
+        user.setLangKey("en");
+        user.setAuthorities(authorities);
+        userService.createUser(user);
+
+
+        MvcResult result = restAccountMockMvc.perform(MockMvcRequestBuilders
+         .get("/api/checkLogin/test")
+         .accept(MediaType.APPLICATION_JSON))
+         .andReturn();
+        String res = result.getResponse().getContentAsString(); 
+        assertThat(res).isEqualTo("true");
+        
+        userService.deleteUser("test");
+
+        result = restAccountMockMvc.perform(MockMvcRequestBuilders
+         .get("/api/checkLogin/test")
+         .accept(MediaType.APPLICATION_JSON))
+         .andReturn();
+        res = result.getResponse().getContentAsString(); 
+        assertThat(res).isEqualTo("false");
+    }
+    
+
 }

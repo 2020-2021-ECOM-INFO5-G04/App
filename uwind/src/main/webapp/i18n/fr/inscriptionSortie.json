@@ -16,6 +16,7 @@
       "detail": {
         "title": "Inscription Sortie"
       },
+      "alreadyRegistered": "Cet étudiant est déjà inscrit à cette sortie.",
       "etudiant": "Etudiant",
       "sortie": "Sortie",
       "moniteur": "Moniteur",

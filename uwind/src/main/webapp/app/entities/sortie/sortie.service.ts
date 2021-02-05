@@ -71,4 +71,8 @@ export class SortieService {
     }
     return res;
   }
+
+  export(id: number): any {
+    return this.http.get(`${this.resourceUrl}/export/${id}`, { responseType: 'text' });
+  }
 }
