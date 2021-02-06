@@ -3,15 +3,15 @@
     "inscriptionSortie": {
       "home": {
         "title": "InscriptionSorties",
-        "createLabel": "Créer un nouveau Inscription Sortie",
-        "createOrEditLabel": "Créer ou éditer un Inscription Sortie",
-        "notFound": "Aucun Inscription Sortie trouvé"
+        "createLabel": "Créer une nouvelle inscription sortie",
+        "createOrEditLabel": "Créer ou éditer une inscription sortie",
+        "notFound": "Aucune inscription sortie trouvée"
       },
-      "created": "Un nouveau Inscription Sortie a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Inscription Sortie avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Inscription Sortie avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle inscription sortie a été créée avec l'identifiant {{ param }}",
+      "updated": "L'inscription sortie avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "L'inscription sortie avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Inscription Sortie {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer l' inscription sortie {{ id }} ?"
       },
       "detail": {
         "title": "Inscription Sortie"

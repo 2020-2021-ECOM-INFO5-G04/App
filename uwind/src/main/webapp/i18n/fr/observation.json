@@ -3,15 +3,15 @@
     "observation": {
       "home": {
         "title": "Observations",
-        "createLabel": "Créer un nouveau Observation",
-        "createOrEditLabel": "Créer ou éditer un Observation",
-        "notFound": "Aucun Observation trouvé"
+        "createLabel": "Créer une nouvelle observation",
+        "createOrEditLabel": "Créer ou éditer une observation",
+        "notFound": "Aucune observation trouvée"
       },
-      "created": "Un nouveau Observation a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Observation avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Observation avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle observation a été créée avec l'identifiant {{ param }}",
+      "updated": "L'observation avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "L'observation avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Observation {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer l'observation {{ id }} ?"
       },
       "detail": {
         "title": "Observation"

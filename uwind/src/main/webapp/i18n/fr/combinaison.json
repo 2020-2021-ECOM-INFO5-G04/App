@@ -3,15 +3,15 @@
     "combinaison": {
       "home": {
         "title": "Combinaisons",
-        "createLabel": "Créer un nouveau Combinaison",
-        "createOrEditLabel": "Créer ou éditer un Combinaison",
-        "notFound": "Aucun Combinaison trouvé"
+        "createLabel": "Créer une nouvelle combinaison",
+        "createOrEditLabel": "Créer ou éditer une combinaison",
+        "notFound": "Aucune combinaison trouvée"
       },
-      "created": "Un nouveau Combinaison a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Combinaison avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Combinaison avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle combinaison a été créée avec l'identifiant {{ param }}",
+      "updated": "La combinaison avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La combinaison avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Combinaison {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la combinaison {{ id }} ?"
       },
       "detail": {
         "title": "Combinaison"

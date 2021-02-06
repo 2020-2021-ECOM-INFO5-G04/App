@@ -3,15 +3,15 @@
     "profil": {
       "home": {
         "title": "Profils",
-        "createLabel": "Créer un nouveau Profil",
-        "createOrEditLabel": "Créer ou éditer un Profil",
-        "notFound": "Aucun Profil trouvé"
+        "createLabel": "Créer un nouveau profil",
+        "createOrEditLabel": "Créer ou éditer un profil",
+        "notFound": "Aucun profil trouvé"
       },
-      "created": "Un nouveau Profil a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Profil avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Profil avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau profil a été créé avec l'identifiant {{ param }}",
+      "updated": "Le profil avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le profil avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Profil {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer le profil {{ id }} ?"
       },
       "detail": {
         "title": "Profil"
