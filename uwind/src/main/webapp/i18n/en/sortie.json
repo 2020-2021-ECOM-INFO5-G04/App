@@ -24,7 +24,8 @@
       "coeff": "Coefficient",
       "commentaire": "Comment",
       "inscriptionSortie": "Outing Registration",
-      "gestionnaire": "Manager"
+      "gestionnaire": "Manager",
+      "exportcsv": "Export the list of students in CSV"
     }
   }
 }
