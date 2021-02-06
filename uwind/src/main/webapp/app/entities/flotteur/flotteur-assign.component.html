@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="assignForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="assignForm">
+            <h2 id="jhi-flotteur-heading" jhiTranslate="uwindApp.flotteur.home.createOrassignLabel">Assign a Flotteur</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="uwindApp.flotteur.nom" for="field_nom">Nom</label>
+                <select class="form-control" name="nom" formControlName="nom" id="field_nom">
+                    <option value="Test1">Test1</option>
+                    <option value="Test2">Test2</option>
+                </select>
+                <div *ngIf="assignForm.get('nom')!.invalid && (assignForm.get('nom')!.dirty || assignForm.get('nom')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="assignForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="assignForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
