@@ -5,12 +5,19 @@ import { UwindSharedModule } from 'app/shared/shared.module';
 import { EtudiantComponent } from './etudiant.component';
 import { EtudiantDetailComponent } from './etudiant-detail.component';
 import { EtudiantUpdateComponent } from './etudiant-update.component';
+import { EtudiantAffectMaterialComponent } from './etudiant-affect-material.component';
 import { EtudiantDeleteDialogComponent } from './etudiant-delete-dialog.component';
 import { etudiantRoute } from './etudiant.route';
 
 @NgModule({
   imports: [UwindSharedModule, RouterModule.forChild(etudiantRoute)],
-  declarations: [EtudiantComponent, EtudiantDetailComponent, EtudiantUpdateComponent, EtudiantDeleteDialogComponent],
+  declarations: [
+    EtudiantComponent,
+    EtudiantDetailComponent,
+    EtudiantUpdateComponent,
+    EtudiantAffectMaterialComponent,
+    EtudiantDeleteDialogComponent,
+  ],
   entryComponents: [EtudiantDeleteDialogComponent],
 })
 export class UwindEtudiantModule {}

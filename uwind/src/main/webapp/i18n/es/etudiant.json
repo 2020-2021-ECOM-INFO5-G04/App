@@ -31,7 +31,8 @@
       "evaluation": "Evaluation",
       "inscriptionSortie": "Inscription Sortie",
       "gestionnaire": "Gestionnaire",
-      "formation": "Formacion"
+      "formation": "Formacion",
+      "affectEquipment": "Asignar equipo"
     }
   }
 }
