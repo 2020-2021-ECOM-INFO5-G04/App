@@ -1,4 +1,4 @@
-<div>
+!<div>
     <h2 id="page-heading">
         <span jhiTranslate="uwindApp.observation.home.title">Observations</span>
 
@@ -36,17 +36,17 @@
                     <td>{{ observation.observation }}</td>
                     <td>
                         <div *ngIf="observation.etudiant">
-                            <a [routerLink]="['/etudiant', observation.etudiant?.id, 'view']" >{{ observation.etudiant?.id }}</a>
+                            <a [routerLink]="['/etudiant', observation.etudiant?.id, 'view']" >{{ observation.etudiant.profil?.prenom+" "+observation.etudiant.profil?.nom }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="observation.moniteur">
-                            <a [routerLink]="['/moniteur', observation.moniteur?.id, 'view']" >{{ observation.moniteur?.id }}</a>
+                            <a [routerLink]="['/moniteur', observation.moniteur?.id, 'view']" >{{ observation.moniteur.profil?.prenom+" "+observation.moniteur.profil?.nom  }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="observation.gestionnaire">
-                            <a [routerLink]="['/gestionnaire', observation.gestionnaire?.id, 'view']" >{{ observation.gestionnaire?.id }}</a>
+                            <a [routerLink]="['/gestionnaire', observation.gestionnaire?.id, 'view']" >{{ observation.gestionnaire.profil?.prenom+" "+observation.gestionnaire.profil?.nom  }}</a>
                         </div>
                     </td>
                     <td class="text-right">
