@@ -17,9 +17,9 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="etudiantOption.id === editForm.get('etudiant')!.value?.id ? editForm.get('etudiant')!.value : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackById">{{ etudiantOption.profil?.nom+" "+etudiantOption.profil?.prenom}}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_etudiant')!.invalid && (editForm.get('field_etudiant')!.dirty || editForm.get('field_etudiant')!.touched)">
+                    <div *ngIf="editForm.get('etudiant')!.invalid && (editForm.get('etudiant')!.dirty || editForm.get('etudiant')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_etudiant')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('etudiant')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
@@ -31,9 +31,9 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="sortieOption.id === editForm.get('sortie')!.value?.id ? editForm.get('sortie')!.value : sortieOption" *ngFor="let sortieOption of sorties; trackBy: trackById">{{ sortieOption.nom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_sortie')!.invalid && (editForm.get('field_sortie')!.dirty || editForm.get('field_sortie')!.touched)">
+                    <div *ngIf="editForm.get('sortie')!.invalid && (editForm.get('sortie')!.dirty || editForm.get('sortie')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_sortie')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('sortie')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
@@ -45,9 +45,9 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="moniteurOption.id === editForm.get('moniteur')!.value?.id ? editForm.get('moniteur')!.value : moniteurOption" *ngFor="let moniteurOption of moniteurs; trackBy: trackById">{{ moniteurOption.profil?.nom+" "+moniteurOption.profil?.prenom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_moniteur')!.invalid && (editForm.get('field_moniteur')!.dirty || editForm.get('field_moniteur')!.touched)">
+                    <div *ngIf="editForm.get('moniteur')!.invalid && (editForm.get('moniteur')!.dirty || editForm.get('moniteur')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_moniteur')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('moniteur')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
@@ -59,9 +59,9 @@
                         <option [ngValue]="null"></option>
                         <option [ngValue]="gestionnaireOption.id === editForm.get('gestionnaire')!.value?.id ? editForm.get('gestionnaire')!.value : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackById">{{ gestionnaireOption.profil?.nom+" "+gestionnaireOption.profil?.prenom }}</option>
                     </select>
-                    <div *ngIf="editForm.get('field_gestionnaire')!.invalid && (editForm.get('field_gestionnaire')!.dirty || editForm.get('field_gestionnaire')!.touched)">
+                    <div *ngIf="editForm.get('gestionnaire')!.invalid && (editForm.get('gestionnaire')!.dirty || editForm.get('gestionnaire')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('field_gestionnaire')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('gestionnaire')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
