@@ -40,7 +40,7 @@ export const etudiantRoute: Routes = [
     path: '',
     component: EtudiantComponent,
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -52,7 +52,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -89,7 +89,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],

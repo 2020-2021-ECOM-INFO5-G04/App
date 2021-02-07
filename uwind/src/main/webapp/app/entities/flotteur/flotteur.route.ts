@@ -39,7 +39,7 @@ export const flotteurRoute: Routes = [
     path: '',
     component: FlotteurComponent,
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.flotteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const flotteurRoute: Routes = [
       flotteur: FlotteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.flotteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const flotteurRoute: Routes = [
       flotteur: FlotteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.flotteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const flotteurRoute: Routes = [
       flotteur: FlotteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.flotteur.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -39,7 +39,7 @@ export const observationRoute: Routes = [
     path: '',
     component: ObservationComponent,
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.observation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const observationRoute: Routes = [
       observation: ObservationResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.observation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const observationRoute: Routes = [
       observation: ObservationResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.observation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const observationRoute: Routes = [
       observation: ObservationResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.observation.home.title',
     },
     canActivate: [UserRouteAccessService],

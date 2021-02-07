@@ -165,10 +165,23 @@ public class SortieResource {
         listWriter.writeHeader(csvHeader);
 
         List<Object> elem;
-        Profil profil;
 
         for (Etudiant etudiant : listEtudiants) {
-            profil = etudiant.getProfil();
+            Profil profil = etudiant.getProfil();
+            String flotteur = "";
+            String voile = "";
+            String combinaison = "";
+            String gestionnaire = "";
+            
+            if(etudiant.getFlotteur()!=null)
+                flotteur = etudiant.getFlotteur().getNom().toString();
+            if(etudiant.getVoile()!=null)
+                voile = etudiant.getVoile().getNomComplet().toString();
+            if(etudiant.getCombinaison()!=null)
+                combinaison = etudiant.getCombinaison().getNom().toString();
+            if(etudiant.getGestionnaire()!=null)
+                gestionnaire = etudiant.getGestionnaire().getProfil().getNom().toString() + " " + etudiant.getGestionnaire().getProfil().getPrenom().toString();
+
             elem = Arrays.asList(
                 etudiant.getId(),
                 profil.getNom(),
@@ -181,10 +194,10 @@ public class SortieResource {
                 etudiant.isPermisDeConduire(),
                 etudiant.getLieuDepart(),
                 etudiant.isOptionSemestre(),
-                etudiant.getFlotteur(),
-                etudiant.getVoile(),
-                etudiant.getCombinaison(),
-                etudiant.getGestionnaire()
+                flotteur,
+                voile,
+                combinaison,
+                gestionnaire
             );
             listWriter.write(elem);
         }
