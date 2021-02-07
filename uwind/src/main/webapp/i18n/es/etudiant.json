@@ -32,6 +32,7 @@
       "inscriptionSortie": "Inscription Sortie",
       "gestionnaire": "Gestionnaire",
       "formation": "Formacion",
+      "affectEquipment": "Asignar equipo",
       "exportcsv": "Exportar a CSV"
     }
   }

@@ -11,6 +11,7 @@ import { EtudiantService } from './etudiant.service';
 import { EtudiantComponent } from './etudiant.component';
 import { EtudiantDetailComponent } from './etudiant-detail.component';
 import { EtudiantUpdateComponent } from './etudiant-update.component';
+import { EtudiantAffectMaterialComponent } from './etudiant-affect-material.component';
 
 @Injectable({ providedIn: 'root' })
 export class EtudiantResolve implements Resolve<IEtudiant> {
@@ -71,6 +72,19 @@ export const etudiantRoute: Routes = [
   {
     path: ':id/edit',
     component: EtudiantUpdateComponent,
+    resolve: {
+      etudiant: EtudiantResolve,
+    },
+    data: {
+      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      pageTitle: 'uwindApp.etudiant.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+
+  {
+    path: ':id/affectEquipment',
+    component: EtudiantAffectMaterialComponent,
     resolve: {
       etudiant: EtudiantResolve,
     },
