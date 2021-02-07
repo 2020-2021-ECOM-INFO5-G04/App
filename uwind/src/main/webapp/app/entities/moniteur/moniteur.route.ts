@@ -39,7 +39,7 @@ export const moniteurRoute: Routes = [
     path: '',
     component: MoniteurComponent,
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.moniteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const moniteurRoute: Routes = [
       moniteur: MoniteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.moniteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const moniteurRoute: Routes = [
       moniteur: MoniteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.moniteur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const moniteurRoute: Routes = [
       moniteur: MoniteurResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE'],
       pageTitle: 'uwindApp.moniteur.home.title',
     },
     canActivate: [UserRouteAccessService],

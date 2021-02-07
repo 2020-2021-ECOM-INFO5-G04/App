@@ -48,7 +48,7 @@
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
 
-            <button *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE','ROLE_MONITEUR']" type="button" class="btn btn-secondary" (click)="export()" jhiTranslate="uwindApp.sortie.exportcsv">
+            <button *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE']" type="button" class="btn btn-secondary" (click)="export()" jhiTranslate="uwindApp.sortie.exportcsv">
                 <span>
                 Export the list of students in CSV
                 </span>
