@@ -399,4 +399,10 @@ public class EtudiantResourceIT {
         List<Etudiant> etudiantList = etudiantRepository.findAll();
         assertThat(etudiantList).hasSize(databaseSizeBeforeDelete - 1);
     }
+
+    @Test
+    public void testexportcsv() throws Exception{
+        restEtudiantMockMvc.perform(get("/api/etudiants/export"))
+        .andExpect(status().isOk());
+    }
 }

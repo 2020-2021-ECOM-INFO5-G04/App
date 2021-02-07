@@ -32,7 +32,8 @@
       "inscriptionSortie": "Inscription Sortie",
       "gestionnaire": "Gestionnaire",
       "formation": "Formation",
-      "affectEquipment": "Affect equipment"
+      "affectEquipment": "Affect equipment",
+      "exportcsv": "Export to CSV"
     }
   }
 }
