@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+§<div class="row justify-content-center">
 
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -155,7 +155,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.moniteur.flotteur" for="field_flotteur">Flotteur</label>
                     <select class="form-control" id="field_flotteur" name="flotteur" formControlName="flotteur">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="flotteurOption.id === editForm.get('flotteur')!.value?.id ? editForm.get('flotteur')!.value : flotteurOption" *ngFor="let flotteurOption of flotteurs; trackBy: trackById">{{ flotteurOption.id }}</option>
+                        <option [ngValue]="flotteurOption.id === editForm.get('flotteur')!.value?.id ? editForm.get('flotteur')!.value : flotteurOption" *ngFor="let flotteurOption of flotteurs; trackBy: trackById">{{ flotteurOption.nom }}</option>
                     </select>
                 </div>
 
@@ -163,7 +163,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.moniteur.voile" for="field_voile">Voile</label>
                     <select class="form-control" id="field_voile" name="voile" formControlName="voile">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="voileOption.id === editForm.get('voile')!.value?.id ? editForm.get('voile')!.value : voileOption" *ngFor="let voileOption of voiles; trackBy: trackById">{{ voileOption.id }}</option>
+                        <option [ngValue]="voileOption.id === editForm.get('voile')!.value?.id ? editForm.get('voile')!.value : voileOption" *ngFor="let voileOption of voiles; trackBy: trackById">{{ voileOption.nomComplet }}</option>
                     </select>
                 </div>
 
@@ -171,7 +171,7 @@
                     <label class="form-control-label" jhiTranslate="uwindApp.moniteur.combinaison" for="field_combinaison">Combinaison</label>
                     <select class="form-control" id="field_combinaison" name="combinaison" formControlName="combinaison">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="combinaisonOption.id === editForm.get('combinaison')!.value?.id ? editForm.get('combinaison')!.value : combinaisonOption" *ngFor="let combinaisonOption of combinaisons; trackBy: trackById">{{ combinaisonOption.id }}</option>
+                        <option [ngValue]="combinaisonOption.id === editForm.get('combinaison')!.value?.id ? editForm.get('combinaison')!.value : combinaisonOption" *ngFor="let combinaisonOption of combinaisons; trackBy: trackById">{{ combinaisonOption.nom }}</option>
                     </select>
                 </div>
             </div>

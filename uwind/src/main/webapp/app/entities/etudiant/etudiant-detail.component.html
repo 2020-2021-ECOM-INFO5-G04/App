@@ -45,25 +45,25 @@
                 <dt><span jhiTranslate="uwindApp.etudiant.flotteur">Flotteur</span></dt>
                 <dd>
                     <div *ngIf="etudiant.flotteur">
-                        <a [routerLink]="['/flotteur', etudiant.flotteur?.id, 'view']">{{ etudiant.flotteur?.id }}</a>
+                        <a [routerLink]="['/flotteur', etudiant.flotteur?.id, 'view']">{{ etudiant.flotteur?.nom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.etudiant.voile">Voile</span></dt>
                 <dd>
                     <div *ngIf="etudiant.voile">
-                        <a [routerLink]="['/voile', etudiant.voile?.id, 'view']">{{ etudiant.voile?.id }}</a>
+                        <a [routerLink]="['/voile', etudiant.voile?.id, 'view']">{{ etudiant.voile?.nomComplet }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.etudiant.combinaison">Combinaison</span></dt>
                 <dd>
                     <div *ngIf="etudiant.combinaison">
-                        <a [routerLink]="['/combinaison', etudiant.combinaison?.id, 'view']">{{ etudiant.combinaison?.id }}</a>
+                        <a [routerLink]="['/combinaison', etudiant.combinaison?.id, 'view']">{{ etudiant.combinaison?.nom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.etudiant.gestionnaire">Gestionnaire</span></dt>
                 <dd>
                     <div *ngIf="etudiant.gestionnaire">
-                        <a [routerLink]="['/gestionnaire', etudiant.gestionnaire?.id, 'view']">{{ etudiant.gestionnaire?.id }}</a>
+                        <a [routerLink]="['/gestionnaire', etudiant.gestionnaire?.id, 'view']">{{ etudiant.gestionnaire?.profil?.prenom+" "+etudiant.gestionnaire?.profil?.nom }}</a>
                     </div>
                 </dd>
             </dl>
