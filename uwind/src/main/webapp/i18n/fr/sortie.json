@@ -24,7 +24,8 @@
       "coeff": "Coefficient",
       "commentaire": "Commentaire",
       "inscriptionSortie": "Inscription Sortie",
-      "gestionnaire": "Gestionnaire"
+      "gestionnaire": "Gestionnaire",
+      "exportcsv": "Exporter la liste des étudiants en CSV"
     }
   }
 }

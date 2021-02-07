@@ -24,7 +24,8 @@
       "titre": "Título salida",
       "commentaire": "Comentario",
       "inscriptionSortie": "Inscripción salida",
-      "gestionnaire": "Gerente"
+      "gestionnaire": "Gerente",
+      "exportcsv": "Exportar la lista de estudiantes en CSV"
     }
   }
 }

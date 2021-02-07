@@ -322,4 +322,12 @@ public class SortieResourceIT {
         List<Sortie> sortieList = sortieRepository.findAll();
         assertThat(sortieList).hasSize(databaseSizeBeforeDelete - 1);
     }
+
+    @Test
+    public void testexportcsv() throws Exception{
+        sortieRepository.saveAndFlush(sortie);
+
+        restSortieMockMvc.perform(get("/api/sorties/export/{id}",sortie.getId()))
+        .andExpect(status().isOk());
+    }
 }
