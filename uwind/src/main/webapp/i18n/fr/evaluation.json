@@ -3,15 +3,15 @@
     "evaluation": {
       "home": {
         "title": "Evaluations",
-        "createLabel": "Créer un nouveau Evaluation",
-        "createOrEditLabel": "Créer ou éditer un Evaluation",
-        "notFound": "Aucun Evaluation trouvé"
+        "createLabel": "Créer une nouvelle évaluation",
+        "createOrEditLabel": "Créer ou éditer une évaluation",
+        "notFound": "Aucune évaluation trouvée"
       },
-      "created": "Un nouveau Evaluation a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Evaluation avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Evaluation avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle évaluation a été créée avec l'identifiant {{ param }}",
+      "updated": "L'évaluation avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "L'évaluation avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Evaluation {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer l'évaluation {{ id }} ?"
       },
       "detail": {
         "title": "Evaluation"

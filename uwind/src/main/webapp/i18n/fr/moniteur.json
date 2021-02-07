@@ -3,15 +3,15 @@
     "moniteur": {
       "home": {
         "title": "Moniteurs",
-        "createLabel": "Créer un nouveau Moniteur",
-        "createOrEditLabel": "Créer ou éditer un Moniteur",
-        "notFound": "Aucun Moniteur trouvé"
+        "createLabel": "Créer un nouveau moniteur",
+        "createOrEditLabel": "Créer ou éditer un moniteur",
+        "notFound": "Aucun moniteur trouvé"
       },
-      "created": "Un nouveau Moniteur a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Moniteur avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Moniteur avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau moniteur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le moniteur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le moniteur avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Moniteur {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer le moniteur {{ id }} ?"
       },
       "detail": {
         "title": "Moniteur"

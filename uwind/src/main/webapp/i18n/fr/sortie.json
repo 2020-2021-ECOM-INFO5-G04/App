@@ -8,8 +8,8 @@
         "notFound": "Aucune sortie trouvée"
       },
       "created": "Une nouvelle sortie a été créée avec l'identifiant {{ param }}",
-      "updated": "La sortie avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "La sortie avec l'identifiant {{ param }} a été supprimé",
+      "updated": "La sortie avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La sortie avec l'identifiant {{ param }} a été supprimée",
       "delete": {
         "question": "Etes-vous certain de vouloir supprimer la sortie {{ id }} ?"
       },
