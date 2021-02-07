@@ -2,6 +2,10 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { InscriptionSortieService } from 'app/entities/inscription-sortie/inscription-sortie.service';
 import { IInscriptionSortie, InscriptionSortie } from 'app/shared/model/inscription-sortie.model';
+import { Etudiant } from 'app/shared/model/etudiant.model';
+import { Sortie } from 'app/shared/model/sortie.model';
+import { Moniteur } from 'app/shared/model/moniteur.model';
+import { Gestionnaire } from 'app/shared/model/gestionnaire.model';
 
 describe('Service Tests', () => {
   describe('InscriptionSortie Service', () => {
@@ -20,7 +24,7 @@ describe('Service Tests', () => {
       service = injector.get(InscriptionSortieService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new InscriptionSortie(0);
+      elemDefault = new InscriptionSortie(0, Etudiant, Sortie, Moniteur, Gestionnaire);
     });
 
     describe('Service methods', () => {
