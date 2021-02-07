@@ -3,15 +3,15 @@
     "flotteur": {
       "home": {
         "title": "Flotteurs",
-        "createLabel": "Créer un nouveau Flotteur",
-        "createOrEditLabel": "Créer ou éditer un Flotteur",
-        "notFound": "Aucun Flotteur trouvé"
+        "createLabel": "Créer un nouveau flotteur",
+        "createOrEditLabel": "Créer ou éditer un flotteur",
+        "notFound": "Aucun flotteur trouvé"
       },
-      "created": "Un nouveau Flotteur a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Flotteur avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Flotteur avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau flotteur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le flotteur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le flotteur avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Flotteur {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer le flotteur {{ id }} ?"
       },
       "detail": {
         "title": "Flotteur"
