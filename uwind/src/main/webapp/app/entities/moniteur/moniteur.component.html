@@ -46,17 +46,17 @@
                     </td>
                     <td>
                         <div *ngIf="moniteur.flotteur">
-                            <a [routerLink]="['/flotteur', moniteur.flotteur?.id, 'view']" >{{ moniteur.flotteur?.id }}</a>
+                            <a [routerLink]="['/flotteur', moniteur.flotteur?.id, 'view']" >{{ moniteur.flotteur?.nom }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="moniteur.voile">
-                            <a [routerLink]="['/voile', moniteur.voile?.id, 'view']" >{{ moniteur.voile?.id }}</a>
+                            <a [routerLink]="['/voile', moniteur.voile?.id, 'view']" >{{ moniteur.voile?.nomComplet }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="moniteur.combinaison">
-                            <a [routerLink]="['/combinaison', moniteur.combinaison?.id, 'view']" >{{ moniteur.combinaison?.id }}</a>
+                            <a [routerLink]="['/combinaison', moniteur.combinaison?.id, 'view']" >{{ moniteur.combinaison?.nom }}</a>
                         </div>
                     </td>
                     <td class="text-right">
