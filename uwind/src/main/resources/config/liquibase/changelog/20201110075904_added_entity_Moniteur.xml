@@ -20,13 +20,13 @@
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_moniteur_profil_id" />
             </column>
             <column name="flotteur_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_moniteur_flotteur_id" />
+                <constraints unique="false" nullable="true" uniqueConstraintName="ux_moniteur_flotteur_id" />
             </column>
             <column name="voile_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_moniteur_voile_id" />
+                <constraints unique="false" nullable="true" uniqueConstraintName="ux_moniteur_voile_id" />
             </column>
             <column name="combinaison_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_moniteur_combinaison_id" />
+                <constraints unique="false" nullable="true" uniqueConstraintName="ux_moniteur_combinaison_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

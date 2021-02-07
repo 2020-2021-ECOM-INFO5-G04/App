@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ISortie } from 'app/shared/model/sortie.model';
 
-import * as L from 'leaflet';
 import { HttpResponse } from '@angular/common/http';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
@@ -11,6 +10,7 @@ import { IProfil } from 'app/shared/model/profil.model';
 import { ProfilService } from '../profil/profil.service';
 import { IEtudiant } from 'app/shared/model/etudiant.model';
 import { EtudiantService } from '../etudiant/etudiant.service';
+import { SortieService } from './sortie.service';
 
 @Component({
   selector: 'jhi-sortie-detail',
@@ -20,62 +20,36 @@ export class SortieDetailComponent implements OnInit {
   sortie: ISortie | null = null;
   account: Account | null = null;
   profils?: IProfil[];
+  etudiants?: IEtudiant[];
   etudiant: IEtudiant | null = null;
-  tmp?: boolean;
-  id?: number;
-
-  options1 = {
-    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
-    zoom: 15,
-    center: L.latLng(45.1933502, 5.7647807),
-  };
-  layers1 = [
-    L.marker([45.1933502, 5.7647807], {
-      icon: L.icon({
-        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-        iconUrl: require('leaflet/dist/images/marker-icon.png'),
-        shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-      }),
-    }),
-  ];
-
-  options2 = {
-    layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })],
-    zoom: 15,
-    center: L.latLng(45.1959346, 5.708299),
-  };
-  layers2 = [
-    L.marker([45.1959346, 5.708299], {
-      icon: L.icon({
-        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-        iconUrl: require('leaflet/dist/images/marker-icon.png'),
-        shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-      }),
-    }),
-  ];
+  smh?: boolean;
 
   constructor(
     protected activatedRoute: ActivatedRoute,
     private etudiantService: EtudiantService,
     private accountService: AccountService,
-    private profilService: ProfilService
+    private profilService: ProfilService,
+    private sortieService: SortieService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ sortie }) => (this.sortie = sortie));
+    this.activatedRoute.data.subscribe(({ sortie }) => {
+      this.sortie = sortie;
+    });
     this.accountService.getAuthenticationState().subscribe(account => {
       if (account?.authorities.includes('ROLE_ETUDIANT')) {
         this.account = account;
         this.profilService.query().subscribe((res: HttpResponse<IProfil[]>) => {
           this.profils = res.body || [];
-          this.etudiant = this.studentdetect(this.profils);
-          if (this.etudiant !== null) {
-            this.id = this.etudiant?.id;
-            this.placedetect(this.etudiant?.lieuDepart!);
-          } else {
-            this.id = -1;
-            this.placedetect('SMH');
-          }
+          this.etudiantService.query().subscribe((res2: HttpResponse<IEtudiant[]>) => {
+            this.etudiants = res2.body || [];
+            this.etudiant = this.studentdetect(this.profils!, this.etudiants);
+            if (this.etudiant !== null) {
+              this.placedetect(this.etudiant?.lieuDepart!);
+            } else {
+              this.placedetect('SMH');
+            }
+          });
         });
       }
     });
@@ -85,7 +59,7 @@ export class SortieDetailComponent implements OnInit {
     window.history.back();
   }
 
-  studentdetect(profils: IProfil[]): IEtudiant | null {
+  studentdetect(profils: IProfil[], etudiants: IEtudiant[]): IEtudiant | null {
     let profilId = -1;
     for (let i = 0; i < profils.length; i++) {
       if (this.account?.login === profils[i].utilisateur?.login) {
@@ -93,24 +67,37 @@ export class SortieDetailComponent implements OnInit {
       }
     }
     if (profilId !== -1) {
-      this.etudiantService.query().subscribe((res: HttpResponse<IEtudiant[]>) => {
-        const etudiants = res.body || [];
-        for (let i = 0; i < etudiants.length; i++) {
-          if (profilId === etudiants[i].profil?.id) {
-            return etudiants[i];
-          }
+      for (let i = 0; i < etudiants.length; i++) {
+        if (profilId === etudiants[i].profil?.id) {
+          return etudiants[i];
         }
-        return null;
-      });
+      }
     }
     return null;
   }
 
   placedetect(place: string): void {
     if (place === 'SMH') {
-      this.tmp = true;
+      this.smh = true;
     } else {
-      this.tmp = false;
+      this.smh = false;
     }
+  }
+
+  export(): any {
+    this.sortieService.export(this.sortie?.id!).subscribe((data: any) => this.downloadFile(data));
+  }
+
+  downloadFile(data: any): any {
+    const blob = new Blob([data], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = window.document.createElement('a');
+    a.href = url;
+    a.download = 'etudiants du sortie ' + this.sortie?.nom + '.csv';
+    window.document.body.appendChild(a);
+    a.click();
+    window.document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   }
 }

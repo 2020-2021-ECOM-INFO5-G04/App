@@ -11,6 +11,7 @@ import { EtudiantService } from './etudiant.service';
 import { EtudiantComponent } from './etudiant.component';
 import { EtudiantDetailComponent } from './etudiant-detail.component';
 import { EtudiantUpdateComponent } from './etudiant-update.component';
+import { EtudiantAffectMaterialComponent } from './etudiant-affect-material.component';
 
 @Injectable({ providedIn: 'root' })
 export class EtudiantResolve implements Resolve<IEtudiant> {
@@ -34,20 +35,12 @@ export class EtudiantResolve implements Resolve<IEtudiant> {
   }
 }
 
-@Injectable({ providedIn: 'root' })
-export class EtudiantExport {
-  constructor(private service: EtudiantService) {}
-  resolve(): any {
-    return this.service.export();
-  }
-}
-
 export const etudiantRoute: Routes = [
   {
     path: '',
     component: EtudiantComponent,
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -59,7 +52,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -71,7 +64,7 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -83,19 +76,20 @@ export const etudiantRoute: Routes = [
       etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
+
   {
-    path: 'export',
-    component: EtudiantComponent,
+    path: ':id/affectEquipment',
+    component: EtudiantAffectMaterialComponent,
     resolve: {
-      etudiant: EtudiantExport,
+      etudiant: EtudiantResolve,
     },
     data: {
-      authorities: [Authority.USER, 'ROLE_GESTIONNAIRE'],
+      authorities: ['ROLE_GESTIONNAIRE', 'ROLE_MONITEUR'],
       pageTitle: 'uwindApp.etudiant.home.title',
     },
     canActivate: [UserRouteAccessService],

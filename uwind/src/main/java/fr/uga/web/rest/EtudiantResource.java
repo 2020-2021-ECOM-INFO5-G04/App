@@ -3,6 +3,7 @@ package fr.uga.web.rest;
 import fr.uga.domain.Etudiant;
 import fr.uga.domain.InscriptionSortie;
 import fr.uga.domain.Observation;
+import fr.uga.domain.Profil;
 import fr.uga.domain.Evaluation;
 import fr.uga.repository.EtudiantRepository;
 import fr.uga.repository.InscriptionSortieRepository;
@@ -30,6 +31,7 @@ import java.util.Optional;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +40,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.CsvListWriter;
 import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 import org.springframework.core.io.Resource;
 
@@ -189,20 +193,54 @@ public class EtudiantResource {
          
         List<Etudiant> listEtudiants = etudiantRepository.findAll();
  
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = {"ID", "Niveau Scolaire", "Departement", "Niveau Planche", "Permis de Conduire", "Lieu Depart", "Option Semestre", "Compte Valide", "Profil", "Flotteur", "Voile", "Combinaison", "Gestionnaire"};
-        String[] nameMapping = {"id", "niveauScolaire", "departement", "niveauPlanche", "permisDeConduire", "lieuDepart", "optionSemestre", "compteValide", "profil", "flotteur", "voile", "combinaison", "Gestionnaire"};
-         
-        csvWriter.writeHeader(csvHeader);
-         
-        for (Etudiant etudiant : listEtudiants) {
-            csvWriter.write(etudiant, nameMapping);
-        }
-         
-        csvWriter.close();
+        ICsvListWriter listWriter= new CsvListWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"ID","Nom", "Prenom", "Email", "Num tel" , "Niveau Scolaire", "Departement", "Niveau Planche", "Permis de Conduire", "Lieu Depart", "Option Semestre", "Flotteur", "Voile", "Combinaison", "Gestionnaire"};         
+        listWriter.writeHeader(csvHeader);
+        
+        List<Object> elem;
 
-         
+        for (Etudiant etudiant : listEtudiants) {
+            Profil profil = etudiant.getProfil();
+            String flotteur = "";
+            String voile = "";
+            String combinaison = "";
+            String gestionnaire = "";
+            
+            if(etudiant.getFlotteur()!=null)
+                flotteur = etudiant.getFlotteur().getNom().toString();
+            if(etudiant.getVoile()!=null)
+                voile = etudiant.getVoile().getNomComplet().toString();
+            if(etudiant.getCombinaison()!=null)
+                combinaison = etudiant.getCombinaison().getNom().toString();
+            if(etudiant.getGestionnaire()!=null)
+                gestionnaire = etudiant.getGestionnaire().getProfil().getNom().toString() + " " + etudiant.getGestionnaire().getProfil().getPrenom().toString();
+
+            elem = Arrays.asList(
+                etudiant.getId(),
+                profil.getNom(),
+                profil.getPrenom(),
+                profil.getEmail(),
+                profil.getNumTel(),
+                etudiant.getNiveauScolaire(),
+                etudiant.getDepartement(),
+                etudiant.getNiveauPlanche(),
+                etudiant.isPermisDeConduire(),
+                etudiant.getLieuDepart(),
+                etudiant.isOptionSemestre(),
+                flotteur,
+                voile,
+                combinaison,
+                gestionnaire
+            );
+            listWriter.write(elem);
+        }
+
+        if(listEtudiants.isEmpty()){
+            elem = Arrays.asList("liste vide");
+            listWriter.write(elem);
+        }
+
+        listWriter.close();         
     }
-    
-    
+
 }

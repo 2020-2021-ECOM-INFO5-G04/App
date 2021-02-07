@@ -37,12 +37,12 @@
                     <td>{{ evaluation.commentaire }}</td>
                     <td>
                         <div *ngIf="evaluation.etudiant">
-                            <a [routerLink]="['/etudiant', evaluation.etudiant?.id, 'view']" >{{ evaluation.etudiant?.id }}</a>
+                            <a [routerLink]="['/etudiant', evaluation.etudiant?.id, 'view']" >{{ evaluation.etudiant?.profil?.prenom+" "+evaluation.etudiant?.profil?.nom }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="evaluation.gestionnaire">
-                            <a [routerLink]="['/gestionnaire', evaluation.gestionnaire?.id, 'view']" >{{ evaluation.gestionnaire?.id }}</a>
+                            <a [routerLink]="['/gestionnaire', evaluation.gestionnaire?.id, 'view']" >{{ evaluation.gestionnaire?.profil?.prenom+" "+evaluation.gestionnaire?.profil?.nom }}</a>
                         </div>
                     </td>
                     <td class="text-right">

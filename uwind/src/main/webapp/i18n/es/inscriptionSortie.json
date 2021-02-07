@@ -13,6 +13,7 @@
       "delete": {
         "question": "¿Seguro que quiere eliminar Inscription Sortie {{ id }}?"
       },
+      "alreadyRegistered": "Este estudiante ya está inscrito en esta salida.",
       "detail": {
         "title": "Inscription Sortie"
       },

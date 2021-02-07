@@ -42,7 +42,7 @@
                     <td>{{ sortie.commentaire }}</td>
                     <td>
                         <div *ngIf="sortie.gestionnaire">
-                            <a [routerLink]="['/gestionnaire', sortie.gestionnaire?.id, 'view']" >{{ sortie.gestionnaire?.id }}</a>
+                            <a [routerLink]="['/gestionnaire', sortie.gestionnaire?.profil?.prenom, 'view']" >{{ sortie.gestionnaire?.profil?.nom }}</a>
                         </div>
                     </td>
                     <td class="text-right">

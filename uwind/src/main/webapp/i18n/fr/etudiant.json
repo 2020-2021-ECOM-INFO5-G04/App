@@ -3,15 +3,15 @@
     "etudiant": {
       "home": {
         "title": "Etudiants",
-        "createLabel": "Créer un nouveau Etudiant",
-        "createOrEditLabel": "Créer ou éditer un Etudiant",
+        "createLabel": "Créer un nouvel étudiant",
+        "createOrEditLabel": "Créer ou éditer un étudiant",
         "notFound": "Aucun Etudiant trouvé"
       },
-      "created": "Un nouveau Etudiant a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Etudiant avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Etudiant avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouvel étudiant a été créé avec l'identifiant {{ param }}",
+      "updated": "L'étudiant avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "L'étudiant avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Etudiant {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer l'étudiant {{ id }} ?"
       },
       "detail": {
         "title": "Etudiant"
@@ -31,7 +31,9 @@
       "evaluation": "Evaluation",
       "inscriptionSortie": "Inscription Sortie",
       "gestionnaire": "Gestionnaire",
-      "formation": "Formation"
+      "formation": "Formation",
+      "affectEquipment": "Affecter materiel",
+      "exportcsv": "Exporter en CSV"
     }
   }
 }

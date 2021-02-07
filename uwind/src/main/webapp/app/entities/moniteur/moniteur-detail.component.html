@@ -29,19 +29,19 @@
                 <dt><span jhiTranslate="uwindApp.moniteur.flotteur">Flotteur</span></dt>
                 <dd>
                     <div *ngIf="moniteur.flotteur">
-                        <a [routerLink]="['/flotteur', moniteur.flotteur?.id, 'view']">{{ moniteur.flotteur?.id }}</a>
+                        <a [routerLink]="['/flotteur', moniteur.flotteur?.id, 'view']">{{ moniteur.flotteur?.nom }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.moniteur.voile">Voile</span></dt>
                 <dd>
                     <div *ngIf="moniteur.voile">
-                        <a [routerLink]="['/voile', moniteur.voile?.id, 'view']">{{ moniteur.voile?.id }}</a>
+                        <a [routerLink]="['/voile', moniteur.voile?.id, 'view']">{{ moniteur.voile?.nomComplet }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="uwindApp.moniteur.combinaison">Combinaison</span></dt>
                 <dd>
                     <div *ngIf="moniteur.combinaison">
-                        <a [routerLink]="['/combinaison', moniteur.combinaison?.id, 'view']">{{ moniteur.combinaison?.id }}</a>
+                        <a [routerLink]="['/combinaison', moniteur.combinaison?.id, 'view']">{{ moniteur.combinaison?.nom }}</a>
                     </div>
                 </dd>
             </dl>

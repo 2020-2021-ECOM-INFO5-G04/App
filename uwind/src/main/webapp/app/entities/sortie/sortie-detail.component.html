@@ -1,9 +1,19 @@
-<head>
+<style>
+    .map-responsive {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
 
-    <base href="/">
-    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <title>Detail</title>
-</head>
+    .map-responsive iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
+</style>
 
 <div class="row justify-content-center">
     <div class="col-8">
@@ -54,27 +64,24 @@
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
+
+            <button *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE']" type="button" class="btn btn-secondary" (click)="export()" jhiTranslate="uwindApp.sortie.exportcsv">
+                <span>
+                Export the list of students in CSV
+                </span>
+            </button>
         </div>
     </div>
 
     <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'" class="col-8" >
-    <div *ngIf="tmp">
-        <div style="height: 500px;"
-                leaflet
-                [leafletOptions]="options1"
-                [leafletLayers]="layers1">
-        </div>
+    <div *ngIf="smh" class="map-responsive">
+        <iframe title="smh" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3343.5759394045062!2d5.764538914992961!3d45.19517212552355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478af5a619bd2589%3A0xf8fff1b8f977ef87!2sPiscine%20Universitaire!5e0!3m2!1sfr!2sfr!4v1609955115203!5m2!1sfr!2sfr" 
+                width="600" height="450" style="border:0;" allowfullscreen="" aria-hidden="true" tabindex="0"></iframe>
     </div>
 
-    <div *ngIf="!tmp">
-        <div style="height: 500px;"
-            leaflet
-            [leafletOptions]="options2"
-            [leafletLayers]="layers2"
-        >
-        </div>
+    <div *ngIf="!smh" class="map-responsive">
+        <iframe title="manitec" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6687.203307509462!2d5.703191242634064!3d45.1947344725717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478af517abfaf89b%3A0x635d7041ccdf995b!2sMINATEC!5e0!3m2!1sfr!2sfr!4v1609955525715!5m2!1sfr!2sfr" 
+                width="600" height="450" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
     </div>
 </div>
-
-
