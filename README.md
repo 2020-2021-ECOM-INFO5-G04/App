@@ -17,5 +17,4 @@ The application body has been generated thanks to Jhipster. CI with Travis and S
 You can find more details about the app itself in the README of the uwind directory.
 The scripts directory contains scripts that help to set up the required environment to execute the app on Azure VM.
 The jdl directory contains the jdh file (representing an UML entity graph) used to generate the app in Jhipster.
-
 More documentation can be found in the Docs repo.
